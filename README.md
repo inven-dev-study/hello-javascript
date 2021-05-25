@@ -19,3 +19,5 @@ Git Hub, Slack
 2. 인벤 카드 덱 시뮬레이터
 3. 간단한 게임
 
+학습 사이트(모던 자바스크립트)
+https://ko.javascript.info/
