@@ -64,3 +64,4 @@ alert(color); // #FF7F00
     오래된 방식? var 와 차이
     전역변수(Global Variable)와 지역변수(Local Variable) ?? 변수명 중복??
 */
+
