@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화살표 함수 기본</title>
+</head>
+<body>
+<h2>화살표 함수 기본</h2>
+
+<pre><code>
+  let func = (arg1, arg2, ...argN) => expression
+</code></pre>
+
+<p>위 함수는 아래 함수의 축약 버전으로 볼 수 있다.</p>
+
+<pre><code>
+  let func = function(arg1, arg2, ...argN) { return expression; }
+</code></pre>
+
+
+<p>아래와 같이 함수표현식 같은 방법으로 사용할 수 있다.</p>
+
+<pre><code>
+  let age = prompt("나이를 알려주세요.", 18);
+
+  let welcome = (age < 18) ?
+    () => { alert("안녕!"); } :
+    () => { alert("안녕하세요!"); };
+
+  welcome(); // 제대로 동작합니다.
+</code></pre>
+
+</body>
+</html>
