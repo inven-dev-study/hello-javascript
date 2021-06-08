@@ -1,64 +1,72 @@
 :root {
-    /* size */
-    --base-space: 10px;
-    --size-border: 4px;
-    --font-size: 20px;
-    --text-height: 50px;
- 
+  /* color */
+  --color-black: #3f454d;
+
+  /* size */
+  --base-space: 10px;
+  --size-border: 4px;
+  --font-size: 20px;
+  --text-height: 50px;
+
   /* annimation */
   --animation-duration: 300ms;
 }
 
+body {
+  width: 70%;
+  background-color: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .logo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-    cursor: pointer;
-    transition: transform var(--animation-duration) ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  cursor: pointer;
+  transition: transform var(--animation-duration) ease;
 }
 .inputPressionText {
-    text-align:right;
-    width: 100%;
-    height: var(--text-height);
-    background-color: gray;
-    display: block;
-    font-size: var(--font-size);
-
+  text-align: right;
+  width: 100%;
+  height: var(--text-height);
+  background-color: gray;
+  display: block;
+  font-size: var(--font-size);
 }
 
 .inputAndResultText {
-    width: 100%;
-    height: var(--text-height);
-    text-align: right;
-    background-color:whitesmoke;
-    display: block;
-    font-size: var(--font-size);
+  width: 100%;
+  height: var(--text-height);
+  text-align: right;
+  background-color: whitesmoke;
+  display: block;
+  font-size: var(--font-size);
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: calc(var(--base-space)*2);
-    grid-auto-rows: minmax(100px, auto);
-    margin-top: var(--base-space);
-
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: calc(var(--base-space) * 2);
+  grid-auto-rows: minmax(100px, auto);
+  margin-top: var(--base-space);
 }
 
-.btn{
-    font-size: x-large;
-    border-radius: var(--size-border);
-    cursor: pointer;
-    transition: transform var(--animation-duration) ease;
-  
+.btn {
+  font-size: x-large;
+  border-radius: var(--size-border);
+  cursor: pointer;
+  transition: transform var(--animation-duration) ease;
 }
 
-.btn:hover{
-    background-color: orange;
-    transform: scale(1.1);
+.btn:hover {
+  background-color: orange;
+  transform: scale(1.1);
 }
 
-.btnZero {
-    grid-column: 1 / span 2;
-    grid-row: 5;
+.zero {
+  grid-column: 1 / span 2;
+  grid-row: 5;
 }
