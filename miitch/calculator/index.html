@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>계산기</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="wrapper">
+	<div id="calculator">
+		<div class="display">
+			<div class="input"><span></span></div>
+			<div class="output"><span></span></div>
+		</div>
+		<table>
+			<tr>
+				<td class="button" data-type="num">7</td>
+				<td class="button" data-type="num">8</td>
+				<td class="button" data-type="num">9</td>
+				<td class="button" data-type="obelus">/</td>
+				<td class="button" data-type="clear">clear</td>
+			</tr>
+			<tr>
+				<td class="button" data-type="num">4</td>
+				<td class="button" data-type="num">5</td>
+				<td class="button" data-type="num">6</td>
+				<td class="button" data-type="multiply">*</td>
+				<td class="button" data-type="backspace">←</td>
+			</tr>
+			<tr>
+				<td class="button" data-type="num">1</td>
+				<td class="button" data-type="num">2</td>
+				<td class="button" data-type="num">3</td>
+				<td class="button" data-type="minus">-</td>
+				<td class="button empty">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="button" data-type="num" data-type2="zero">0</td>
+				<td class="button" data-type="num" data-type2="dot">.</td>
+				<td class="button empty">&nbsp;</td>
+				<td class="button" data-type="plus">+</td>
+				<td class="button" data-type="equal">=</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
