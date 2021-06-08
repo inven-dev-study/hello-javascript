@@ -1,0 +1,82 @@
+body {
+  background-color: #f9fafb;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  padding: 30px 40px;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.calc {
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.calc button {
+  width: 60px;
+  height: 60px;
+  border: transparent;
+  outline: transparent;
+  border-radius: 100px;
+  background-color: rgb(227, 195, 244);
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+input {
+  text-align: right;
+  border: none;
+  float: right;
+}
+
+input:focus {
+  outline: none;
+}
+
+.process {
+  text-align: right;
+  font-size: 20px;
+  color: rgb(190, 190, 190);
+  margin-right: 80px;
+  padding-top: 20px;
+}
+.result {
+  text-align: right;
+  font-size: 25px;
+  color: rgb(190, 82, 247);
+  margin-right: 80px;
+  padding-bottom: 20px;
+}
+
+.calc .reset {
+  width: 91.5px;
+  height: 60px;
+  background-color: rgb(190, 190, 190);
+}
+
+.calc .clear {
+  width: 91.5px;
+  height: 60px;
+}
+
+.calc .equal {
+  background-color: rgb(190, 190, 190);
+}
