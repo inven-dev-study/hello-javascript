@@ -20,7 +20,8 @@ let isAdd = 1;  // 값을 뒤에 추가할지, 추가하지 않고 마지막 문
 let isDot = 0,
 	isZero = 0,
 	afterDot = 0,  // 소수점 뒤인지 판단  0: 소수점앞, 1: 소수점뒤
-	addZero = 1;  //0을 입력할 수 있는가  0: 불가, 1: 가능
+	addZero = 1,  //0을 입력할 수 있는가  0: 불가, 1: 가능
+	freeZero = 0;  //0을 입력할 수 있는가 2중 확인
 
 let buttons = document.querySelectorAll('.button'),
 	inputArea = document.querySelector('.input'),
@@ -55,13 +56,17 @@ function updateData(typeOfItem, item) {
 	isZero = item.getAttribute('data-type2') == 'zero';
 	checkLastType();
 
+	freeZero = (typeOfItem == 'num' && !isZero) ? 1 : freeZero;
+
 	if(typeOfItem != 'num' && data) {
 		afterDot = 0;
 		addZero = 1;
+		freeZero = 0;
 	} else if(typeOfItem != 'num') {
 		alert('숫자를 먼저 입력하세요.');
 		return;
 	}
+
 
 	if(typeOfItem != 'num' && lastIsSymbol == 0) {  // 넣으려는 값이 숫자가 아니고, 현재 마지막 문자가 부호일 때: 덮어쓴다.
 		isAdd = (typeOfItem == 'minus' && lastIsMinus != 0) ? 1 : 0;  //단, 넣으려는 값이 마이너스 부호이고, 마지막 문자가 마이너스가 아닌 부호일 때: 추가한다
@@ -78,7 +83,7 @@ function updateData(typeOfItem, item) {
 	}
 
 	if (isZero) {
-		if (addZero && !afterDot) {
+		if (addZero && !afterDot && !freeZero) {
 			addZero = 0;
 		} else if (!addZero) {
 			return;
@@ -87,7 +92,7 @@ function updateData(typeOfItem, item) {
 
 	inputDataList(item, isAdd);
 
-	if(lastIsNum) {
+	if(lastIsNum == 0) {
 		calData();
 	}
 }
@@ -119,7 +124,10 @@ function inputDataList(item, isAdd) {
 function inputDisplay(data) {
 	inputArea.innerHTML = data;
 }
+
+
 let result, dataForResult;
+
 function calData() {  //계산
 	if(data) {
 		result = dataForResult = data;
@@ -161,6 +169,7 @@ function clearData() {
 	outputArea.innerHTML = "";
 	afterDot = 0;
 	addZero = 1;
+	freeZero = 0;
 }
 
 function delData() {
@@ -169,6 +178,7 @@ function delData() {
 	if (lastIsDot == 0) {
 		afterDot = 0;
 		addZero = 1;
+		freeZero = 0;
 	}
 
 	data = data.slice(0, -1);
