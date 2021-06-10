@@ -190,3 +190,78 @@ let clone = Object.assign({}, user);
 깊은 복사를 하려면, 알고리즘을 이용하거나 lodash 라이브러리의 _.cloneDeep(obj)를 이용하면 처리할 수 있다.
 
 ==========
+메서드와 this
+
+■ 메소드 만들기
+```
+let user  = {...}
+
+user.sayHi = function(){
+    alert("Hello!");
+}
+```
+함수표현식으로 함수를 만들어 객체 프로퍼티에 함수를 할당할 수 있다.
+이렇게 객체 프로퍼티에 할당된 함수를 "메서드(method)"라고 한다.
+메서드는 이미 정의된 함수를 이용하여 만들 수도 있다.
+```
+function sayHi() {
+    alert("Hello!");
+}
+user.sayHi = sayHi;
+
+user.sayHi();  // Hello!
+```
+
+■ 메서드 단축 구문
+```
+user = {
+    sayHi() {    // sayHi: function() 과 동일하다.
+        alert("Hello");
+    }
+};
+
+■ 메서드 내부에서 this 키워드를 사용하면 객체에 접근할 수 있다
+```
+sayHi() { alert(this.name); }  // this는 현재의 객체를 나타낸다.
+```
+
+* 동일한 함수라도 다른 객체에서 호출하면 'this'의 참조값이 달라진다.
+
+객체 없이 함수를 호출하면
+```
+function sayHi() { alert(this); }
+sayHi();
+```
+엄격모드에서 위 코드를 실행하면 this 에 undefined 가 할당되며,
+this.name 으로 name 에 접근하려고 하면 에러가 난다.
+그러나 엄격모드가 아닐 때는 this 가 전역 객체(window)를 참조한다.
+ * 이러한 동작의 차이가 use strict 가 도입된 배경
+
+자바스크립트에서의 this 는 다른 언어의 this 보다 자유롭다.
+자바스크립트에서 this 는 메서드가 어디에 정의되었는지에 상관없이 '점 앞의' 객체가 무엇인가에 따라 자유롭게 결정된다.
+```
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() { alert( this.name ); }
+
+user.f = sayHi;   // user.f();  => John
+admin.f = sayHi;   // admin.f(); => Admin
+```
+
+==========
+this 가 없는 화살표 함수
+화살표 함수에서 this 를 참조하면 화살표 함수가 아닌 평범한 외부 함수에서 this 값을 가져온다.
+```
+let user = {
+  firstName: "보라",
+  sayHi() {
+    let arrow = () => alert(this.firstName);
+    arrow();
+  }
+};
+
+user.sayHi(); // 보라
+```
+?? 뭐가 문젠지 모르겠다. this 가 arrow 가 아니라 외부의 user 를 가리킨다는 점을 말하는 것인가 ??
+==========
