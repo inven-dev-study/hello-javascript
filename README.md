@@ -30,3 +30,10 @@ Git Hub, Slack
 - [제주베이스캠프 JavaScript 100제](https://www.notion.so/JS-100-94d97d294dd14c9b911a02c840fa9f2d)
 - [벨로퍼트 모던 자바스크립트](https://learnjs.vlpt.us/)
 - [javaScript Questions](https://github.com/lydiahallie/javascript-questions/blob/master/ko-KR/README-ko_KR.md)
+
+##### <프로젝트 방식>
+1. 멤버들끼리 나눠서 만들면서 서로의 방식 해석하고 좋은점 흡수하기
+____________________________
+2. 모범답안 만들어주는 분 초빙
+____________________________
+3. 개선점 찝어주는 분 초빙
