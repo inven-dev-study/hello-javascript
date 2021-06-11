@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주소록_Lokeu&Miitch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="wrapper">
+    <main id="adressMain">
+        <div id="headBlock">
+            <h1>주소록</h1>
+            <div id="searchBox">
+                <input type="search" name="search" id="search" placeholder="입력된 연락처 검색">
+            </div>
+            <button id="addAdress"><img src="img/icon_add.png" alt="새 연락처 추가"></button>
+        </div>
+
+        <!--
+        <li class="detail">
+            <p class="name">이름이여</p>
+            <p class="tel">000-0000-0000</p>
+            <p class="email">abc123@gmail.com</p>
+            <div class="buttonBox">
+                <button class="change">수정</button>
+                <button class="delete">삭제</button>
+            </div>
+        </li>
+        -->
+
+        <section id="adressBlock">
+            <div id="bookmarkBox">
+                <p>즐겨찾기</p>
+                <ul id="bookmarkList detailList">
+                    <li class="detail">
+                        <p class="name">홍길동</p>
+                        <p class="tel">010-1111-1111</p>
+                        <p class="email">kong222@gmail.com</p>
+                        <div class="buttonBox">
+                            <button class="change">수정</button>
+                            <button class="delete">삭제</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <ol id="indexList">
+                <li class="index">ㄱ
+                    <ul id="detailList">
+                        <li class="detail">
+                            <p class="name">김가네</p>
+                            <p class="tel">02-1234-9865</p>
+                            <p class="email">kimgane@naver.com</p>
+                            <div class="buttonBox">
+                                <button class="change">수정</button>
+                                <button class="delete">삭제</button>
+                            </div>
+                        </li>
+                        <li class="detail">
+                            <p class="name">김철수</p>
+                            <p class="tel">02-8520-9630</p>
+                            <p class="email">iron.kim@naver.com</p>
+                            <div class="buttonBox">
+                                <button class="change">수정</button>
+                                <button class="delete">삭제</button>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="index">ㄴ</li>
+                <li class="index">ㄷ
+                    <ul id="detailList">
+                        <li class="detail">
+                            <p class="name">도무지</p>
+                            <p class="tel">02-1234-9865</p>
+                            <p class="email">dodo@naver.com</p>
+                            <div class="buttonBox">
+                                <button class="change">수정</button>
+                                <button class="delete">삭제</button>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="index">ㄹ</li>
+                <li class="index">ㅁ</li>
+                <li class="index">ㅂ
+                    <ul id="detailList">
+                        <li class="detail">
+                            <p class="name">복순이</p>
+                            <p class="tel">02-1234-9865</p>
+                            <p class="email">lucks277@naver.com</p>
+                            <div class="buttonBox">
+                                <button class="change">수정</button>
+                                <button class="delete">삭제</button>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="index">ㅅ</li>
+                <li class="index">ㅇ</li>
+                <li class="index">ㅈ</li>
+                <li class="index">ㅊ</li>
+                <li class="index">ㅋ</li>
+                <li class="index">ㅌ</li>
+                <li class="index">ㅍ</li>
+                <li class="index">ㅎ</li>
+            </ol>
+            <!-- 즐겨찾기(상단고정) 리스트 -->
+            <!-- 가나다... 리스트  ol>li[ㄱ-ㅎ]>ol>li[이름(가-깋)] -->
+            <!-- 리스트는 개폐가능 slideUp, Down -->
+            <!-- 목록에서 이름 누르면 상세정보 slideDown -->
+        </section>
+    </main>
+    <footer>
+        <div id="pageTop">위로</div>
+    </footer>
+
+<!-- 새로 추가하기 팝업 -->
+</div>
+</body>
+</html>
