@@ -9,13 +9,13 @@
 </head>
 <body>
 <div id="wrapper">
-    <main id="adressMain">
+    <main id="addressMain">
         <div id="headBlock">
             <h1>주소록</h1>
             <div id="searchBox">
                 <input type="search" name="search" id="search" placeholder="입력된 연락처 검색">
             </div>
-            <button id="addAdress"><img src="img/icon_add.png" alt="새 연락처 추가"></button>
+            <button id="addButton"><img src="img/icon_add.png" alt="새 연락처 추가"></button>
         </div>
 
         <!--
@@ -30,10 +30,10 @@
         </li>
         -->
 
-        <section id="adressBlock">
+        <section id="addressBlock">
             <div id="bookmarkBox">
-                <p>즐겨찾기</p>
-                <ul id="bookmarkList detailList">
+                <p class="head index">즐겨찾기</p>
+                <ul id="bookmarkList" class="detailList">
                     <li class="detail">
                         <p class="name">홍길동</p>
                         <p class="tel">010-1111-1111</p>
@@ -46,8 +46,8 @@
                 </ul>
             </div>
             <ol id="indexList">
-                <li class="index">ㄱ
-                    <ul id="detailList">
+                <li class="index"><span>ㄱ</span>
+                    <ul class="detailList">
                         <li class="detail">
                             <p class="name">김가네</p>
                             <p class="tel">02-1234-9865</p>
@@ -68,9 +68,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="index">ㄴ</li>
-                <li class="index">ㄷ
-                    <ul id="detailList">
+                <li class="index"><span>ㄴ</span></li>
+                <li class="index"><span>ㄷ</span>
+                    <ul class="detailList">
                         <li class="detail">
                             <p class="name">도무지</p>
                             <p class="tel">02-1234-9865</p>
@@ -82,10 +82,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="index">ㄹ</li>
-                <li class="index">ㅁ</li>
-                <li class="index">ㅂ
-                    <ul id="detailList">
+                <li class="index"><span>ㄹ</span></li>
+                <li class="index"><span>ㅁ</span></li>
+                <li class="index"><span>ㅂ</span>
+                    <ul class="detailList">
                         <li class="detail">
                             <p class="name">복순이</p>
                             <p class="tel">02-1234-9865</p>
@@ -97,14 +97,14 @@
                         </li>
                     </ul>
                 </li>
-                <li class="index">ㅅ</li>
-                <li class="index">ㅇ</li>
-                <li class="index">ㅈ</li>
-                <li class="index">ㅊ</li>
-                <li class="index">ㅋ</li>
-                <li class="index">ㅌ</li>
-                <li class="index">ㅍ</li>
-                <li class="index">ㅎ</li>
+                <li class="index"><span>ㅅ</span></li>
+                <li class="index"><span>ㅇ</span></li>
+                <li class="index"><span>ㅈ</span></li>
+                <li class="index"><span>ㅊ</span></li>
+                <li class="index"><span>ㅋ</span></li>
+                <li class="index"><span>ㅌ</span></li>
+                <li class="index"><span>ㅍ</span></li>
+                <li class="index"><span>ㅎ</span></li>
             </ol>
             <!-- 즐겨찾기(상단고정) 리스트 -->
             <!-- 가나다... 리스트  ol>li[ㄱ-ㅎ]>ol>li[이름(가-깋)] -->
@@ -113,7 +113,6 @@
         </section>
     </main>
     <footer>
-        <div id="pageTop">위로</div>
     </footer>
 
 <!-- 새로 추가하기 팝업 -->
