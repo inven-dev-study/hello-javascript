@@ -1,0 +1,209 @@
+메서드와 this
+
+■ 메소드 만들기
+```
+let user  = {...}
+
+user.sayHi = function(){
+    alert("Hello!");
+}
+```
+함수표현식으로 함수를 만들어 객체 프로퍼티에 함수를 할당할 수 있다.
+이렇게 객체 프로퍼티에 할당된 함수를 "메서드(method)"라고 한다.
+메서드는 이미 정의된 함수를 이용하여 만들 수도 있다.
+```
+function sayHi() {
+    alert("Hello!");
+}
+user.sayHi = sayHi;
+
+user.sayHi();  // Hello!
+```
+
+■ 메서드 단축 구문
+```
+user = {
+    sayHi() {    // sayHi: function() 과 동일하다.
+        alert("Hello");
+    }
+};
+
+■ 메서드 내부에서 this 키워드를 사용하면 객체에 접근할 수 있다
+```
+sayHi() { alert(this.name); }  // this는 현재의 객체를 나타낸다.
+```
+
+* 동일한 함수라도 다른 객체에서 호출하면 'this'의 참조값이 달라진다.
+
+객체 없이 함수를 호출하면
+```
+function sayHi() { alert(this); }
+sayHi();
+```
+엄격모드에서 위 코드를 실행하면 this 에 undefined 가 할당되며,
+this.name 으로 name 에 접근하려고 하면 에러가 난다.
+그러나 엄격모드가 아닐 때는 this 가 전역 객체(window)를 참조한다.
+ * 이러한 동작의 차이가 use strict 가 도입된 배경
+
+자바스크립트에서의 this 는 다른 언어의 this 보다 자유롭다.
+자바스크립트에서 this 는 메서드가 어디에 정의되었는지에 상관없이 '점 앞의' 객체가 무엇인가에 따라 자유롭게 결정된다.
+```
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() { alert( this.name ); }
+
+user.f = sayHi;   // user.f();  => John
+admin.f = sayHi;   // admin.f(); => Admin
+```
+
+==========
+this 가 없는 화살표 함수
+화살표 함수에서 this 를 참조하면 화살표 함수가 아닌 평범한 외부 함수에서 this 값을 가져온다.
+```
+let user = {
+  firstName: "보라",
+  sayHi() {
+    let arrow = () => alert(this.firstName);
+    arrow();
+  }
+};
+
+user.sayHi(); // 보라
+```
+?? 뭐가 문젠지 모르겠다. this 가 arrow 가 아니라 외부의 user 를 가리킨다는 점을 말하는 것인가 ??
+==========
+'new' 연산자와 생성자 함수
+
+■ 생성자 함수(constructor function)
+   > 손쉽게 객체를 만들 수 있다. 
+
+생성자 함수 아래 두 관례를 따라 작성한다.
+
+1. 함수 이름의 첫 글자는 대문자
+2. 반드시 "new" 연산자를 붙여 실행
+
+```
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User("Jack");
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+```
+여기서 `let user = new User("Jack");`는 아래와 동일하게 작동한다.
+```
+let user = {
+    name = "Jack",
+    isAdmin = false
+}
+```
+
+
+■ new function() {...}
+재사용할 필요가 없는 복잡한 객체를 만들 때는 아래와 같이 코드를 익명 생성자 함수로 감싸주는 방식을 사용할 수 있다.
+```
+let user = new function() {
+  this.name = "John";
+  this.isAdmin = false;
+
+  // 사용자 객체를 만들기 위한 여러 코드.
+  // 지역 변수, 복잡한 로직, 구문 등의
+  // 다양한 코드가 여기에 들어갑니다.
+};
+```
+위 생성자 함수는 익명 함수로, 단 한 번만 호출할 목적으로 만들었기 때문에 재사용이 불가능하다.
+이렇게 익명 생성자 함수를 이용하면 재사용은 막으면서 코드를 캡슐화 할 수 있다.
+
+
+■ new.target
+※ 이 문법은 자주 쓰이지 않는다.
+
+new.target 프로퍼티를 사용하면 함수가 new와 함께 호출되었는지 아닌지를 알 수 있다.
+```
+function User() {
+    alert(new.target);
+}
+
+User();  //undefined => "new" 없이 호출하였으므로 
+new User();  // function User {...} => "new"로 호출되었으므로 함수 자체를 반환한다.
+```
+
+
+■ 생성자와 retrun문
+return 문이 있는 생성자 함수는 거의 없다.
+반환해야하는 것들은 모두 this에 저장되며 this 는 자동으로 반환되기 때문에 명시적으로 써 줄 필요가 없다.
+
+만약 return 문이 있다면 아래와 같은 규칙이 적용된다.
+ > 객체를 return 한다면 this 대신 객체가 반환된다.
+ > 원시형을 return 한다면 return 문이 무시된다.
+
+■ 생성자 내 메서드
+생성자 함수를 사용하면 매개변수를 이용해 객체 내부를 자유롭게 구성할 수 있다.
+아래 예시의 new User(name)은 프로퍼티 name 과 메서드 sayHi를 가진 객체를 생성한다.
+```
+function User(name) {
+  this.name = name;
+
+  this.sayHi = function() {
+    alert( "My name is: " + this.name );
+  };
+}
+
+let john = new User("John");
+
+john.sayHi(); // My name is: John
+```
+
+==========
+옵셔널 체이닝(optional chaining) '?.'
+  > 옵셔널 체이닝을 사용하면 프로퍼티가 없는 중첩 객체를 에러 없이 안전하게 접근할 수 있다.
+
+■  필요한 이유
+case 1) 여러 명의 사용자 중, 몇 명은 주소 정보를 가지고 있지 않다.
+        -> 이럴 때 user.address.street 를 사용하여 주소 정보에 접근하면 에러가 발생할 수 있다.
+    ```
+      let user = {}; // 주소 정보가 없는 사용자
+      alert(user.address.street); // TypeError: Cannot read property 'street' of undefined
+    ```
+
+case 2) 브라우저에서 동작하는 코드를 개발할 때, 페이지에 존재하지 않는 요소에 접근하여 요소의 정보를 가져오려고 하면 문제가 발생한다.
+    ```
+      // querySelector(...) 호출 결과가 null인 경우 에러 발생
+      let html = document.querySelector('.my-element').innerHTML;
+    ```
+
+?. 이 추가되기 전에는 이 문제를 해결하기 위해 && 연산자를 사용했다.
+    (?.을 지원하지 않는 경우 && 연산자를 사용하면 된다..!)
+      -> 특정 프로퍼티에 접근하기 위해 거쳐야 할 요소들을 && 로 연결하여 실제로 해당 객체나 프로퍼티가 있는지 확인하는 방법
+    ```
+    let user = {}; // 주소 정보가 없는 사용자
+    alert( user && user.address && user.address.street ); // undefined, 에러가 발생하지 않습니다.
+    ```
+
+    ▼ 옵셔널 체이닝을 사용하면
+    ```
+    let user = {}; // 주소 정보가 없는 사용자
+    alert( user?.address?.street ); // undefined, 에러가 발생하지 않습니다.
+    ```
+
+⚠ ?. 는 존재하지 않아도 괜찮은 대상에만 사용해야 한다.
+  위 사례에서 논리상 user 는 반드시 있어야 하지만 adress는 필수값이 아니므로, user.address?.street를 사용하는 것이 바람직하다.
+  [ X ] user?.address?.street || user?.address.street
+
+⚠ ?. 앞의 변수는 꼭 선언되어 있어야 한다.
+  변수 user가 선언되어 있지 않으면 user?.anything 평가시 에러가 발생한다.
+  ```
+  // ReferenceError: user is not defined
+  user?.address;
+  ```
+
+⚠ ?. 는 쓰기에 사용할 수 없다.
+
+■ 
+■ 
+■ 
+
