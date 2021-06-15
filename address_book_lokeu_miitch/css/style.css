@@ -188,5 +188,5 @@ footer {
 .index ul.detailList { display: block; }
 .index.hide ul.detailList { display: none; }
 
-.detail .tel, .detail .email, .detail .buttonBox { display: block; }
+.detail .tel, .detail .email, .detail .buttonBox { display: flex; }
 .detail.hide .tel, .detail.hide .email, .detail.hide .buttonBox { display: none; }

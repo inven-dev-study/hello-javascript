@@ -39,6 +39,7 @@
                         <p class="tel">010-1111-1111</p>
                         <p class="email">kong222@gmail.com</p>
                         <div class="buttonBox">
+                            <!-- 즐겨찾기 여부 체크 필요 -->
                             <button class="change">수정</button>
                             <button class="delete">삭제</button>
                         </div>
@@ -116,6 +117,20 @@
     </footer>
 
 <!-- 새로 추가하기 팝업 -->
-</div>
+    <div class="popup getAddress">
+        <div class="innerWrapper">
+            <h2>새 연락처 추가</h2>
+            <div class="AdressInputBox">
+                <input type="text" placeholder="이름" id="isName">
+                <input type="text" placeholder="전화번호" id="isTel">
+                <input type="text" placeholder="이메일" id="isEmail">
+                <label for="isFavorite">
+                    <span>즐겨찾기에 추가</span>
+                    <input type="checkbox" name="isFavorite" id="isFavorite">
+                </label>
+            </div>
+        </div>
+    </div>
+</div> <!-- /#wrapper -->
 </body>
 </html>
