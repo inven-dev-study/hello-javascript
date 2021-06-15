@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주소록</title>
+    
+</head>
+<body>
+    <!-- Trigger/Open The Modal -->
+    <button id="addBtn">Add User</button>
+    <button id="updateBtn">Update User</button>
+    <button id="favoriteBtn">즐겨찾기</button>
+    <button id="deleteBtn">삭제</button>
+    <!-- The Add Modal -->
+    <div id="add-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>주소록</h2>
+            </div>
+            <div class="modal-body">
+                <form id="form" class="form">
+                    <input type="hidden" id="userId" name="userId" value="">
+                    <input type="hidden" id="isFavorite" name="isFavorite" value="">
+
+                    <div class="form-control">
+                        <label for="username">이름</label>
+                        <input type="text" id="userName" placeholder="이름을 입력해주세요"/>
+                        <small>Error message</small>
+                    </div>
+                    <div class="form-control">
+                        <label for="phone">전화번호</label>
+                        <input type="text" id="phone" placeholder="전화번호를 입력해주세요"/>
+                        <small>Error message</small>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="email">E-mail</label>
+                        <input type="text" id="email" placeholder="이메일을 입력해주세요" />
+                        <small>Error message</small>
+                    </div>
+                    
+                    <div class="form-control">
+                        <label for="address">주소</label>
+                        <input type="text" id="address" placeholder="주소를 입력해주세요"/>
+                        <small>Error message</small>
+
+                    </div>
+                    <button type="submit">저장</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- delete modal -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>삭제</h2>
+
+            </div>
+            <div class="modal-body">
+                <p>삭제하사겠습니까?</p>
+            </div>
+            <button class="no" id="delete-no">아니요</button>
+            <button class="yes" id="delete-yes">예</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</body>
+</html>
