@@ -190,3 +190,8 @@ footer {
 
 .detail .tel, .detail .email, .detail .buttonBox { display: flex; }
 .detail.hide .tel, .detail.hide .email, .detail.hide .buttonBox { display: none; }
+
+
+
+/* 추가/수정용 팝업 */
+.popup.getAddress { display: none; }

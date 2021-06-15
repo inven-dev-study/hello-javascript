@@ -27,7 +27,12 @@ function Address(userName, tel, email, favorite) {
     this.delAddress = function() {
         // 삭제
     }
+
+    this.test = function() {
+        console.log(this.userName);
+    }
 }
 
 
-let test1 = new Address('홍길동', '010-111-1111', 'abc@gmail.com', 'false');
+let test1 = new Address('홍길동', '010-111-1111', 'abc@gmail.com', false);
+test1.test();
