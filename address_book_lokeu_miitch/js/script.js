@@ -92,12 +92,12 @@ function Address(userName, tel, email, favorite) {
 
 let getAddress;
 function getNewAddress(userName, tel, email, favorite = false) {
-    getAddress = new Address(userName, tel, email, favorite, position);
+    getAddress = new Address(userName, tel, email, favorite);
     getAddress.addAddress();
 }
 
 function getChangeAddress(userName, tel, email, favorite = false) {
-    getAddress = new Address(userName, tel, email, favorite, position);
+    getAddress = new Address(userName, tel, email, favorite);
     getAddress.changeAddress();
 }
 
@@ -178,11 +178,11 @@ submitBtn.onclick = function() {
 
 
 /* ---------------------------------------------------------------------------------- */
-let hong_gildong = new Address('홍길동', '010-111-1111', 'abc@gmail.com', true, undefined);
-let bok_sooni = new Address('복순이', '02-1234-9865', 'licks277@gmail.com', false, undefined);
-let kim_gane = new Address('김가네', '02-1234-2343', 'kimgane@gmail.com', false, undefined);
-let kim_chulsu = new Address('김철수', '02-9685-1425', 'iron.kim@gmail.com', false, undefined);
-let doe_muji = new Address('도무지', '02-2323-5498', 'doedoe@naver.com', false, undefined);
+let hong_gildong = new Address('홍길동', '010-111-1111', 'abc@gmail.com', true);
+let bok_sooni = new Address('복순이', '02-1234-9865', 'licks277@gmail.com', false);
+let kim_gane = new Address('김가네', '02-1234-2343', 'kimgane@gmail.com', false);
+let kim_chulsu = new Address('김철수', '02-9685-1425', 'iron.kim@gmail.com', false);
+let doe_muji = new Address('도무지', '02-2323-5498', 'doedoe@naver.com', false);
 
 hong_gildong.addAddress();
 bok_sooni.addAddress();
