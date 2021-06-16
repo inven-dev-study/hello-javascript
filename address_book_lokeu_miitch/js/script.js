@@ -9,12 +9,11 @@
  * +@ 추가 / 수정 시 유효성 검사
  */
 
-function Address(userName, tel, email, favorite, position) {
+function Address(userName, tel, email, favorite) {
     this.userName = userName;
     this.tel = tel;
     this.email = email;
     this.favorite = favorite;
-    this.position = position;
     
     let positionNum = 0;
     let isFavorite = "";
@@ -35,9 +34,6 @@ function Address(userName, tel, email, favorite, position) {
         this.getPosition();
         this.isFavorite();
 
-        // 임시 테스트용
-        let testBox = document.getElementById('testBoxList');
-
         let indexList = document.getElementById('indexList');
         let box = indexList.querySelector("li[data-index='"+ positionNum +"'").querySelector('.detailList');
 
@@ -49,9 +45,9 @@ function Address(userName, tel, email, favorite, position) {
                             "</li>";
     }
 
-    this.changeAddress = function() {
+    this.changeAddress = function() {  // 기존 데이터 삭제되고, 위치를 체크해서 새로 추가되어야 함
         this.isFavorite();
-        position.innerHTML = "<li class='detail" + isFavorite + "'>" +
+        box.innerHTML = "<li class='detail" + isFavorite + "'>" +
                             "<p class='name'>" + this.userName + "</p>" +
                             "<p class='tel'>" + this.tel + "</p>" +
                             "<p class='email'>" + this.email + "</p>" +
@@ -172,14 +168,12 @@ submitBtn.onclick = function() {
         isFavorite = document.getElementById('isFavorite').checked;
         
     if(submitBtn.classList.contains('isNewAdd')) {
-        position = undefined;  // (정렬)에서 값 가져오기?
-        getNewAddress(isName, isTel, isEmail, isFavorite, position);
+        getNewAddress(isName, isTel, isEmail, isFavorite);
         closeBox();
-    } else {
-        position = nowLocation.parentNode;
-        getChangeAddress(isName, isTel, isEmail, isFavorite, position);
-        closeBox();
-    }
+    } //else {
+      //  getChangeAddress(isName, isTel, isEmail, isFavorite);
+      //  closeBox();
+    //}
 }
 
 
