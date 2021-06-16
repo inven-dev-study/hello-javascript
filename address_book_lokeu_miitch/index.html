@@ -34,78 +34,60 @@
             <div id="bookmarkBox">
                 <p class="head index">즐겨찾기</p>
                 <ul id="bookmarkList" class="detailList">
-                    <li class="detail">
+                    <!-- <li class="detail favorite">
                         <p class="name">홍길동</p>
                         <p class="tel">010-1111-1111</p>
                         <p class="email">kong222@gmail.com</p>
                         <div class="buttonBox">
-                            <!-- 즐겨찾기 여부 체크 필요 -->
                             <button class="change">수정</button>
                             <button class="delete">삭제</button>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <ol id="indexList">
-                <li class="index"><span>ㄱ</span>
-                    <ul class="detailList">
-                        <li class="detail">
-                            <p class="name">김가네</p>
-                            <p class="tel">02-1234-9865</p>
-                            <p class="email">kimgane@naver.com</p>
-                            <div class="buttonBox">
-                                <button class="change">수정</button>
-                                <button class="delete">삭제</button>
-                            </div>
-                        </li>
-                        <li class="detail">
-                            <p class="name">김철수</p>
-                            <p class="tel">02-8520-9630</p>
-                            <p class="email">iron.kim@naver.com</p>
-                            <div class="buttonBox">
-                                <button class="change">수정</button>
-                                <button class="delete">삭제</button>
-                            </div>
-                        </li>
-                    </ul>
+                <li class="index" data-index="1"><span>ㄱ</span>
+                    <ul class="detailList"></ul>
                 </li>
-                <li class="index"><span>ㄴ</span></li>
-                <li class="index"><span>ㄷ</span>
-                    <ul class="detailList">
-                        <li class="detail">
-                            <p class="name">도무지</p>
-                            <p class="tel">02-1234-9865</p>
-                            <p class="email">dodo@naver.com</p>
-                            <div class="buttonBox">
-                                <button class="change">수정</button>
-                                <button class="delete">삭제</button>
-                            </div>
-                        </li>
-                    </ul>
+                <li class="index" data-index="2"><span>ㄴ</span>
+                    <ul class="detailList"></ul>
                 </li>
-                <li class="index"><span>ㄹ</span></li>
-                <li class="index"><span>ㅁ</span></li>
-                <li class="index"><span>ㅂ</span>
-                    <ul class="detailList">
-                        <li class="detail">
-                            <p class="name">복순이</p>
-                            <p class="tel">02-1234-9865</p>
-                            <p class="email">lucks277@naver.com</p>
-                            <div class="buttonBox">
-                                <button class="change">수정</button>
-                                <button class="delete">삭제</button>
-                            </div>
-                        </li>
-                    </ul>
+                <li class="index" data-index="3"><span>ㄷ</span>
+                    <ul class="detailList"></ul>
                 </li>
-                <li class="index"><span>ㅅ</span></li>
-                <li class="index"><span>ㅇ</span></li>
-                <li class="index"><span>ㅈ</span></li>
-                <li class="index"><span>ㅊ</span></li>
-                <li class="index"><span>ㅋ</span></li>
-                <li class="index"><span>ㅌ</span></li>
-                <li class="index"><span>ㅍ</span></li>
-                <li class="index"><span>ㅎ</span></li>
+                <li class="index" data-index="4"><span>ㄹ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="5"><span>ㅁ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="6"><span>ㅂ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="7"><span>ㅅ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="8"><span>ㅇ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="9"><span>ㅈ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="10"><span>ㅊ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="11"><span>ㅋ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="12"><span>ㅌ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="13"><span>ㅍ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" data-index="14"><span>ㅎ</span>
+                    <ul class="detailList"></ul>
+                </li>
             </ol>
             <!-- 즐겨찾기(상단고정) 리스트 -->
             <!-- 가나다... 리스트  ol>li[ㄱ-ㅎ]>ol>li[이름(가-깋)] -->
@@ -117,22 +99,38 @@
     </footer>
 
 <!-- 새로 추가하기 팝업 -->
-    <div class="popup getAddress">
+    <div id="getAddress">
         <div class="innerWrapper">
             <h2>새 연락처 추가</h2>
-            <div class="AdressInputBox">
-                <input type="text" placeholder="이름" id="isName">
-                <input type="text" placeholder="전화번호" id="isTel">
-                <input type="text" placeholder="이메일" id="isEmail">
-                <label for="isFavorite">
-                    <span>즐겨찾기에 추가</span>
+            <!-- <form action="" id="AdressInputForm"> -->
+                <div class="isNameBox isBox">
+                    <input type="text" placeholder="이름" id="isName">
+                    <!-- <p class="caution">이름이 입력되지 않았습니다.</p> -->
+                </div>
+                <div class="isTelBox isBox">
+                    <input type="text" placeholder="전화번호" id="isTel">
+                    <!-- <p class="caution">전화번호가 입력되지 않았습니다.</p> -->
+                </div>
+                <div class="isEmail isBox">
+                    <input type="text" placeholder="이메일" id="isEmail">
+                    <!-- <p class="caution">이메일이 입력되지 않았습니다.</p> -->
+                </div>
+                <div class="isFavoriteBox isBox">
                     <input type="checkbox" name="isFavorite" id="isFavorite">
-                </label>
-            </div>
+                    <label for="isFavorite">즐겨찾기에 추가</label>
+                </div>
+                <div class="submitBox isBox"><button id="submit" class="isNewAdd">추가하기</div>
+            <!-- </form> -->
         </div>
+        <button class="close"></button>
     </div>
 </div> <!-- /#wrapper -->
 
+<div id="testBox">
+    <ul id="testBoxList">
+
+    </ul>
+</div>
 <script src="js/script.js"></script>
 </body>
 </html>
