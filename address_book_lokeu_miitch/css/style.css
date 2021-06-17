@@ -301,3 +301,26 @@ footer {
     background: #45526c;
     cursor: pointer;
 }
+
+/* 검색결과 팝업 */
+.searchResult {
+    display: none;
+    position: fixed;
+    top: 70px;
+    z-index: 999;
+    width: 640px;
+    height: calc(100% - 70px);
+    background: #f8f5f1;
+}
+.searchResult li.detail {
+    display: none;
+    margin: 0;
+    padding: 20px;
+}
+.searchResult li.detail:first-child {
+    padding-top: 20px;
+}
+.searchResult li.detail.on {
+    display: block;
+
+}

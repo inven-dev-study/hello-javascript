@@ -56,7 +56,7 @@ function Address(userName, tel, email, favorite) {
     }
 
     this.delAddress = function() {
-        // 삭제
+        
     }
 
     this.test = function() { //테스트용
@@ -163,18 +163,65 @@ function closeBox() {
 const submitBtn = document.getElementById('submit');
 submitBtn.onclick = function() {
     let isName = document.getElementById('isName').value,
-        isTel = document.getElementById('isTel').value,
-        isEmail = document.getElementById('isEmail').value,
-        isFavorite = document.getElementById('isFavorite').checked;
-        
+    isTel = document.getElementById('isTel').value,
+    isEmail = document.getElementById('isEmail').value,
+    isFavorite = document.getElementById('isFavorite').checked;
+    
     if(submitBtn.classList.contains('isNewAdd')) {
         getNewAddress(isName, isTel, isEmail, isFavorite);
         closeBox();
     } //else {
-      //  getChangeAddress(isName, isTel, isEmail, isFavorite);
-      //  closeBox();
+    //  getChangeAddress(isName, isTel, isEmail, isFavorite);
+    //  closeBox();
     //}
 }
+
+// lokeu 삭제
+window.onload = function() {
+    let addressList = document.querySelectorAll(".detail");
+    let deleteBtn = document.querySelectorAll(".delete");
+
+    console.log(deleteBtn);
+    for(let n = 0; n < deleteBtn.length; n += 1) {
+        deleteBtn[n].addEventListener('click', function(){
+            let delClick = confirm("삭제하시겠습니까?");
+            if (delClick == true) {
+                addressList[n].remove();
+            } else {
+                console.log("취소");
+            }
+        });
+    }
+}
+
+// lokeu 연락처 검색
+
+let searchInput = document.querySelector("#searchBox input");
+let searchResult = document.querySelector(".searchResult");
+let searchName = document.querySelectorAll(".searchResult p.name");
+let searchDetail = document.querySelectorAll(".searchResult li");
+
+searchInput.addEventListener("keydown", function(e){
+    // 1. 검색창 입력 시작 시 검색 결과 리스트 노출
+    // 검색창에 아무 것도 없을 시 검색 결과 화면이 사라져야한다.
+    if (searchInput.value == "") {
+        searchResult.style.display = 'none';
+    } else {
+        searchResult.style.display = 'block';
+    }
+    console.log(document.querySelectorAll('.detail')[0].innerHTML);
+    // detail의 값이 복사? 이동?
+    //document.querySelector(".searchResult ul").innerHTML = document.querySelectorAll('.indexList .detail');
+
+    // 2. 검색창에 글자를 입력 시 일치한 결과 출력
+    for(let n = 0; n < searchName.length; n += 1) {
+        if (searchName[n].innerHTML.indexOf(searchInput.value) > -1) {
+            searchDetail[n].classList.add('on');
+        } else {
+            searchDetail[n].classList.remove('on');
+        }
+    }
+});
 
 
 /* ---------------------------------------------------------------------------------- */
