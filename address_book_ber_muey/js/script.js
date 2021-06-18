@@ -25,6 +25,8 @@ let noBtn = document.getElementById("delete-no");
 let yesBtn = document.getElementById("delete-yes");
 let closeBtns = document.getElementsByClassName("close");
 
+
+
 // 수정 여부
 let isUpdateMode = false;
 
@@ -55,6 +57,7 @@ window.onload = function(){
   }
   
 };
+
 
 // When the user clicks on the button, open the modal
 addBtn.onclick = function () {
@@ -361,3 +364,20 @@ yesBtn.onclick = function(){
 }
 
 // 이미지??
+
+// user toggle
+toggleBtn.onclick = function() {
+  if(document.getElementById('detailinfo').style.display === 'none') {
+    document.getElementById('detailinfo').style.display = 'block';
+  } else {
+    document.getElementById('detailinfo').style.display = 'none';
+  }
+}
+
+
+// 저장한 객체 보여주기
+
+
+
+
+
