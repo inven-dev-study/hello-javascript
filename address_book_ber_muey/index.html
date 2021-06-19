@@ -21,44 +21,6 @@
             <button id="addBtn" class="addBtn"></button>
         </div>
 
-        <!-- list start-->
-        <div id="personlist">
-            <div class="personinfo">
-                <div class="first" >ㄱ</div>
-                <div id="personinfo-element" class="personinfo-element" >
-                    <div class="toggle-name" id="toggleBtn" >
-                        <img class="profileimg" src="/icon/person.svg"/>
-                        <span>고양이</span>
-                    </div>
-                    <div class="detailinfo" id="detailinfo" style="display: none;">
-                        <p>Name : </p>
-                        <p>Phone : </p>
-                        <p>Address :</p>
-                        <p>Email :</p>
-                        <button id="updateBtn">Update User</button>
-                        <button id="favoriteBtn">즐겨찾기</button>
-                        <button id="deleteBtn">삭제</button>
-                    </div>
-                </div>
-                <div class="first" >ㄴ</div>
-                <div class="first" >ㄷ</div>
-                <div class="first" >ㄹ</div>
-                <div class="first" >ㅁ</div>
-                <div class="first" >ㅂ</div>
-                <div class="first" >ㅅ</div>
-                <div class="first" >ㅇ</div>
-                <div class="first" >ㅈ</div>
-                <div class="first" >ㅊ</div>
-                <div class="first" >ㅋ</div>
-                <div class="first" >ㅌ</div>
-                <div class="first" >ㅍ</div>
-                <div class="first" >ㅎ</div>
-            </div>
-        </div>
-
-        <!-- list end-->
-
-
         <!-- <button id="updateBtn">Update User</button>
         <button id="favoriteBtn">즐겨찾기</button>
         <button id="deleteBtn">삭제</button> -->
@@ -100,7 +62,8 @@
                             <small>Error message</small>
     
                         </div>
-                        <button type="submit">저장</button>
+                        <!-- <button type="submit">저장</button> -->
+                        <button id="saveBtn">저장</button>
                     </form>
                 </div>
             </div>
@@ -120,6 +83,14 @@
                 <button class="yes" id="delete-yes">예</button>
             </div>
         </div>
+
+        <!-- list start-->
+        <div id="personListWrapper"></div>
+        <div id="personinfo" class="personinfo"></div>
+        <div id="detailinfo"></div>
+
+
+        <!-- list end-->
 
         
     </div>
