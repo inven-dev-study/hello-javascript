@@ -38,6 +38,48 @@ let users = {
     email: "ber@inven.co.kr",
     isFavorite: false,
   },
+  배추_123: {
+    name: "배추",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    isFavorite: false,
+  },
+  가나_123: {
+    name: "가나",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    isFavorite: false,
+  },
+  러시아_123: {
+    name: "러시아",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    isFavorite: false,
+  },
+  브라질_12234: {
+    name: "브라질",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+  },
+  미국_123: {
+    name: "미국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+  },
+  마이_12234: {
+    name: "마이",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+  },
   뮤이_123: {
     name: "뮤이",
     phone: "01012345678",
@@ -45,6 +87,37 @@ let users = {
     email: "muey@inven.co.kr",
     isFavorite: false,
   },
+  중국_12234: {
+    name: "중국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+  },
+  파나마_123: {
+    name: "파나마",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+  },
+  인도_12234: {
+    name: "인도",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+  },
+  베트남_123: {
+    name: "베트남",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+  },
+  
+  
+  
 };
 
 // detailinfo 들어갈 때 예시 작성
@@ -62,12 +135,98 @@ let arr=[
     address: "서울",
     email: "ber@inven.co.kr",
     isFavorite: false,
+    id: "베르_123"
   },{
     name: "뮤이",
     phone: "01012345678",
     address: "서울",
     email: "muey@inven.co.kr",
     isFavorite: false,
+    id: "뮤이_123"
+  },{
+    name: "미국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "미국_123"
+  },{
+    name: "브라질",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "브라질_123"
+  },{
+    name: "중국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "중국_123"
+  },{
+    name: "러시아",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "러시아_123"
+  },{
+    name: "일본",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "일본_123"
+  },{
+    name: "호주",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "호주_123"
+  },{
+    name: "영국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "영국_123"
+  },{
+    name: "스페인",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "스페인_123"
+  },{
+    name: "태국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "태국_123"
+  },{
+    name: "베트남",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "베트남_123"
+  },{
+    name: "인도",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "인도_123"
+  },{
+    name: "가나",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    isFavorite: false,
+    id: "가나_123"
   },
 ];
 
@@ -146,6 +305,8 @@ window.onload = function(){
       closeModal();
     }
   }
+  sortItems(arr);
+  displayAllList();
 };
 
 // user toggle, 이름을 클릭하면 detailinfo 폴딩 동작 (수정필요), 이 부분 주석 풀면 addBtn이 동작하지 않음.
@@ -196,8 +357,8 @@ saveBtn.onclick = function (e) {
     arr.push(obj);
     document.querySelector(".detailinfo").value="";
   } 
-
-  showList();
+  sortItems(arr);
+  displayAllList();
 
   // location.reload();
   //   isUpdateMode = false;
@@ -232,25 +393,25 @@ function showList() {
 }
 
 
-updateBtn.onclick = function() {
-    isUpdateMode = true;
-    modal.style.display = "block";
-    let user = getUser('베르_123');
-    displayUser(user);
-    //console.log(users);
-}
+// updateBtn.onclick = function() {
+//     isUpdateMode = true;
+//     modal.style.display = "block";
+//     let user = getUser('베르_123');
+//     displayUser(user);
+//     //console.log(users);
+// }
 
-favoriteBtn.onclick = function() {
-    updateFavorite('베르_123', true);
-    //console.log(users);
-}
-deleteBtn.onclick = function(){
-  isUpdateMode = false;
-  deleteModal.style.display = "block";
-  //console.log(users);
-  arr.splice(userName, 1);
-  showList();
-}
+// favoriteBtn.onclick = function() {
+//     updateFavorite('베르_123', true);
+//     //console.log(users);
+// }
+// deleteBtn.onclick = function(){
+//   isUpdateMode = false;
+//   deleteModal.style.display = "block";
+//   //console.log(users);
+//   arr.splice(userName, 1);
+//   showList();
+// }
 
 
 
@@ -536,5 +697,142 @@ yesBtn.onclick = function(){
 // 이미지??
 
 
+// 2021.06.20 베르 
+// 검색 목록 필터 추가 함수 시작
 
 
+const searchbox = document.getElementById("searchbox");
+// 임시로 연락처 목록을 보여주기 위한 것
+const personinfo = document.getElementById("tempList");
+
+/**
+ * 검색 입력창 키워드에 대한 연락처 목록 보여주기
+ * @param {이벤트} e 
+ */
+function displayUserList(e){
+  let searchString = searchbox.value;
+  if (searchString === ""){
+    displayAllList();
+  }else{
+    displaySearchUsers(searchString);
+  }
+
+}
+// 검색창 이벤트 추가
+searchbox.addEventListener ( 'keyup', displayUserList); 
+// 연락처 목록 전부 보여주기
+function displayAllList(){
+  let htmlString = "";
+  personinfo.innerHTML = htmlString;
+  // 배열에 연락처 
+  for (let item of arr){
+    htmlString += createHTMLstring(item);
+  }
+
+
+  // users 객체
+  // for (let key in users){
+  //   let user = users[key];
+  //   htmlString += createHTMLstring(user);
+  // }
+  // console.log(`disaplay all list ${htmlString}`);
+  personinfo.innerHTML = htmlString;
+}
+/**
+ * 검색 키워드에 대한 연락처 목록 보여주기
+ * @param {검색 키워드} searchString 
+ */
+function displaySearchUsers(searchString){
+  let htmlString = "";
+  personinfo.innerHTML = htmlString;
+
+  // 배열에 연락처 정보를 html string으로 생성
+  for (let item of arr){
+    let name = item.name;
+    let isContains = name.includes(searchString);
+    if (isContains){
+      htmlString += createHTMLstring(item);
+    }
+    
+  }
+  // users 객체
+  // for (let key in users){
+  //   let user = users[key];
+  //   let name = user.name;
+    
+  //   let isContains = name.includes(searchString);
+  //   if (isContains){
+  //     console.log(name);
+  //     htmlString += createHTMLstring(user);
+  //   }
+    
+  // }
+  // console.log(`disaplay search list ${htmlString}`);
+  personinfo.innerHTML = htmlString;
+
+}
+
+/**
+ * 연락처 정보를 받아서 html string 을 생성하여 반환
+ * @param {연락처정보} user 
+ * @returns 
+ */
+function createHTMLstring(user) {
+  return `
+    <div class= "person-info-element">
+    <div id ="info-toggle" class="name" >
+      
+      <span id="name">${user.name}</span> 
+    </div>
+  
+    <div class="detailinfo" id ="detail-info">
+      <ul>
+        Mobile: ${user.phone}
+      </ul>
+      <ul>
+        Email: ${user.email}
+      </ul>
+      <ul>
+        Address: ${user.address}
+      </ul>
+  
+      <div class="actionbuttons" id="icons">
+        <button class="text-edit" dataindex="${user.id}">
+          FAVORITE:  ${user.isFavorite}
+        </button>
+    
+        <button class="text-edit" dataindex="${user.id}">
+          EDIT
+        </button>
+        <button class="text-delete" dataindex = "${user.id}">
+          DELETE
+        </button>
+      </div>
+  
+    </div>
+    </div>
+    `;
+}
+
+/**
+ * 배열을 받아서 정렬
+ * @param {배열} items 
+ */
+function sortItems(items){
+  items.sort(function(a, b) {
+    var nameA = a.name.toUpperCase(); 
+    var nameB = b.name.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+  
+    // 이름이 같을 경우
+    return 0;
+  });
+}
+
+
+// 검색 목록 필터 추가 함수 끝
