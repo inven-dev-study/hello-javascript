@@ -15,20 +15,12 @@ function Address(userName, tel, email, favorite) {
     this.email = email;
     this.favorite = favorite;
 
-    let isFavorite = "";
     let positionNum = 0;
-
-    this.isFavorite = function() {
-        // 추가, 수정 시 클래스 추가에 사용
-        if(this.favorite) {
-            isFavorite = " favorite";
-        }
-    }
 
     this.addAddress = function() {
         this.getPosition();  // ㄱㄴㄷ 정렬을 합니다
 
-        let boxNumber = "index" + positionNum;
+        let boxNumber = "index" + positionNum;  // 0-9 -> index0 | ㄱ -> index1 ...
         let outerBox = document.getElementById(boxNumber);
         let box = outerBox.querySelector('.detailList');
 
@@ -75,12 +67,12 @@ function Address(userName, tel, email, favorite) {
     this.getOrder = function(position) {
         let nameArr = [];
         let siblingsName = position.getElementsByClassName('name');
-        if(siblingsName.length > 0) {  // 형제들 배열을 만듬
+        if(siblingsName.length > 0) {
             for (let n = 0; n < siblingsName.length; n++) {
                 nameArr.push(siblingsName[n].innerText);
             }
-            nameArr.push(this.userName);  // 형제들 배열에 나를 푸시
-            nameArr.sort();  // 배열을 정렬
+            nameArr.push(this.userName);
+            nameArr.sort();
 
             let thisUserOrder = nameArr.indexOf(this.userName);
 
@@ -95,7 +87,6 @@ function Address(userName, tel, email, favorite) {
     }
 
     this.changeAddress = function() {
-        // 새로 정렬하기 위해 기존 데이터는 삭제되고, 새로 추가되는 형식
         this.deleteforchange();
         this.addAddress();
     }
@@ -110,13 +101,13 @@ function Address(userName, tel, email, favorite) {
             case /[0-9]/.test(firstName): positionNum = 0; break;
             case /[ㄱ가-깋]/.test(firstName): positionNum = 1; break;
             case /[ㄴ나-닣]/.test(firstName): positionNum = 2; break;
-            case /[ㄷ다-띻]/.test(firstName): positionNum = 3; break;
+            case /[ㄷㄸ다-띻]/.test(firstName): positionNum = 3; break;
             case /[ㄹ라-맇]/.test(firstName): positionNum = 4; break;
             case /[ㅁ마-밓]/.test(firstName): positionNum = 5; break;
-            case /[ㅂ바-삫]/.test(firstName): positionNum = 6; break;
-            case /[ㅅ사-앃]/.test(firstName): positionNum = 7; break;
+            case /[ㅂㅃ바-삫]/.test(firstName): positionNum = 6; break;
+            case /[ㅅㅆ사-앃]/.test(firstName): positionNum = 7; break;
             case /[ㅇ아-잏]/.test(firstName): positionNum = 8; break;
-            case /[ㅈ자-찧]/.test(firstName): positionNum = 9; break;
+            case /[ㅈㅉ자-찧]/.test(firstName): positionNum = 9; break;
             case /[ㅊ차-칳]/.test(firstName): positionNum = 10; break;
             case /[ㅋ카-킿]/.test(firstName): positionNum = 11; break;
             case /[ㅌ타-팋]/.test(firstName): positionNum = 12; break;
@@ -142,37 +133,43 @@ function getChangeAddress(userName, tel, email, favorite = false) {
 }
 
 
-// UI Click Event
-const getAddressBox = document.getElementById('getAddress');
-
 // miitch ㄱㄴㄷ 박스 접기
 const listOfIndex = document.getElementsByClassName('index');
 for(let i = 0; i < listOfIndex.length; i++) {
-    if(listOfIndex[i].querySelector('span')) {
-        listOfIndex[i].querySelector('span').addEventListener('click', function() {
-            if ( !this.parentNode.classList.contains('hide') ) {
-                this.parentNode.classList.add('hide');
-            } else {
-                this.parentNode.classList.remove('hide');
-            }
-        });
-    }
+    listOfIndex[i].querySelector('span').addEventListener('click', function() {
+        if ( !this.parentNode.classList.contains('hide') ) {
+            this.parentNode.classList.add('hide');
+        } else {
+            this.parentNode.classList.remove('hide');
+        }
+    });
 }
+
+// miitch 추가/수정 관련 변수
+const getAddressBox = document.getElementById('getAddress'),
+      boxTitle = getAddressBox.getElementsByTagName('h2')[0],
+      isName = getAddressBox.querySelector('#isName'),
+      isTel = getAddressBox.querySelector('#isTel'),
+      isEmail = getAddressBox.querySelector('#isEmail'),
+      isFavorite = getAddressBox.querySelector('#isFavorite'),
+      submitButton = getAddressBox.querySelector('#submit');
 
 // miitch 신규 추가 창 띄움
 document.getElementById('addButton').addEventListener('click', function() {
     resetCaution();
-    getAddressBox.querySelector('h2').innerText = "새 연락처 추가";
-    getAddressBox.querySelector('#isName').value = "";
-    getAddressBox.querySelector('#isTel').value = "";
-    getAddressBox.querySelector('#isEmail').value = "";
-    getAddressBox.querySelector('#isFavorite').checked = false;
-    getAddressBox.querySelector('#submit').innerText = "추가하기";
+    noScroll();
+
+    boxTitle.innerText = "새 연락처 추가";
+    isName.value = "";
+    isTel.value = "";
+    isEmail.value = "";
+    isFavorite.checked = false;
+    submitButton.innerText = "추가하기";
 
     // 추가/수정 분기용
-    if(getAddressBox.querySelector('#submit').classList.contains('isChange')) {
-        getAddressBox.querySelector('#submit').classList.remove('isChange');
-        getAddressBox.querySelector('#submit').classList.add('isNewAdd');
+    if(submitButton.classList.contains('isChange')) {
+        submitButton.classList.remove('isChange');
+        submitButton.classList.add('isNewAdd');
     }
 
     getAddressBox.classList.add('showing');
@@ -194,27 +191,34 @@ function resetCaution() {
     }
 }
 
+// 창이 떠있을 때 body 스크롤 금지
+function noScroll() {
+    document.getElementsByTagName('body')[0].classList.add('fixed');
+}
+
 
 // miitch 수정 창 띄움
 let nowLocation;
 document.addEventListener('click', function (event) {
     if ( event.target.classList.contains( 'change' ) ) {
+        noScroll();
+
         let targetList = event.target.parentNode.parentNode;
         let checkFavorite = targetList.classList.contains('favorite');
 
         nowLocation = targetList;  //수정 대상
 
-        getAddressBox.querySelector('h2').innerText = "연락처 수정";
-        getAddressBox.querySelector('#isName').value = targetList.getElementsByClassName('name')[0].innerText;
-        getAddressBox.querySelector('#isTel').value = targetList.getElementsByClassName('tel')[0].innerText;
-        getAddressBox.querySelector('#isEmail').value = targetList.getElementsByClassName('email')[0].innerText;
-        getAddressBox.querySelector('#isFavorite').checked = checkFavorite;
-        getAddressBox.querySelector('#submit').innerText = "수정하기";
+        boxTitle.innerText = "연락처 수정";
+        isName.value = targetList.getElementsByClassName('name')[0].innerText;
+        isTel.value = targetList.getElementsByClassName('tel')[0].innerText;
+        isEmail.value = targetList.getElementsByClassName('email')[0].innerText;
+        isFavorite.checked = checkFavorite;
+        submitButton.innerText = "수정하기";
 
         // 추가/수정 분기용
-        if(getAddressBox.querySelector('#submit').classList.contains('isNewAdd')) {
-            getAddressBox.querySelector('#submit').classList.remove('isNewAdd');
-            getAddressBox.querySelector('#submit').classList.add('isChange');
+        if(submitButton.classList.contains('isNewAdd')) {
+            submitButton.classList.remove('isNewAdd');
+            submitButton.classList.add('isChange');
         }
 
         getAddressBox.classList.add('showing');
@@ -227,50 +231,53 @@ getAddressBox.getElementsByClassName('close')[0].addEventListener('click', close
 
 function closeBox() {
     getAddressBox.classList.remove('showing');
+    document.getElementsByTagName('body')[0].classList.remove('fixed');
 }
 
 
 // 전화번호 입력란에 숫자만 입력가능
-document.getElementById('isTel').addEventListener('keyup', function(event) {
+isTel.addEventListener('keyup', function(event) {
     this.value = this.value.replace(/[^0-9]/g, '');
 });
 
 // miitch 추가/수정하기 동작
 const submitBtn = document.getElementById('submit');
 submitBtn.onclick = function() {
-    let isName = document.getElementById('isName').value,
-    isTel = document.getElementById('isTel').value,
-    isEmail = document.getElementById('isEmail').value,
-    isFavorite = document.getElementById('isFavorite').checked;
+    let isNameVal = document.getElementById('isName').value,
+        isTelVal = document.getElementById('isTel').value,
+        isEmailVal = document.getElementById('isEmail').value,
+        isFavorite = document.getElementById('isFavorite').checked;
 
     // 유효성 검사
     let caution;
-    if(isName == "") {  // 이름
-        target = document.getElementById('isName');
+    if(isNameVal == "") {  // 이름
+        target = isName;
         caution = target.parentNode.querySelector('.caution');
         caution.classList.add('on');
         caution.innerText = "12자 이내로 이름을 입력해주세요.";
         return false;
     }
-    if(isTel == "") {  // 전화번호
-        target = document.getElementById('isTel');
+
+    if(isTelVal == "") {  // 전화번호
+        target = isTel;
         caution = target.parentNode.querySelector('.caution');
         caution.classList.add('on');
         caution.innerText = "전화번호 입력은 필수입니다.";
         return false;
     } else {
-        isTel = isTel.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
-        if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(isTel)) {
-            target = document.getElementById('isTel');
+        isTelVal = isTelVal.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+        if (!/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(isTelVal)) {
+            target = isTel;
             caution = target.parentNode.querySelector('.caution');
             caution.classList.add('on');
             caution.innerText = "전화번호가 유효하지 않습니다.";
             return false;
         }
     }
+
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    if(isEmail != "" && !re.test(isEmail)) {  // 이메일
-        target = document.getElementById('isEmail');
+    if(isEmailVal != "" && !re.test(isEmailVal)) {  // 이메일
+        target = isEmail;
         caution = target.parentNode.querySelector('.caution');
         caution.classList.add('on');
         caution.innerText = "이메일 주소가 유효하지 않습니다.";
@@ -279,10 +286,10 @@ submitBtn.onclick = function() {
 
     // 전송버튼이 가진 클래스값으로, 신규추가와 수정을 구분
     if(submitBtn.classList.contains('isNewAdd')) {
-        getNewAddress(isName, isTel, isEmail, isFavorite);
+        getNewAddress(isNameVal, isTelVal, isEmailVal, isFavorite);
         closeBox();
     } else {
-        getChangeAddress(isName, isTel, isEmail, isFavorite);
+        getChangeAddress(isNameVal, isTelVal, isEmailVal, isFavorite);
         closeBox();
     }
 }
