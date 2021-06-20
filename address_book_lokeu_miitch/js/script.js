@@ -29,8 +29,15 @@ function Address(userName, tel, email, favorite) {
         this.getPosition();
 
         let indexList = document.getElementById('indexList');
-        let box = indexList.querySelector("li[data-index='"+ positionNum +"'").querySelector('.detailList');
-
+        let box = indexList.getElementById('index' + positionNum).getElementByClassName('.detailList')[0];
+        // let box = indexList.querySelector("li[data-index='"+ positionNum +"'").querySelector('.detailList');
+        console.log(box);
+        let thisUserLocation = this.getOrder(box);
+        // console.log(thisUserLocation);
+        if(thisUserLocation) {
+            let a = box.querySelectorAll('.name');
+            console.log(a);
+        }
         box.innerHTML += "<li class='detail" + isFavorite + "'>" +
                          "<p class='name'>" + this.userName + "</p>" +
                          "<p class='tel'>" + this.tel + "</p>" +
@@ -39,9 +46,6 @@ function Address(userName, tel, email, favorite) {
                          "<button class='change'>수정</button>" + 
                          "<button class='delete'>삭제</button>" + 
                          "</div></li>";
-
-
-        this.getOrder(box);
 
         let detailBox = document.createElement('li');
         detailBox.classList.add('detail');
@@ -63,66 +67,39 @@ function Address(userName, tel, email, favorite) {
                           "<button class='change'>수정</button>" + 
                           "<button class='delete'>삭제</button>" + 
                           "</div>";
-
-        // 기존 리스트
-
-        // switch(orderIs) {
-        //     case "before":
-        //         console.log('working?');
-        //         console.log(getOrder(box));
-        //         box.getOrder[1](detailBox);
-        //         detailBox.innerHTML = AddressData;
-        //         break;
-        //     default:
-        //         box.append(detailBox);
-        //         detailBox.innerHTML = AddressData;
-        //         break;
-        // }
     }
 
     let nameArr = [];
     this.getOrder = function(position) {
         let siblingsName = position.getElementsByClassName('name');
-        if(siblingsName.length > 0) {
+        if(siblingsName.length > 0) {  // 형제들 배열을 만듬
             for (let n = 0; n < siblingsName.length; n++) {
                 nameArr.push(siblingsName[n].innerText);
             }
-            console.log(nameArr);
+            nameArr.push(this.userName);  // 형제들 배열에 나를 푸시
+            // console.log(nameArr.sort());  // 배열을 정렬
+            nameArr.sort();
+
+            let thisUserLocation = nameArr.indexOf(this.userName);
+
+            if(thisUserLocation < 1) {
+                // return nameArr[thisUserLocation + 1];  // 이 경우에는 before로 들어가야 한다  // name 의 부모의 before
+                console.log('if');
+                return thisUserLocation + 1;
+            } else {
+                // return nameArr[thisUserLocation - 1];   // 이 경우에는 after로 들어가야 한다  // name 의 부모의 after
+                console.log('else');
+                return thisUserLocation - 1;
+            }
+        } else {
+            return false;
         }
-        //PLAN
-        // "형제"들 배열을 만들었다 ↑↑↑↑
-        // "형제"들 배열에 "나"를 넣는다 .. sort() 한다.. 배열에서의 "나"의 위치를 찾고, (indexOf) "나"의 앞이나 뒤 형제 배열을 찾고.. 
-        // 그 형제 배열을 이용해 해당 형제 li를 찾아, after 나 before 로 "나"를 넣는다.
-        
-        // 잘되면.. 아래 폐기!
-        // let siblingsName = position.querySelectorAll('p.name');
-        // if (siblingsName.length > 0) {  // 자음리스트 안에 이미 정보(=형제)가 하나 이상 있는 경우
-        //     checkMyPosition: 
-        //     for(let m = 1; m < this.userName.length; m++) {  // 추가 대상(=나)의 유저이름 길이만큼 반복
-        //         for(let n = 0; n <= siblingsName.length; n++) {  // 정보 갯수만큼 반복
-        //         console.log(n + ", " + siblingsName.length);
-        //             let siblingNamesCode = siblingsName[n].innerText.charCodeAt(m);
-        //             let myNamesCode = this.userName.charCodeAt(m);
-        //             if(siblingNamesCode == myNamesCode) {  // 이름의 둘째글자(m=1)가 동일하면 다음 글자(m=2)를 비교한다(continue)... 
-        //                 continue checkMyPosition;
-        //             } else if (siblingNamesCode > myNamesCode) {  // 형제의 둘째글자가 내 둘째글자보다 크면, 나는 형제의 앞으로 간다... 
-        //                 console.log(this.userName + ", " + myNamesCode + "<= 내이름,코드 | before | 내형제코드 => " + siblingNamesCode);
-        //                 let returnItems = ["before", siblingsName[n]]
-        //                 return returnItems;
-        //             } else {  // 내 둘째글자가 형제의 둘째글자보다 크면 나는 형제의 뒤로 가는데.. 이 때 "그 다음 형제의 둘째글자와도 비교"해야한다..!!
-        //                 console.log(this.userName + ", " + myNamesCode + "<= 내이름,코드 | append | 내형제코드 => " + siblingNamesCode);
-        //                 // if (n == siblingsName.length)
-        //                 // break ;
-        //                 // return "append";
-        //             }
-        //         }
-        //         // return "append";
-        //     }
-        // }
     }
 
     this.changeAddress = function() {  // 기존 데이터 삭제되고, 위치를 체크해서 새로 추가되어야 함
-        this.isFavorite();
+        
+
+        this.addAddress();
         box.innerHTML = "<li class='detail" + isFavorite + "'>" +
                             "<p class='name'>" + this.userName + "</p>" +
                             "<p class='tel'>" + this.tel + "</p>" +
@@ -174,7 +151,7 @@ function getChangeAddress(userName, tel, email, favorite = false) {
 // UI Click Event
 const getAddressBox = document.getElementById('getAddress');
 
-// 신규 추가
+// 신규 추가 창
 document.getElementById('addButton').addEventListener('click', function() {
     getAddressBox.querySelector('h2').innerText = "새 연락처 추가";
     getAddressBox.querySelector('#isName').value = "";
@@ -193,7 +170,7 @@ document.getElementById('addButton').addEventListener('click', function() {
 });
 
 
-// 수정
+// 수정 창
 let nowLocation;
 document.addEventListener('click', function (event) {
     if ( event.target.classList.contains( 'change' ) ) {
@@ -228,7 +205,7 @@ function closeBox() {
 };
 
 
-// 추가/수정하기 창에서 추가/수정하기 버튼을 누르면
+// 추가/수정하기 동작
 const submitBtn = document.getElementById('submit');
 submitBtn.onclick = function() {
     let isName = document.getElementById('isName').value,
@@ -239,10 +216,11 @@ submitBtn.onclick = function() {
     if(submitBtn.classList.contains('isNewAdd')) {
         getNewAddress(isName, isTel, isEmail, isFavorite);
         closeBox();
-    } //else {
-    //  getChangeAddress(isName, isTel, isEmail, isFavorite);
-    //  closeBox();
-    //}
+    } else {
+
+        getChangeAddress(isName, isTel, isEmail, isFavorite);
+        closeBox();
+    }
 }
 
 // lokeu 삭제
