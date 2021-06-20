@@ -20,11 +20,14 @@
 
         <section id="addressBlock">
             <div id="bookmarkBox">
-                <p class="head index">즐겨찾기</p>
+                <p class="head index"><span>즐겨찾기</span></p>
                 <ul id="bookmarkList" class="detailList">
                 </ul>
             </div>
             <ol id="indexList">
+                <li class="index" id="index0"><span>0-9</span>
+                    <ul class="detailList"></ul>
+                </li>
                 <li class="index" id="index1"><span>ㄱ</span>
                     <ul class="detailList"></ul>
                 </li>
@@ -67,6 +70,12 @@
                 <li class="index" id="index14"><span>ㅎ</span>
                     <ul class="detailList"></ul>
                 </li>
+                <li class="index" id="index15"><span>A-Z</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index16"><span>기타</span>
+                    <ul class="detailList"></ul>
+                </li>
             </ol>
         </section>
     </main>
@@ -77,25 +86,23 @@
     <div id="getAddress">
         <div class="innerWrapper">
             <h2>새 연락처 추가</h2>
-            <!-- <form action="" id="AdressInputForm"> -->
-                <div class="isNameBox isBox">
-                    <input type="text" placeholder="이름" id="isName">
-                    <!-- <p class="caution">이름이 입력되지 않았습니다.</p> -->
-                </div>
-                <div class="isTelBox isBox">
-                    <input type="text" placeholder="전화번호" id="isTel">
-                    <!-- <p class="caution">전화번호가 입력되지 않았습니다.</p> -->
-                </div>
-                <div class="isEmail isBox">
-                    <input type="text" placeholder="이메일" id="isEmail">
-                    <!-- <p class="caution">이메일이 입력되지 않았습니다.</p> -->
-                </div>
-                <div class="isFavoriteBox isBox">
-                    <input type="checkbox" name="isFavorite" id="isFavorite">
-                    <label for="isFavorite">즐겨찾기에 추가</label>
-                </div>
-                <div class="submitBox isBox"><button id="submit" class="isNewAdd">추가하기</div>
-            <!-- </form> -->
+            <div class="isNameBox isBox">
+                <input type="text" placeholder="이름" id="isName" maxlength="12">
+                <p class="caution must">필수항목입니다.</p>
+            </div>
+            <div class="isTelBox isBox">
+                <input type="text" placeholder="숫자만 입력해주세요." id="isTel">
+                <p class="caution must">필수항목입니다.</p>
+            </div>
+            <div class="isEmail isBox">
+                <input type="text" placeholder="이메일을 입력해주세요." id="isEmail">
+                <p class="caution"></p>
+            </div>
+            <div class="isFavoriteBox isBox">
+                <input type="checkbox" name="isFavorite" id="isFavorite">
+                <label for="isFavorite">즐겨찾기에 추가</label>
+            </div>
+            <div class="submitBox isBox"><button id="submit" class="isNewAdd">추가하기</button></div>
         </div>
         <button class="close"></button>
     </div>

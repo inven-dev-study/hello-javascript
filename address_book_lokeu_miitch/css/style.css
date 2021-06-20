@@ -105,8 +105,11 @@ h1 {
 }
 #bookmarkBox .head {
     padding: 7px 10px;
-    color: #fff;
     background-color: #5aa897;
+}
+#bookmarkBox .head span {
+    display: block;
+    color: #fff;
 }
 #indexList .index {
     border-bottom: 2px solid #eee;
@@ -252,7 +255,7 @@ footer {
 }
 
 #getAddress input[type=text] {
-
+    position: relative;
     width: 100%;
     margin-bottom: 30px;
     padding: 8px;
@@ -262,18 +265,38 @@ footer {
     box-sizing: border-box;
 }
 
+#getAddress .isBox:before {
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 9px;
+    left: -20px;
+}
+
+.isBox.isTelBox:before {
+    content: "";
+    background: url(../img/icon_tel.png) center center no-repeat;
+    background-size: contain;
+}
+.isBox.isEmail:before {
+    content: "";
+    background: url(../img/icon_email.png) center center no-repeat;
+    background-size: contain;
+}
+
 #getAddress .caution {
     position: absolute;
     bottom: 0px;
-    margin: auto;
+    margin-bottom: 10px;
     font-size: 11px;
     color: #999;
 }
 
-#getAddress .caution:before {
+#getAddress .caution.on:before {
     content: "⚠";
     display: inline-block;
-    margin: 0 5px 10px;
+    margin: 0 5px;
     color: red;
     font-size: 16px;
 }
