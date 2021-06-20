@@ -13,7 +13,7 @@
         <div id="headBlock">
             <h1>주소록</h1>
             <div id="searchBox">
-                <input type="search" name="search" id="search" placeholder="입력된 연락처 검색">
+                <input class="searchInput" type="search" name="search" id="search" placeholder="입력된 연락처 검색">
             </div>
             <button id="addButton"><img src="img/icon_add.png" alt="새 연락처 추가"></button>
         </div>
@@ -127,35 +127,7 @@
 
 <!-- 검색 결과 팝업 -->
     <div class="searchResult">
-        <ul class="detailList">
-            <li class="detail">
-                <p class="name">김가네</p>
-                <p class="tel">02-1234-2343</p>
-                <p class="email">kimgane@gmail.com</p>
-                <div class="buttonBox">
-                    <button class="change">수정</button>
-                    <button class="delete">삭제</button>
-                </div>
-            </li>
-            <li class="detail">
-                <p class="name">김철수</p>
-                <p class="tel">02-9685-1425</p>
-                <p class="email">iron.kim@gmail.com</p>
-                <div class="buttonBox">
-                    <button class="change">수정</button>
-                    <button class="delete">삭제</button>
-                </div>
-            </li>
-            <li class="detail">
-                <p class="name">도무지</p>
-                <p class="tel">02-2323-5498</p>
-                <p class="email">doedoe@naver.com</p>
-                <div class="buttonBox">
-                    <button class="change">수정</button>
-                    <button class="delete">삭제</button>
-                </div>
-            </li>
-        </ul>
+        <div class="resultNone">검색결과가 없습니다</div>
     </div>
 </div> <!-- /#wrapper -->
 

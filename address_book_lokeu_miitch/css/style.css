@@ -308,6 +308,7 @@ footer {
     position: fixed;
     top: 70px;
     z-index: 999;
+    overflow-y: scroll;
     width: 640px;
     height: calc(100% - 70px);
     background: #f8f5f1;
@@ -323,4 +324,27 @@ footer {
 .searchResult li.detail.on {
     display: block;
 
+}
+.searchResult #indexList .index {
+    border: 0;
+}
+.searchResult #indexList .index span {
+    display: none;
+}
+.searchResult .detail .buttonBox {
+    display: none;
+}
+.searchResult .resultNone {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -16px 0 0 -75px;
+    color: #958672;
+}
+.searchResult .resultNone.none {
+    display: none;
+}
+.searchResult .detailList .detail:last-of-type {
+    border-bottom: 1px solid #999;
 }

@@ -246,51 +246,74 @@ submitBtn.onclick = function() {
 }
 
 // lokeu 삭제
-window.onload = function() {
-    let addressList = document.querySelectorAll(".detail");
-    let deleteBtn = document.querySelectorAll(".delete");
-
-    console.log(deleteBtn);
-    for(let n = 0; n < deleteBtn.length; n += 1) {
-        deleteBtn[n].addEventListener('click', function(){
-            let delClick = confirm("삭제하시겠습니까?");
-            if (delClick == true) {
-                addressList[n].remove();
-            } else {
-                console.log("취소");
-            }
-        });
+document.addEventListener("click", function(del) {
+    if (del.target.classList.contains('delete')) {
+        let delClick = confirm("삭제 하시겠습니까?");
+        if (delClick == true) {
+            del.target.parentNode.parentNode.remove();
+        } else {
+            console.log("취소");
+        }
     }
-}
+});
 
 // lokeu 연락처 검색
+let count = 0;
 
-let searchInput = document.querySelector("#searchBox input");
-let searchResult = document.querySelector(".searchResult");
-let searchName = document.querySelectorAll(".searchResult p.name");
-let searchDetail = document.querySelectorAll(".searchResult li");
+document.addEventListener('keyup', function(e){
+    
+    // 주소록 일부 복사
+    let indexDetail = document.querySelector('#indexList'),
+        clone = indexDetail.cloneNode(true);
 
-searchInput.addEventListener("keyup", function(e){
-    // 1. 검색창 입력 시작 시 검색 결과 리스트 노출
-    // 검색창에 아무 것도 없을 시 검색 결과 화면이 사라져야한다.
+    // search 관련 변수 모음
+    let searchInput = document.querySelector('#searchBox input'),
+        searchResult = document.querySelector('.searchResult'),
+        searchName = searchResult.querySelectorAll('.name'),
+        searchNumber = searchResult.querySelectorAll('.tel'),
+        searchMail = searchResult.querySelectorAll('.email'),
+        searchDetail = searchResult.querySelectorAll('.searchResult .detail');
+
+    // 검색 결과가 없습니다.
+    let resultNone = document.querySelector('.resultNone');
+
+    // 반복실행 제어
+    if(e.target.classList.contains('searchInput')) {
+        if (count == 0) {
+            searchResult.prepend(clone);
+            count++;
+        }
+    }
+
+    // 검색결과창 활성화/비활성화
     if (searchInput.value == "") {
         searchResult.style.display = 'none';
+        if (count == 1) {
+            searchResult.querySelector('#indexList').remove();
+            count = 0;
+
+            resultNone.classList.remove('none');
+        }
     } else {
         searchResult.style.display = 'block';
     }
-    console.log(document.querySelectorAll('.detail')[0].innerHTML);
-    // detail의 값이 복사? 이동?
-    //document.querySelector(".searchResult ul").innerHTML = document.querySelectorAll('.indexList .detail');
 
-    // 2. 검색창에 글자를 입력 시 일치한 결과 출력
+    // 검색결과 불러오기
     for(let n = 0; n < searchName.length; n += 1) {
-        if (searchName[n].innerHTML.indexOf(searchInput.value) > -1) {
+        if (
+            searchName[n].innerHTML.indexOf(searchInput.value) > -1 ||
+            searchNumber[n].innerHTML.indexOf(searchInput.value) > -1 ||
+            searchMail[n].innerHTML.indexOf(searchInput.value) > -1
+            ) {
             searchDetail[n].classList.add('on');
+            resultNone.classList.add('none');
         } else {
             searchDetail[n].classList.remove('on');
         }
     }
 });
+
+// lokeu 즐겨찾기
 
 
 /* ---------------------------------------------------------------------------------- */
