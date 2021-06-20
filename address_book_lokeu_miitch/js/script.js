@@ -26,47 +26,51 @@ function Address(userName, tel, email, favorite) {
     }
 
     this.addAddress = function() {
-        this.getPosition();
+        this.getPosition();  // ㄱㄴㄷ 정렬을 합니다
 
         let indexList = document.getElementById('indexList');
-        let box = indexList.getElementById('index' + positionNum).getElementByClassName('.detailList')[0];
-        // let box = indexList.querySelector("li[data-index='"+ positionNum +"'").querySelector('.detailList');
-        console.log(box);
-        let thisUserLocation = this.getOrder(box);
-        // console.log(thisUserLocation);
-        if(thisUserLocation) {
-            let a = box.querySelectorAll('.name');
-            console.log(a);
-        }
-        box.innerHTML += "<li class='detail" + isFavorite + "'>" +
-                         "<p class='name'>" + this.userName + "</p>" +
-                         "<p class='tel'>" + this.tel + "</p>" +
-                         "<p class='email'>" + this.email + "</p>" +
-                         "<div class='buttonBox'>" +
-                         "<button class='change'>수정</button>" + 
-                         "<button class='delete'>삭제</button>" + 
-                         "</div></li>";
+        let boxNumber = "index" + positionNum;
+        let outerBox = document.getElementById(boxNumber);
+        let box = outerBox.querySelector('.detailList');
 
+        // detail을 생성합니다
+        let detailBox = this.makeDetailBox();
+
+        // 이름순서로 정렬합니다
+        let thisUserOrder = this.getOrder(box); // return "before || after", index;
+
+        if(thisUserOrder) {  // 정렬해야 할 때 (첫번째 이후 들어가는 연락처)
+            let targetName = box.getElementsByClassName('name');
+            let targetIndex = thisUserOrder[1];
+            let targetList = targetName[targetIndex].parentNode;
+
+            if(thisUserOrder[0] == "before") {  // 기존 연락처보다 순서가 앞
+                targetList.before(detailBox);
+            } else if(thisUserOrder[0] == "after") {  // 기존 연락처보다 순서가 뒤
+                targetList.after(detailBox);
+            }
+
+        } else {  // 정렬할 필요가 없을 때(첫번째로 들어가는 연락처)
+            box.appendChild(detailBox);
+        }
+    }
+
+    this.makeDetailBox = function() {
         let detailBox = document.createElement('li');
         detailBox.classList.add('detail');
         if (this.favorite) {
             detailBox.classList.add('favorite');
         }
 
-        // let AddressData = "<li class='detail" + isFavorite + "'>" +
-        //                   "<p class='name'>" + this.userName + "</p>" +
-        //                   "<p class='tel'>" + this.tel + "</p>" +
-        //                   "<p class='email'>" + this.email + "</p>" +
-        //                   this.buttonBox +
-        //                   "</li>";
-
         let AddressData = "<p class='name'>" + this.userName + "</p>" +
                           "<p class='tel'>" + this.tel + "</p>" +
                           "<p class='email'>" + this.email + "</p>" +
                           "<div class='buttonBox'>" +
-                          "<button class='change'>수정</button>" + 
-                          "<button class='delete'>삭제</button>" + 
+                          "<button class='change'>수정</button>" +
+                          "<button class='delete'>삭제</button>" +
                           "</div>";
+        detailBox.innerHTML = AddressData;
+        return detailBox;
     }
 
     let nameArr = [];
@@ -77,39 +81,28 @@ function Address(userName, tel, email, favorite) {
                 nameArr.push(siblingsName[n].innerText);
             }
             nameArr.push(this.userName);  // 형제들 배열에 나를 푸시
-            // console.log(nameArr.sort());  // 배열을 정렬
+            console.log(nameArr.sort());  // 배열을 정렬
             nameArr.sort();
 
-            let thisUserLocation = nameArr.indexOf(this.userName);
+            let thisUserOrder = nameArr.indexOf(this.userName);
 
-            if(thisUserLocation < 1) {
-                // return nameArr[thisUserLocation + 1];  // 이 경우에는 before로 들어가야 한다  // name 의 부모의 before
-                console.log('if');
-                return thisUserLocation + 1;
+            if(thisUserOrder < 1) {
+                return ["before", thisUserOrder];
             } else {
-                // return nameArr[thisUserLocation - 1];   // 이 경우에는 after로 들어가야 한다  // name 의 부모의 after
-                console.log('else');
-                return thisUserLocation - 1;
+                return ["after", thisUserOrder - 1];
             }
         } else {
             return false;
         }
     }
 
-    this.changeAddress = function() {  // 기존 데이터 삭제되고, 위치를 체크해서 새로 추가되어야 함
-        
-
+    this.changeAddress = function() {  // 새로 정렬하기 위해 기존 데이터는 삭제되고, 새로 추가되는 형식
+        this.deleteforchange();
         this.addAddress();
-        box.innerHTML = "<li class='detail" + isFavorite + "'>" +
-                            "<p class='name'>" + this.userName + "</p>" +
-                            "<p class='tel'>" + this.tel + "</p>" +
-                            "<p class='email'>" + this.email + "</p>" +
-                            this.buttonBox +
-                            "</li>";
     }
 
-    this.delAddress = function() {
-        
+    this.deleteforchange = function() {
+
     }
 
     this.getPosition = function() {
@@ -151,7 +144,7 @@ function getChangeAddress(userName, tel, email, favorite = false) {
 // UI Click Event
 const getAddressBox = document.getElementById('getAddress');
 
-// 신규 추가 창
+// miitch 신규 추가 창 띄움
 document.getElementById('addButton').addEventListener('click', function() {
     getAddressBox.querySelector('h2').innerText = "새 연락처 추가";
     getAddressBox.querySelector('#isName').value = "";
@@ -170,7 +163,7 @@ document.getElementById('addButton').addEventListener('click', function() {
 });
 
 
-// 수정 창
+// miitch 수정 창 띄움
 let nowLocation;
 document.addEventListener('click', function (event) {
     if ( event.target.classList.contains( 'change' ) ) {
@@ -197,7 +190,7 @@ document.addEventListener('click', function (event) {
 }, false);
 
 
-// 창 닫기
+// miitch 창 닫기
 getAddressBox.getElementsByClassName('close')[0].addEventListener('click', closeBox);
 
 function closeBox() {
@@ -205,14 +198,14 @@ function closeBox() {
 };
 
 
-// 추가/수정하기 동작
+// miitch 추가/수정하기 동작
 const submitBtn = document.getElementById('submit');
 submitBtn.onclick = function() {
     let isName = document.getElementById('isName').value,
     isTel = document.getElementById('isTel').value,
     isEmail = document.getElementById('isEmail').value,
     isFavorite = document.getElementById('isFavorite').checked;
-    
+
     if(submitBtn.classList.contains('isNewAdd')) {
         getNewAddress(isName, isTel, isEmail, isFavorite);
         closeBox();
@@ -296,11 +289,12 @@ document.addEventListener('keyup', function(e){
 
 /* ---------------------------------------------------------------------------------- */
 let hong_gildong = new Address('홍길동', '010-111-1111', 'abc@gmail.com', true);
-let bok_sooni = new Address('복순이', '02-1234-9865', 'licks277@gmail.com', false);
-let kim_chulsu = new Address('김철수', '02-9685-1425', 'iron.kim@gmail.com', false);
+let bok_sooni = new Address('복순이', '010-1234-9865', 'licks277@gmail.com', false);
+let kim_chulsu = new Address('김철수', '010-9685-1425', 'iron.kim@gmail.com', true);
 let kim_gane = new Address('김가네', '02-1234-2343', 'kimgane@gmail.com', false);
-let doe_muji = new Address('도무지', '02-2323-5498', 'doedoe@naver.com', false);
-let kim_minji = new Address('김민지', '02-2323-5498', 'miimii@naver.com', false);
+let doe_muji = new Address('도무지', '010-2323-5498', 'doedoe@naver.com', true);
+let kim_minji = new Address('김민지', '010-2323-5498', 'miimii@naver.com', false);
+let kim_dahye = new Address('김다혜', '010-4242-5353', 'da_hye@naver.com', false);
 
 hong_gildong.addAddress();
 bok_sooni.addAddress();
@@ -308,4 +302,5 @@ kim_chulsu.addAddress();
 kim_gane.addAddress();
 doe_muji.addAddress();
 kim_minji.addAddress();
+kim_dahye.addAddress();
 /* ---------------------------------------------------------------------------------- */
