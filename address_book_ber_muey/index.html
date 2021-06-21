@@ -5,97 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주소록</title>
-    
 </head>
 <body>
-    <!-- Trigger/Open The Modal -->
-    <div class="container">
+    <div class="upperarea">
         <!-- navbar-->
         <div class="navbar">
-            <div class="headname">Address Book</div>
+            <div class="headName">주소록</div>
             <!--search bar-->
-            <div class="searchBar">
-                <input type="text" class="searchbox" id="searchbox" placeholder="Search!">
+            <div class="searchBar" >
+                <input type="text" class="searchBox" id="searchBox" placeholder="Search!">
             </div>
             <!--Add button-->
-            <button id="addBtn" class="addBtn"></button>
+            <a herf="#" id="addBtn" class="addBtn"></a>
         </div>
-
-        <!-- <button id="updateBtn">Update User</button>
-        <button id="favoriteBtn">즐겨찾기</button>
-        <button id="deleteBtn">삭제</button> -->
-
-        <!-- The Add Modal -->
-        <div id="add-modal" class="modal">
-    
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>주소록</h2>
-                </div>
-                <div class="modal-body">
-                    <form id="form" class="form">
-                        <input type="hidden" id="userId" name="userId" value="">
-                        <input type="hidden" id="isFavorite" name="isFavorite" value="">
-    
-                        <div class="form-control">
-                            <label for="username">이름</label>
-                            <input type="text" id="userName" placeholder="이름을 입력해주세요"/>
-                            <small>Error message</small>
-                        </div>
-                        <div class="form-control">
-                            <label for="phone">전화번호</label>
-                            <input type="text" id="phone" placeholder="전화번호를 입력해주세요"/>
-                            <small>Error message</small>
-                        </div>
-    
-                        <div class="form-control">
-                            <label for="email">E-mail</label>
-                            <input type="text" id="email" placeholder="이메일을 입력해주세요" />
-                            <small>Error message</small>
-                        </div>
-                        
-                        <div class="form-control">
-                            <label for="address">주소</label>
-                            <input type="text" id="address" placeholder="주소를 입력해주세요"/>
-                            <small>Error message</small>
-    
-                        </div>
-                        <!-- <button type="submit">저장</button> -->
-                        <button id="saveBtn">저장</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Delete modal -->
-        <div id="delete-modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>삭제</h2>
-    
-                </div>
-                <div class="modal-body">
-                    <p>삭제하시겠습니까?</p>
-                </div>
-                <button class="no" id="delete-no">아니요</button>
-                <button class="yes" id="delete-yes">예</button>
-            </div>
-        </div>
-
-        <!-- list start-->
-        <!-- 테스트를 위해서 style display: none 으로 설정 -->
-        <div id="personListWrapper" style='display:none'></div>
-        <div id="personinfo" class="personinfo" style='display:none'></div>
-        <div id="detailinfo" style='display:none'></div>
-        <!-- 임시로 연락처 목록을 보여주기 위한 것 -->
-        <div id="tempList"></div>
-
-        <!-- list end-->
-
-        
     </div>
+        
+        <!-- The Add Modal -->
+    <div id="addModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modalContent">
+            <div class="modalHeader">
+                <span class="close">&times;</span>
+                <h2>주소록</h2>
+            </div>
+            <div class="modalBody">
+                <form id="form" class="form">
+                    <div class="formControl">
+                    <input type="hidden" id="personId" name="personId" value="">
+                    <input type="hidden" id="personFavorite" name="personFavorite" value=""></div>
+
+
+                    <div class="formControl">
+                        <label for="personName">이름</label>
+                        <input type="text" id="personName" placeholder="이름을 입력해주세요"/>
+                        <small>Error message</small>
+                    </div>
+                    <div class="formControl">
+                        <label for="personPhone">전화번호</label>
+                        <input type="text" id="personPhone" placeholder="전화번호를 입력해주세요"/>
+                        <small>Error message</small>
+                    </div>
+
+                    <div class="formControl">
+                        <label for="personEmail">E-mail</label>
+                        <input type="text" id="personEmail" placeholder="이메일을 입력해주세요" />
+                        <small>Error message</small>
+                    </div>
+                    
+                    <div class="formControl">
+                        <label for="personAddress">주소</label>
+                        <input type="text" id="personAddress" placeholder="주소를 입력해주세요"/>
+                        <small>Error message</small>
+
+                    </div>
+
+                    <button type="submit" id="saveBtn">저장</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modalContent">
+            <div class="modalHeader">
+                <span class="close">&times;</span>
+                <h2>삭제</h2>
+
+            </div>
+            <div class="modalBody">
+                <div id="deleteMessage"></div>
+                <button class="deleteBtn" id="deleteBtn">예</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- list start-->
+    
+    <div id="personListWrapper"></div>
+
+    <!-- list end-->
+
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </body>
