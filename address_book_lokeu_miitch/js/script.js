@@ -294,13 +294,26 @@ submitBtn.onclick = function() {
     }
 }
 
+let indexDetail, clone, bookMark;
 
 // lokeu 삭제
 document.addEventListener("click", function(del) {
+
+    // 주소록 일부 복사
+    indexDetail = document.querySelector('#indexList');
+
     if (del.target.classList.contains('delete')) {
         let delClick = confirm("삭제 하시겠습니까?");
         if (delClick == true) {
             del.target.parentNode.parentNode.remove();
+
+            // 즐겨찾기와 리스트에 있는 주소록이 일치한지 검색
+            for (let bf = 0; bf < indexDetail.querySelectorAll('.favorite').length; bf += 1) {
+                if (del.target.parentNode.parentNode.innerHTML == indexDetail.querySelectorAll('.favorite')[bf].innerHTML) {
+                    del.target.parentNode.parentNode.remove();
+                    indexDetail.querySelectorAll('.favorite')[bf].remove();
+                }
+            }
         } else {
             console.log("취소");
         }
@@ -314,8 +327,8 @@ let count = 0;
 document.addEventListener('keyup', function(e){
 
     // 주소록 일부 복사
-    let indexDetail = document.querySelector('#indexList'),
-        clone = indexDetail.cloneNode(true);
+    indexDetail = document.querySelector('#indexList');
+    clone = indexDetail.cloneNode(true);
 
     // search 관련 변수 모음
     let searchInput = document.querySelector('#searchBox input'),
@@ -366,10 +379,43 @@ document.addEventListener('keyup', function(e){
 
 
 // lokeu 즐겨찾기
+window.onload = function() {
+    favorLoad();
+}
 
+document.addEventListener('click', function(bookmark){
+    if (bookmark.target.classList.contains('change')) {
+        console.log(this);
+    }
+    if (
+        bookmark.target.classList.contains('isChange') &&
+        document.getElementById('isFavorite').checked == true
+        ) {
+        console.log('수정버튼 활성화');
+    } else {
+        console.log('수정버튼 비활성화');
+    }
+});
+
+function favorLoad() {
+    let favoriteAddress = document.getElementsByClassName('favorite'),
+        favoriteArr = [];
+    bookMark = document.getElementById('bookmarkList');
+
+    // favorite 값이 포함된 li 태그를 배열에 담기
+    for (let f = 0; f < favoriteAddress.length; f+=1) {
+        let favoriteClone = favoriteAddress[f].cloneNode(true);
+        favoriteArr.push(favoriteClone);
+    }
+
+    // 배열에 담은 li태그를 bookmarkList에 옮겨 담기
+    for (let b = 0; b < favoriteArr.length; b+=1) {
+        bookMark.append(favoriteArr[b]);
+    }
+}
 
 /* ---------------------------------------------------------------------------------- */
-let hong_gildong = new Address('홍길동', '010-111-1111', 'abc@gmail.com', true);
+let hong_gildong = new Address('홍길동', '010-111-1111', 'abc@gmail.com', false);
 let bok_sooni = new Address('복순이', '010-1234-9865', 'licks277@gmail.com', false);
 let kim_chulsu = new Address('김철수', '010-9685-1425', 'iron.kim@gmail.com', true);
 let kim_gane = new Address('김가네', '02-1234-2343', 'kimgane@gmail.com', false);
