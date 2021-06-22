@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주소록_Lokeu&Miitch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="wrapper">
+    <main id="addressMain">
+        <div id="headBlock">
+            <h1>주소록</h1>
+            <div id="searchBox">
+                <input class="searchInput" type="search" name="search" id="search" placeholder="입력된 연락처 검색">
+            </div>
+            <button id="addButton"><img src="img/icon_add.png" alt="새 연락처 추가"></button>
+        </div>
+
+        <section id="addressBlock">
+            <div id="bookmarkBox">
+                <p class="head index"><span>즐겨찾기</span></p>
+                <ul id="bookmarkList" class="detailList">
+                </ul>
+            </div>
+            <ol id="indexList">
+                <li class="index" id="index0"><span>0-9</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index1"><span>ㄱ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index2"><span>ㄴ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index3"><span>ㄷ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index4"><span>ㄹ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index5"><span>ㅁ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index6"><span>ㅂ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index7"><span>ㅅ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index8"><span>ㅇ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index9"><span>ㅈ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index10"><span>ㅊ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index11"><span>ㅋ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index12"><span>ㅌ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index13"><span>ㅍ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index14"><span>ㅎ</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index15"><span>A-Z</span>
+                    <ul class="detailList"></ul>
+                </li>
+                <li class="index" id="index16"><span>기타</span>
+                    <ul class="detailList"></ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+    <footer>
+    </footer>
+
+<!-- 새로 추가하기 팝업 -->
+    <div id="getAddress">
+        <div class="innerWrapper">
+            <h2>새 연락처 추가</h2>
+            <div class="isNameBox isBox">
+                <input type="text" placeholder="이름" id="isName" maxlength="12">
+                <p class="caution must">필수항목입니다.</p>
+            </div>
+            <div class="isTelBox isBox">
+                <input type="text" placeholder="숫자만 입력해주세요." id="isTel">
+                <p class="caution must">필수항목입니다.</p>
+            </div>
+            <div class="isEmail isBox">
+                <input type="text" placeholder="이메일을 입력해주세요." id="isEmail">
+                <p class="caution"></p>
+            </div>
+            <div class="isFavoriteBox isBox">
+                <input type="checkbox" name="isFavorite" id="isFavorite">
+                <label for="isFavorite">즐겨찾기에 추가</label>
+            </div>
+            <div class="submitBox isBox"><button id="submit" class="isNewAdd">추가하기</button></div>
+            <button class="close"></button>
+        </div>
+    </div>
+
+<!-- 검색 결과 팝업 -->
+    <div class="searchResult">
+        <div class="resultNone">검색결과가 없습니다</div>
+    </div>
+</div> <!-- /#wrapper -->
+
+<div id="testBox">
+    <ul id="testBoxList">
+
+    </ul>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>
