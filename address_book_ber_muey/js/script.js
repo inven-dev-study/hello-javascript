@@ -10,234 +10,227 @@ const PERSON_FAVORITE = "favorite";
 const form = document.getElementById("form");
 let addModal = document.getElementById("addModal");
 let deleteModal = document.getElementById("deleteModal");
-
 const searchBox = document.getElementById("searchBox");
-
 const personList = document.getElementById("personListWrapper");
-
-
 
 // 수정 여부
 let isUpdateMode = false;
 let contactData = {
   베르_123: {
-    "name": "베르",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "베르",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   배추_123: {
-    "name": "배추",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "배추",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   가나_123: {
-    "name": "가나",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "가나",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   러시아_123: {
-    "name": "러시아",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "러시아",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   브라질_12234: {
-    "name": "브라질",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "브라질",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   미국_123: {
-    "name": "미국",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "미국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   마이_12234: {
-    "name": "마이",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "마이",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   뮤이_123: {
-    "name": "뮤이",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "뮤이",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   중국_12234: {
-    "name": "중국",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "중국",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   파나마_123: {
-    "name": "파나마",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "파나마",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   인도_12234: {
-    "name": "인도",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "인도",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   테스트_123: {
-    "name": "테스트",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
-  },ABA_123: {
-    "name": "ABA",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "테스트",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
+  },
+  ABA_123: {
+    name: "ABA",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   chars_123: {
-    "name": "chars",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "chars",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   Detail_123: {
-    "name": "Detail",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "Detail",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   hello_123: {
-    "name": "hello",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "ber@inven.co.kr",
-    "favorite": false,
+    name: "hello",
+    phone: "01012345678",
+    address: "서울",
+    email: "ber@inven.co.kr",
+    favorite: false,
   },
   world_12234: {
-    "name": "world",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "world",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   github_123: {
-    "name": "github",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "github",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   Inven_12234: {
-    "name": "Inven",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "Inven",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   Start_123: {
-    "name": "Start",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "Start",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   javascript_12234: {
-    "name": "javascript",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "javascript",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   강동구_123: {
-    "name": "강동구",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "강동구",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   유튜브_12234: {
-    "name": "유뷰브",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "유뷰브",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   아이폰_123: {
-    "name": "아이폰",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
-  },꼬비_12234: {
-    "name": "꼬비",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "아이폰",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
+  },
+  꼬비_12234: {
+    name: "꼬비",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   쌍쌍바_123: {
-    "name": "쌍쌍바",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
-  },떠블_123: {
-    "name": "떠블",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "쌍쌍바",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
+  },
+  떠블_123: {
+    name: "떠블",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
   뽀빠이_123: {
-    "name": "뽀빠이",
-    "phone": "01012345678",
-    "address": "서울",
-    "email": "muey@inven.co.kr",
-    "favorite": false,
+    name: "뽀빠이",
+    phone: "01012345678",
+    address: "서울",
+    email: "muey@inven.co.kr",
+    favorite: false,
   },
-  
 };
 
-
-
-window.onload = function(){
+window.onload = function () {
   let closeBtns = document.getElementsByClassName("close");
-  for(let btn of closeBtns){
-    btn.onclick = function() {
+  for (let btn of closeBtns) {
+    btn.onclick = function () {
       closeModal();
-    }
+    };
   }
   loadData();
 };
 
 addBtn.onclick = function () {
-  
   isUpdateMode = false;
   addModal.style.display = "block";
-  
 };
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-
 
   let personName = document.getElementById("personName");
   if (!checkLength(personName, 2, 15)) {
@@ -258,19 +251,16 @@ form.addEventListener("submit", function (e) {
 
   // 입력 및 수정하기
   savePerson(isUpdateMode);
-  
-  closeModal();
 
+  closeModal();
 });
 
-
-function displaySubmitButton(text){
-  let saveBtn = document.querySelector('[type=submit]');
+function displaySubmitButton(text) {
+  let saveBtn = document.querySelector("[type=submit]");
   saveBtn.innerText = text;
-
 }
 
-function displayPerson(person){
+function displayPerson(person) {
   let personId = document.getElementById("personId");
   let personName = document.getElementById("personName");
   let personEmail = document.getElementById("personEmail");
@@ -278,14 +268,13 @@ function displayPerson(person){
   let personAddress = document.getElementById("personAddress");
   let personFavorite = document.getElementById("personFavorite");
 
-  personId.value = person.id;
-  personName.value = person.name;
-  personPhone.value = person.phone;
-  personEmail.value = person.email;
-  personAddress.value = person.address;
-  personFavorite.value = person.favorite;
+  personId.value = person[PERSON_ID];
+  personName.value = person[PERSON_NAME];
+  personPhone.value = person[PERSON_PHONE];
+  personEmail.value = person[PERSON_EMAIL];
+  personAddress.value = person[PERSON_ADDRESS];
+  personFavorite.value = person[PERSON_FAVORITE];
   displaySubmitButton("수정");
-    
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -295,7 +284,7 @@ window.onclick = function (event) {
   }
 };
 
-function closeModal(){
+function closeModal() {
   addModal.style.display = "none";
   deleteModal.style.display = "none";
   isUpdateMode = false;
@@ -305,8 +294,14 @@ function closeModal(){
   let personPhone = document.getElementById("personPhone");
   let personAddress = document.getElementById("personAddress");
   let personFavorite = document.getElementById("personFavorite");
-  clearInputDatas([personId, personName, personEmail, personPhone, personAddress, personFavorite]);
-  
+  clearInputDatas([
+    personId,
+    personName,
+    personEmail,
+    personPhone,
+    personAddress,
+    personFavorite,
+  ]);
 }
 
 function Person(id, name, phone, email, address, favorite) {
@@ -329,8 +324,7 @@ function createId(name) {
   return `${name}_${time}`;
 }
 
-function loadData(){
-  
+function loadData() {
   let orderObj = orderObject(contactData);
   let groupObj = createGroupObject(orderObj);
 
@@ -341,29 +335,27 @@ function loadData(){
  * @param {Person} user
  */
 function createPerson(person) {
-  contactData[person.id] = {
-    [PERSON_NAME]: person.name,
-    [PERSON_PHONE]: person.phone,
-    [PERSON_ADDRESS]: person.address,
-    [PERSON_EMAIL]: person.email,
-    [PERSON_FAVORITE]: person.favorite,
+  contactData[person[PERSON_ID]] = {
+    [PERSON_NAME]: person[PERSON_NAME],
+    [PERSON_PHONE]: person[PERSON_PHONE],
+    [PERSON_ADDRESS]: person[PERSON_ADDRESS],
+    [PERSON_EMAIL]: person[PERSON_EMAIL],
+    [PERSON_FAVORITE]: person[PERSON_FAVORITE],
   };
 
   loadData();
- 
 }
 /**
  * 객체에서 해당 아이디의 프로퍼티 수정
  * @param {Person} person
  */
 function updatePerson(person) {
-  
-  contactData[person.id] = {
-    [PERSON_NAME]: person.name,
-    [PERSON_PHONE]: person.phone,
-    [PERSON_ADDRESS]: person.address,
-    [PERSON_EMAIL]: person.email,
-    [PERSON_FAVORITE]: person.favorite,
+  contactData[person[PERSON_ID]] = {
+    [PERSON_NAME]: person[PERSON_NAME],
+    [PERSON_PHONE]: person[PERSON_PHONE],
+    [PERSON_ADDRESS]: person[PERSON_ADDRESS],
+    [PERSON_EMAIL]: person[PERSON_EMAIL],
+    [PERSON_FAVORITE]: person[PERSON_FAVORITE],
   };
   loadData();
 }
@@ -375,8 +367,15 @@ function updatePerson(person) {
  * @returns Person 프로퍼티
  */
 function getPerson(id) {
-  let person = contactData[id]; 
-  return new Person(id, person.name, person.phone, person.email, person.address, person.favorite);
+  let person = contactData[id];
+  return new Person(
+    id,
+    person[PERSON_NAME],
+    person[PERSON_PHONE],
+    person[PERSON_EMAIL],
+    person[PERSON_ADDRESS],
+    person[PERSON_FAVORITE]
+  );
 }
 
 /**
@@ -399,7 +398,6 @@ function updateFavorite(id, favorite) {
   contactData[id].favorite = favorite;
   loadData();
 }
-
 
 function showError(input, message) {
   const formControl = input.parentElement;
@@ -479,34 +477,38 @@ function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
-
-
-function savePerson(isUpdate){
+function savePerson(isUpdate) {
   let person = getCurrentPerson(isUpdate);
 
-  if (isUpdate){
+  if (isUpdate) {
     updatePerson(person);
-  }else{
+  } else {
     createPerson(person);
   }
-  
 }
 
-function getCurrentPerson(isUpdate){
+function getCurrentPerson(isUpdate) {
   let newName = personName.value.trim();
-  let newPersonId = (isUpdate) ? personId.value.trim() : createId(newName);
+  let newPersonId = isUpdate ? personId.value.trim() : createId(newName);
   let newPhone = personPhone.value.trim();
   let newEmail = personEmail.value.trim();
   let newAddress = personAddress.value.trim();
-  let newFavorite = (isUpdate) ? personFavorite.value.trim() : false;
-  return new Person(newPersonId, newName, newPhone, newEmail, newAddress, newFavorite);
+  let newFavorite = isUpdate ? personFavorite.value.trim() : false;
+  return new Person(
+    newPersonId,
+    newName,
+    newPhone,
+    newEmail,
+    newAddress,
+    newFavorite
+  );
 }
 
 /**
  * 입력할 input tag를 초기화
- * @param {입력 input tag 배열} inputArr 
+ * @param {입력 input tag 배열} inputArr
  */
-function clearInputDatas(inputArr){
+function clearInputDatas(inputArr) {
   inputArr.forEach(function (input) {
     const formControl = input.parentElement;
     formControl.className = "formControl";
@@ -518,38 +520,37 @@ function clearInputDatas(inputArr){
 
 /**
  * 검색 입력창 키워드에 대한 연락처 목록 보여주기
- * @param {이벤트} e 
+ * @param {이벤트} e
  */
-function displayContactData(e){
+function displayContactData(e) {
   let searchString = searchBox.value;
-  if (searchString === ""){
+  if (searchString === "") {
     displayAllList();
-  }else{
+  } else {
     displaySearchContact(searchString);
   }
-
 }
 // 검색창 이벤트 추가
-searchBox.addEventListener ( 'keyup', displayContactData); 
+searchBox.addEventListener("keyup", displayContactData);
 // 연락처 목록 전부 보여주기
-function displayAllList(){
+function displayAllList() {
   let orderObj = orderObject(contactData);
   let groupObj = createGroupObject(orderObj);
   showGroupList(groupObj);
 }
 /**
  * 검색 키워드에 대한 연락처 목록 보여주기
- * @param {검색 키워드} searchString 
+ * @param {검색 키워드} searchString
  */
-function displaySearchContact(searchString){
+function displaySearchContact(searchString) {
   let htmlString = "";
   personList.innerHTML = htmlString;
 
-  for (let personId in contactData){
+  for (let personId in contactData) {
     let person = contactData[personId];
-    let name = person.name.toUpperCase();
+    let name = person[PERSON_NAME].toUpperCase();
     let isContains = name.includes(searchString.toUpperCase());
-    if (isContains){
+    if (isContains) {
       htmlString += createHTMLstring(person, personId);
     }
   }
@@ -560,31 +561,31 @@ function displaySearchContact(searchString){
 
 /**
  * 연락처 정보를 받아서 html string 을 생성하여 반환
- * @param {연락처정보} person 
- * @returns 
+ * @param {연락처정보} person
+ * @returns
  */
 function createHTMLstring(person, id) {
   return `
     <div class= "personInfo">
     <div id ="infoToggle" class="name" >
       
-      <span id="name">${person.name}</span> 
+      <span id="name">${person[PERSON_NAME]}</span> 
     </div>
   
     <div class="detailInfo" style = "display:none";>
       <div class="title">
-        <img src="icon/phone.svg" alt="phone"> <span> : ${person.phone} </span>
+        <img src="icon/phone.svg" alt="phone"> <span> : ${person[PERSON_PHONE]} </span>
       </div>
       <div class="title">
-        <img src="icon/email.svg" alt="email"> <span> : ${person.email} </span>
+        <img src="icon/email.svg" alt="email"> <span> : ${person[PERSON_EMAIL]} </span>
       </div>
       <div class="title">
-        <img src="icon/address.svg" alt="address"> <span> : ${person.address} </span>
+        <img src="icon/address.svg" alt="address"> <span> : ${person[PERSON_ADDRESS]} </span>
 
       </div>
   
       <div class="actionButtons" id="icons">
-        <button class="favoriteBtn" data-person-id="${id}" data-favorite="${person.favorite}">
+        <button class="favoriteBtn" data-person-id="${id}" data-favorite="${person[PERSON_FAVORITE]}">
           즐겨찾기
         </button>
     
@@ -604,133 +605,147 @@ function createHTMLstring(person, id) {
 // 검색 목록 필터 추가 함수 끝
 /**
  * 해당 문자의 초성 가져오기
- * @param {문자} str 
- * @returns 
+ * @param {문자} str
+ * @returns
  */
-function getChosung(str){
-
-  let cho = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+function getChosung(str) {
+  let cho = [
+    "ㄱ",
+    "ㄲ",
+    "ㄴ",
+    "ㄷ",
+    "ㄸ",
+    "ㄹ",
+    "ㅁ",
+    "ㅂ",
+    "ㅃ",
+    "ㅅ",
+    "ㅆ",
+    "ㅇ",
+    "ㅈ",
+    "ㅉ",
+    "ㅊ",
+    "ㅋ",
+    "ㅌ",
+    "ㅍ",
+    "ㅎ",
+  ];
   let uniVal = str.charCodeAt(0);
 
   let code = uniVal - 44032;
 
   // 한글 여부 확인
-  if(code>-1 && code<11172) {
-    return cho[Math.floor(code/588)];
-  }else{
+  if (code > -1 && code < 11172) {
+    return cho[Math.floor(code / 588)];
+  } else {
     return str.charAt(0).toUpperCase();
   }
 }
- 
+
 /**
  * 객체의 데이터를 초성으로 그룹화하여 배열에 담기
- * @param {Person 객체} items 
+ * @param {Person 객체} items
  */
-function createGroupObject(items){
-
+function createGroupObject(items) {
   let groupObject = {};
 
-  for (let personId in items){
+  for (let personId in items) {
     let person = items[personId];
-    let name = person.name;
+    let name = person[PERSON_NAME];
 
     let chosung = getChosung(name);
     let chosungKey = getGroupChosungKey(chosung);
-    let isNotEmpty = (chosungKey in groupObject);
+    let isNotEmpty = chosungKey in groupObject;
 
-    if (isNotEmpty){
+    if (isNotEmpty) {
       let subGroup = groupObject[chosungKey];
       let subItem = {
-        "name": person.name,
-        "phone": person.phone,
-        "address": person.address,
-        "email": person.email,
-        "favorite": person.favorite
+        name: person[PERSON_NAME],
+        phone: person[PERSON_PHONE],
+        address: person[PERSON_ADDRESS],
+        email: person[PERSON_EMAIL],
+        favorite: person[PERSON_FAVORITE],
       };
       subGroup[personId] = subItem;
-    }else{
-      let groupItem = {[personId]: {
-        "name": person.name,
-        "phone": person.phone,
-        "address": person.address,
-        "email": person.email,
-        "favorite": person.favorite
-      }};
-      groupObject[chosungKey] = groupItem;      
+    } else {
+      let groupItem = {
+        [personId]: {
+          name: person[PERSON_NAME],
+          phone: person[PERSON_PHONE],
+          address: person[PERSON_ADDRESS],
+          email: person[PERSON_EMAIL],
+          favorite: person[PERSON_FAVORITE],
+        },
+      };
+      groupObject[chosungKey] = groupItem;
     }
-    
-    
   }
   return groupObject;
 }
 
 /**
  * 초성으로 그룹화 하기 위한 초성 문자 반환
- * @param {초성} chosung 
- * @returns 
+ * @param {초성} chosung
+ * @returns
  */
-function getGroupChosungKey(chosung){
+function getGroupChosungKey(chosung) {
   let chosungKey = chosung;
-  switch(chosung){
-    case 'ㅅ':
-    case 'ㅆ':
-      chosungKey = 'ㅅ';
+  switch (chosung) {
+    case "ㅅ":
+    case "ㅆ":
+      chosungKey = "ㅅ";
       break;
-    case 'ㄱ':
-    case 'ㄲ':
-      chosungKey = 'ㄱ';
+    case "ㄱ":
+    case "ㄲ":
+      chosungKey = "ㄱ";
       break;
-    case 'ㄷ':
-    case 'ㄸ':
-      chosungKey = 'ㄷ';
+    case "ㄷ":
+    case "ㄸ":
+      chosungKey = "ㄷ";
       break;
-    case 'ㅈ':
-    case 'ㅉ':
-      chosungKey = 'ㅈ';
+    case "ㅈ":
+    case "ㅉ":
+      chosungKey = "ㅈ";
       break;
-    case 'ㅂ':
-    case 'ㅃ':
-      chosungKey = 'ㅂ';
+    case "ㅂ":
+    case "ㅃ":
+      chosungKey = "ㅂ";
       break;
-    default: 
-    
-    chosungKey = chosung;
+    default:
+      chosungKey = chosung;
   }
   return chosungKey;
 }
 
-
 /**
  * 객체 정렬하여 정렬된 객체로 반환
- * @param {정렬안된 객체} unordered 
- * @returns 
+ * @param {정렬안된 객체} unordered
+ * @returns
  */
-function orderObject(unordered){
-  return Object.keys(unordered).sort().reduce(
-    (obj, key) => { 
-      obj[key] = unordered[key]; 
+function orderObject(unordered) {
+  return Object.keys(unordered)
+    .sort()
+    .reduce((obj, key) => {
+      obj[key] = unordered[key];
       return obj;
-    }, 
-    {}
-  );
+    }, {});
 }
 /**
  * 연락처 목록을 그룹화한 객체를 목록으로 html 형식 변환
- * @param {연락처 목록} items 
+ * @param {연락처 목록} items
  */
-function showGroupList(items){
+function showGroupList(items) {
   let htmlString = "";
   personList.innerHTML = htmlString;
-  
-  for (let chosungKey in items){
-    let group = items[chosungKey];
-    if (group === undefined){
 
-    }else{
+  for (let chosungKey in items) {
+    let group = items[chosungKey];
+    if (group === undefined) {
+    } else {
       htmlString += createChosungHTMLstring(chosungKey);
-      for(let personId in group){
+      for (let personId in group) {
         let person = group[personId];
-        
+
         htmlString += createHTMLstring(person, personId);
       }
     }
@@ -741,34 +756,33 @@ function showGroupList(items){
 /**
  * 상세정보란에 액션 버튼 이벤트 리스너 등록
  */
-function setActionButtonsEventListner(){
-
+function setActionButtonsEventListner() {
   let favoriteElements = document.getElementsByClassName("favoriteBtn");
   let editElements = document.getElementsByClassName("editBtn");
   let deleteElements = document.getElementsByClassName("deleteBtn");
 
   let personInfoElements = document.getElementsByClassName("personInfo");
-  for(let item of personInfoElements){
-    item.addEventListener('click', clickPersonInfoToggle, false);
+  for (let item of personInfoElements) {
+    item.addEventListener("click", clickPersonInfoToggle, false);
   }
-  for(let item of favoriteElements){
-    item.addEventListener('click', clickFavoriteButton, false);
+  for (let item of favoriteElements) {
+    item.addEventListener("click", clickFavoriteButton, false);
   }
-  for(let item of editElements){
-    item.addEventListener('click', clickEditButton, false);
+  for (let item of editElements) {
+    item.addEventListener("click", clickEditButton, false);
   }
-  
-  for(let item of deleteElements){
-    item.addEventListener('click', clickDeleteButton, false);
+
+  for (let item of deleteElements) {
+    item.addEventListener("click", clickDeleteButton, false);
   }
 }
 
 /**
  * 초성 HTML 반환
- * @param {초성} chosungKey 
- * @returns 
+ * @param {초성} chosungKey
+ * @returns
  */
-function createChosungHTMLstring(chosungKey){
+function createChosungHTMLstring(chosungKey) {
   return `
   <div class= "chosungElement">
   <span id="chosungKey">${chosungKey}</span>
@@ -777,10 +791,10 @@ function createChosungHTMLstring(chosungKey){
 }
 /**
  * 연락처 상세정보에서 즐겨찾기버튼 클릭시
- * @param {이벤트} e 
- * @returns 
+ * @param {이벤트} e
+ * @returns
  */
-function clickFavoriteButton(e){
+function clickFavoriteButton(e) {
   const dataset = e.target.dataset;
   let personId = dataset.personId;
   isUpdateMode = false;
@@ -789,14 +803,14 @@ function clickFavoriteButton(e){
 
 /**
  * 연락처 상세정보에서 편집버튼 클릭시
- * @param {이벤트} e 
- * @returns 
+ * @param {이벤트} e
+ * @returns
  */
-function clickEditButton(e){
+function clickEditButton(e) {
   const dataset = e.target.dataset;
   let personId = dataset.personId;
   let person = getPerson(personId);
-  if (person === undefined){
+  if (person === undefined) {
     return;
   }
   isUpdateMode = true;
@@ -806,30 +820,29 @@ function clickEditButton(e){
 
 /**
  * 연락처 상세정보에서 삭제 버튼 클릭시
- * @param {이벤트} e 
+ * @param {이벤트} e
  */
-function clickDeleteButton(e){
+function clickDeleteButton(e) {
   const dataset = e.target.dataset;
   let personId = dataset.personId;
 
   isUpdateMode = false;
   deleteModal.style.display = "block";
   let person = getPerson(personId);
-  let personName = person.name;
+  let personName = person[PERSON_NAME];
   let message = document.getElementById("deleteMessage");
   message.innerHTML = `<span>${personName} 연락처를 삭제하시겠습니까?</span>`;
   let deleteBtn = document.getElementById("deleteBtn");
   deleteBtn.setAttribute("data-person-id", personId);
   deleteBtn.setAttribute("data-person-name", personName);
-  deleteBtn.addEventListener('click', clickDeleteYesButton, false);
-
+  deleteBtn.addEventListener("click", clickDeleteYesButton, false);
 }
 
 /**
  * 삭제버튼 Yes 클릭시
- * @param {이벤트} e 
+ * @param {이벤트} e
  */
-function clickDeleteYesButton(e){
+function clickDeleteYesButton(e) {
   const dataset = e.target.dataset;
   let personId = dataset.personId;
   isUpdateMode = false;
@@ -840,14 +853,13 @@ function clickDeleteYesButton(e){
 
 /**
  * 이름클릭시 상세정보 토글
- * @param {이벤트} e 
+ * @param {이벤트} e
  */
-function clickPersonInfoToggle(e){
-  let detailInfo = this.querySelector('.detailInfo');
+function clickPersonInfoToggle(e) {
+  let detailInfo = this.querySelector(".detailInfo");
   if (detailInfo.style.display === "none") {
     detailInfo.style.display = "block";
   } else {
     detailInfo.style.display = "none";
   }
 }
-
