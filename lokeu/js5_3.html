@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            [5.3] 문자형
+        */
+
+        // 따옴표 '' / "" / ``
+
+        // 백틱으로 감싼 문자열 중간에 ${...}을 넣어주면 해당 표현식을 문자열 중간에 쉽게 삽입 가능
+        function sum(a, b) {
+            return a + b;
+        }
+        alert(`1 + 2 = ${sum(1, 2)}.`);
+
+        // 여러줄에 걸쳐 작성 가능
+        let guestList = `손님: 
+        * John
+        * Pete
+        * Mary
+        `;
+        alert(guestList);
+
+        // 특수기호
+        let guestList2 = "손님:\n * John \n * Pete \n * Mery";
+        alert(guestList2)
+
+let str1 = "Hello\nWorld";
+let str2 = `Hello
+World`;
+
+        alert(str1 == str2); // true
+
+        /*
+            \n  줄 바꿈
+            \r  캐리지 리턴과 줄바꿈 특수문자를 조합해 \r\n해 줄을 바꿉니다.
+            \' \"   따옴표
+            \\  역슬래시
+            \t  탭
+            \b, \f, \v  각각 백스페이스, 폼 피드, 세로 탭을 나타냄
+            \xXX
+            \uXXXX
+            \u{X...XXXX}
+        */
+
+        let str3 = "Hello\r\nWorld";
+        alert(str3);
+
+
+        // 문자열의 길이
+        
+        alert(`My\n`.length); // 3
+        // \n도 특수 문자 하나로 취급되기 때문에 총 길이는 3
+
+        // 특정 글자 접근
+
+        let str4 = `hello`;
+
+        // 첫번째 글자
+        alert( str4[0] );
+        alert( str4.charAt(0) );
+
+        // 보통 대괄호를 많이 사용하며. charAt은 하위 호환성을 위해 사용
+
+        let str5 = `hello`;
+
+        alert( str5[1000] ); // undefined
+        alert( str5.charAt(1000) ); // '' 빈문자열
+
+        for(let char of "hello") {
+            alert(char); // h e l l o 출력
+        }
+
+        // 문자열은 수정할 수 없다. 따라서 문자열의 중간 글자 하나를 바꾸려 하면 에러가 발생한다.
+
+        alert( 'Hello'.toUpperCase() ); // 대문자로 변경
+        alert( 'Hello'.toLowerCase() ); // 소문자로 변경
+
+        // 배열을 이용해 부분 변경 가능
+        alert( 'Hello'[0].toLowerCase() );
+
+
+        // 부분 문자열 찾기
+
+        // indexOf
+        let str6 = 'Widget with id'
+
+        alert(str6.indexOf('Widget')); // 0, str은 Widget으로 시작함
+        alert(str6.indexOf('widget')); // -1, indexOf는 대 소문자를 따진다
+
+        alert(str6.indexOf('id')); // 1
+
+        // 매개변수 사용 가가능
+
+        alert(str6.indexOf('id', 2)) // 12
+
+        let str7 = 'As sly as a fox, as strong as an ox';
+
+        let target = 'as';
+
+        let pos = 0;
+        while (true) {
+            let foundPos = str7.indexOf(target, pos);
+            if (foundPos == -1) break;
+
+            alert(`위치: ${foundPos}`);
+            pos = foundPos + 1; // 다음 위치 기준 검색 이어서 진행
+        }
+
+        // indexOf 주의할 점
+        let str7 = "Widget with id";
+        
+        // 이 경우는 Widget을 0을 반환하는데 0은 불린 값으로 false를 인식하기 때문에 alert창이 뜨지 않는다.
+        // if (str7.indexOf("Widget")) {
+        //     alert("찾았다");
+        // }
+
+        // 이렇기에 부분 문자열을 검사할려면 -1의 값을 넣어 비교해야한다.
+        if (str7.indexOf('Widget') != -1) {
+            alert("찾았다");
+        }
+
+
+        // 비트 NOT 연산자를 사용하는 기법도 있다.
+
+
+        // 근래에 나온 includes, startsWith, endsWith
+        alert("widget with id".includes("widget")); // true
+        alert("widget with id".includes("bye")); // false
+
+        alert("widget".includes("id")); // true
+        alert("widget".includes("id", 3)); // false, 세 번째 위치 이후엔 id가 없기 때문
+
+        alert("widget".startsWith("wid")); // true
+        alert("widget".endsWith("get")); // true
+
+
+        // 부분 문자열 추출
+
+        // slice 
+        let str8 = "stringify";
+        alert( str8.slice(0, 5) ); // strin
+        alert( str8.slice(0, 1) ); // s
+        // 인수 생략 시
+        alert( str8.slice(2) ); // ringify
+        // 음수 사용 가능(음수는 문자열 끝에서부터 카운팅)
+        alert( str8.slice(-4, -1)); // gif
+
+        // substring
+        alert( str8.substring(2, 6) ); // ring
+        alert( str8.substring(6, 2) ); // ring
+        // 음수 처리 하지않으며 음수는 0으로 처리
+
+        // substr
+        // start를 기준으로 시작해 length 개의 글자를 반환
+        alert( str8.substr(2, 4) ); // ring
+        // 첫 인수가 음수면 뒤에서부터 개수를 셉니다.
+        alert( str8.substr(-4, 2) ); // gi
+
+
+        // 문자열 비교하기
+        // 1. 소문자는 대문자보다 항상 크다.
+        // 2. 발음 구별 기호가 붙은 문자는 알파벳 숫서 기준을 따르지 x
+
+        // str.codePointAt(pos)
+        // pos() 위치한 글자의 코드를 반환
+        
+        // 글자는 같아도 케이스가 다르면 반환되는 코드 또한 다르다
+        alert("z".codePointAt(0)); // 122
+        alert("Z".codePointAt(0)); // 90
+
+        // String.fromCodePoint(code)
+        // 숫자 형식의 code에 대응하는 글자를 만들어 준다.
+        alert(String.fromCodePoint(90)); // Z
+
+        // \u 뒤에 특정 글자에 대응하는 16진수 코드를 붙이는 방식으로도 원하는 글자를 만들기 가능
+    </script>
+</body>
+</html>
