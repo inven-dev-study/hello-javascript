@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>긴 문장 자르기</title>
+</head>
+<body>
+  <h1>긴 문장 자르기</h1> 
+  <div>truncate 1
+    <p id="truncate1"></p>
+  </div>
+<hr>
+  <div>truncate 2
+    <p id="truncate2"></p>
+  </div>
+<script>
+  function truncate(str, maxlength) {
+
+    // 삼항연산자로 표현하면 => return (str.length > maxlength) ? str.slice(0, maxlength - 1 ) + '…' : str;
+    if(str.length > maxlength) {
+      str = str.slice(0, maxlength - 1 ) + '…';
+    }
+    return str;
+  }
+  let t1 = document.getElementById('truncate1');
+  let t2 = document.getElementById('truncate2');
+
+  let t1Text = truncate("What I'd like to tell on this topic is:", 20);
+  let t2Text = truncate("Hi everyone!", 20);
+
+  t1.innerHTML = t1Text;
+  t2.innerHTML = t2Text;
+</script>
+
+<hr><hr>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력한 숫자의 합 구하기</title>
+</head>
+<body>
+    <h1>입력한 숫자의 합 구하기</h1>
+    <h2>잘못된 값이 들어올 때까지 숫자값을 계속 받아서 다 더해서 보여줌</h2>
+    <h5>결과값: <span id="result"></span></h5>
+    
+    <script>
+    function sumInput() {
+        let num;
+        let ary = [];
+        
+        while(true) {
+            num = prompt("Input Number","");
+            
+            // null 이 아닐 때 앞뒤의 공백을 제거함
+            if (num !== null) num = num.trim();
+
+            //null, 공백, 숫자가 아닐 때 while 문 종료함
+            if(num === "" || num === null || !isFinite(num)) break;
+
+            ary.push(+num);
+        }
+
+        let result = 0;
+        for(let i = 0; i < ary.length; i++) {
+            result += ary[i];
+        }
+        return result;
+    }
+
+    document.getElementById('result').innerText = sumInput();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<p>이름 매핑하기</p>
+
+<script>
+  let john = { name: "John", age: 25 };
+  let pete = { name: "Pete", age: 30 };
+  let mary = { name: "Mary", age: 28 };
+
+  let users = [ john, pete, mary ];
+
+  let names = users.map( item => item.name );
+
+  console.log( names ); // John, Pete, mary
+</script>
+
+<hr>
+
+<p>객체 매핑하기</p>
+<script>
+  let john2 = { name: "John", surname: "Smith", id: 1 };
+  let pete2 = { name: "Pete", surname: "Hunt", id: 2 };
+  let mary2 = { name: "Mary", surname: "Key", id: 3 };
+  let users2 = [ john2, pete2, mary2 ];
+
+  let usersMapped = users2.map(user => ({
+      fullName: `${user.name} ${user.surname}`,
+      id: user.id
+  }));
+
+  /*
+  usersMapped = [
+    { fullName: "John Smith", id: 1 },
+    { fullName: "Pete Hunt", id: 2 },
+    { fullName: "Mary Key", id: 3 }
+  ]
+  */
+
+  console.log( usersMapped[0].id ) // 1
+  console.log( usersMapped[0].fullName ) // John Smith
+</script>
+
+<hr>
+
+<p>나이를 기준으로 객체 정렬하기</p>
+
+<script>
+  let john3 = { name: "John", age: 25 };
+  let pete3 = { name: "Pete", age: 30 };
+  let mary3 = { name: "Mary", age: 28 };
+
+  let arr3 = [ pete3, john3, mary3 ];
+
+  sortByAge(arr3);
+  console.log(arr3);
+  // now: [john, mary, pete]
+  console.log(arr3[0].name); // John
+  console.log(arr3[1].name); // Mary
+  console.log(arr3[2].name); // Pete
+
+  function sortByAge(arr) {
+    arr.sort((a, b) => a.age - b.age);
+  }
+
+</script>
+<hr>
+<p>평균나이구하기</p>
+<script>
+  let john = { name: "John", age: 25 };
+  let pete = { name: "Pete", age: 30 };
+  let mary = { name: "Mary", age: 29 };
+
+  let arr = [ john, pete, mary ];
+
+  alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+
+  function getAverageAge(users) {
+    return users.reduce((prev, user) => prev + user.age, 0) / users.length;  // reduce: 이전함수실행의 결과값을 계속 누적시키면서 함수를 실행
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>하이픈(-)으로 구분된 문자열을 카멜 표기법으로 변경하는 함수</p>
+  <code><pre>
+
+    function camelize(originText) {
+      let arr = originText.split('-');
+  
+      for(let i = 1; i < arr.length; i++) {
+        arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1);
+      }
+  
+      return arr.join('');
+  
+      /** map 을 사용한 방법
+      * return str
+      * .split('-')
+      * .map(
+      *   (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+      * )
+      * .join('');
+      */
+    }
+
+    console.log(camelize("background-color") == 'backgroundColor');     // true
+    console.log(camelize("list-style-image") == 'listStyleImage');      // true
+    console.log(camelize("-webkit-transition") == 'WebkitTransition');  // true
+
+  </pre></code>
+<script>
+
+  function camelize(originText) {
+    let arr = originText.split('-');
+
+    for(let i = 1; i < arr.length; i++) {
+      arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1);
+    }
+
+    return arr.join('');
+
+    /** map 을 사용한 방법
+    * return str
+    * .split('-')
+    * .map(
+    *   (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+    * )
+    * .join('');
+    */
+  }
+  console.log('카멜케이스만들기 START');
+  console.log(camelize("background-color") == 'backgroundColor');
+  console.log(camelize("list-style-image") == 'listStyleImage');
+  console.log(camelize("-webkit-transition") == 'WebkitTransition');
+  console.log('카멜케이스만들기 END');
+</script>
+<hr><hr>
+<p>특정 범위에 속하는 요소 찾기</p>
+<code><pre>
+
+  let arr = [5, 3, 8, 1];
+
+  function filterRange(arr, a, b) {
+    return arr.filter(item => a <= item && item <= b );
+  }
+
+  let filtered = filterRange(arr, 1, 4);
+
+  console.log( filtered ); // 3,1 (조건에 맞는 요소)
+  console.log( arr );      // 5,3,8,1 (기존 배열은 변경되지 않았습니다.)
+
+</pre></code>
+<script>
+let arr = [5, 3, 8, 1];
+
+function filterRange(arr, a, b) {
+  return arr.filter(item => a <= item && item <= b );
+}
+
+let filtered = filterRange(arr, 1, 4);
+
+console.log('특정범위에속하는요소찾기 START');
+console.log( filtered ); // 3,1 (조건에 맞는 요소)
+console.log( arr ); // 5,3,8,1 (기존 배열은 변경되지 않았습니다.)
+console.log('특정범위에속하는요소찾기 END');
+</script>
+<hr><hr>
+
+<p>내림차순으로 정렬하기</p>
+
+<script>
+  let arrs = [5, 2, 1, -10, 8];
+
+  // 요소를 내림차순으로 정렬해주는 코드를 여기에 작성해보세요.
+
+  arrs.sort((a, b) => b - a);
+  /*arrs.sort(function(a, b) { return b - a; })*/
+
+  console.log('내림차순으로정렬하기 START');
+  console.log( arrs ); // 8, 5, 2, 1, -10
+  console.log('내림차순으로정렬하기 END');
+</script>
+</body>
+</html>
