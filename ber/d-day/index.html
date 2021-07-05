@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/ec5a7c932c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <!-- logo img -->
+      <i class="fas fa-calendar-check"></i>
+      <span class="title">Inven D-Day</span>
+    </div>
+    <div class="icons">
+      <i class="far fa-calendar-plus" id="addDDayBtn"></i>
+    </div>
+  </header>
+
+   <!-- d-day list  -->
+
+  <div class="listWrapper">
+    <ul class="items">
+      <!-- <li class="item airplane">
+        <i class="fas fa-cloud-moon"></i>
+        <div class="info">
+          <span class="itemTitle">디데이 제목 1</span>
+          <span class="itemDate">2021.06.05(월)</span>
+        </div>
+        <span class="itemDDay">D+10</span>
+        
+      </li> -->
+
+    </ul>
+  </div>
+
+  <!-- add modal  -->
+  <div id="addModal" class="modal">
+    <div class="modalContent">
+      
+        <div class="modalHeader">
+          <i class="fas fa-times" id="closeModalBtn"></i>
+          <h1 class="modalTitle">D-Day</h1>
+          <span class="saveBtn">저장</span>
+        </div>
+        <div class="modalBody">
+          <div class="infoControl">
+              
+            <label >아이콘 </label>
+            <i class="fas fa-coffee" id="modalDDayIcon"></i>
+          
+            
+          </div>
+          <div class="infoControl">
+              
+            <label >배경 </label>
+            <div class="bgImage" id="modalDDayBgImage"></div>
+          
+            
+          </div>
+            <div class="infoControl">
+              <input type="text" id="modalDDayTitle" placeholder="제목을 입력해주세요" required>
+              <span class="validity"></span>
+              
+            </div>
+            
+
+
+            <div class="infoControl">
+              
+              <input type="date" id="modalDDayDate" required pattern="\d{4}-\d{2}-\d{2}">
+              <span class="validity"></span>
+              
+            </div>
+
+            <button class="deleteBtn" id="deleteBtn">삭제</button>
+            
+            
+        </div>
+       
+        
+    </div>
+    
+  </div>
+  <div class="iconPopupLayout">
+      
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
