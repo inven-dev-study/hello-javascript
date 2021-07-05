@@ -16,6 +16,12 @@ Git Hub, Slack
 3. 차후 협업 프로젝트 진행 예정
 
 
+##### ■ 진행한 프로젝트
+1. 사칙연산 계산기 (개인 프로젝트)
+2. 주소록 (2인 협업 프로젝트)
+3. D-DAY 웹 어플리케이션 (개인 프로젝트)
+
+
 ##### ■ 예정 협업 프로젝트
 - 유튜브(영상 디테일 페이지)
 - 인벤 카드 덱 시뮬레이터
@@ -30,6 +36,7 @@ Git Hub, Slack
 - [제주베이스캠프 JavaScript 100제](https://www.notion.so/JS-100-94d97d294dd14c9b911a02c840fa9f2d)
 - [벨로퍼트 모던 자바스크립트](https://learnjs.vlpt.us/)
 - [javaScript Questions](https://github.com/lydiahallie/javascript-questions/blob/master/ko-KR/README-ko_KR.md)
+
 
 ##### <프로젝트 방식>
 1. 멤버들끼리 나눠서 만들면서 서로의 방식 해석하고 좋은점 흡수하기
