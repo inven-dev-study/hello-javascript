@@ -21,7 +21,6 @@
   </header>
 
    <!-- d-day list  -->
-
   <div class="listWrapper">
     <ul class="items">
       <!-- <li class="item airplane">
@@ -48,47 +47,35 @@
         </div>
         <div class="modalBody">
           <div class="infoControl">
-              
-            <label >아이콘 </label>
-            <i class="fas fa-coffee" id="modalDDayIcon"></i>
-          
-            
+            <label >스티커</label>
+            <i class="fas fa-coffee" id="modalDDaySticker"></i>
           </div>
           <div class="infoControl">
-              
-            <label >배경 </label>
+            <label >배경사진</label>
             <div class="bgImage" id="modalDDayBgImage"></div>
-          
-            
           </div>
             <div class="infoControl">
               <input type="text" id="modalDDayTitle" placeholder="제목을 입력해주세요" required>
-              <span class="validity"></span>
-              
+              <span class="validity"></span>  
             </div>
-            
-
-
             <div class="infoControl">
-              
               <input type="date" id="modalDDayDate" required pattern="\d{4}-\d{2}-\d{2}">
               <span class="validity"></span>
-              
             </div>
-
+            <div class="toggleControl">
+              <span>설정일로부터 1일</span>
+              <label class="switch">
+                <input type="checkbox" id="modal1DaySetDate">
+                <span class="slider round"></span>
+              </label>
+            </div>
             <button class="deleteBtn" id="deleteBtn">삭제</button>
-            
-            
         </div>
-       
-        
     </div>
-    
   </div>
-  <div class="iconPopupLayout">
-      
+  <!-- 스티커 배경 선택 그리드 레이아웃 -->
+  <div class="gridLayoutContainer">
   </div>
-
   <script src="js/main.js"></script>
 </body>
 </html>
