@@ -20,9 +20,11 @@ button { padding: 0; background: none; border: none; }
 /*------------------------------------------------------*/
 
 :root {
-  --doc-size: 100%;
-  --doc-max-size: 425px;
+  --doc-width: 100%;
+  --doc-max-width: 425px;
+  --doc-height: 800px;
   --header-height: 45px;
+  --withoutHeader-height: 755px;
   --color-1: #04009A; /* (4, 0, 154) */
   --color-2: #77ACF1; /* (119, 172, 241) */
   --color-3: #3EDBF0; /* (62, 219, 240) */
@@ -34,10 +36,18 @@ button { padding: 0; background: none; border: none; }
 /*wrap*/
 /*----*/
 #bodyWrap {
-  max-width: var(--doc-max-size);
-  width: var(--doc-size);
-  margin: 0 auto;
+  position: relative;
+  max-width: var(--doc-max-width);
+  width: var(--doc-width);
+  height: var(--doc-height);
+  margin: 20px auto;
   box-shadow: 0 0 10px rgba(0,0,0,.6);
+}
+
+#contentWrap {
+  max-width: var(--doc-max-width);
+  width: var(--doc-width);
+  height: var(--doc-height);
 }
 
 .wrap { margin: 20px; }
@@ -47,7 +57,7 @@ button { padding: 0; background: none; border: none; }
 /*------*/
 /*header*/
 /*------*/
-header { position: fixed; max-width: var(--doc-max-size); width: var(--doc-size); height: var(--header-height); line-height: var(--header-height); background: var(--color-2); z-index: 1000;}
+header { position: fixed; max-width: var(--doc-max-width); width: var(--doc-width); height: var(--header-height); line-height: var(--header-height); background: var(--color-2); z-index: 1000; }
 header h1 { font-size: 24px; font-weight: bold; color: #fff; text-align: center; }
 
 #addButton { position: absolute; top: 50%; right: 25px; width: 17px; height: 17px; transform: translateY(-50%); transform-origin: center; cursor: pointer; }
@@ -60,8 +70,10 @@ header h1 { font-size: 24px; font-weight: bold; color: #fff; text-align: center;
 /*------*/
 /* main */
 /*------*/
-#mainContent { padding-top: var(--header-height); }
+#mainContent { padding-top: var(--header-height); height: var(--withoutHeader-height);overflow-y: scroll; overflow-x: auto; }
 #mainContent .main.wrap { margin: 0; }
+#mainContent { -ms-overflow-style: none; /* IE and Edge */ scrollbar-width: none; /* Firefox */ }
+#mainContent::-webkit-scrollbar { display: none; /* Chrome, Safari, Opera*/ }
 
 #todayInfoTitle { padding: 60px 0; background:var(--color-4); text-align: center; }
 #todayInfoTitle p { margin: 10px 0; font-size: 24px; font-weight: bold; }
@@ -70,28 +82,29 @@ header h1 { font-size: 24px; font-weight: bold; color: #fff; text-align: center;
 /*-----------------*/
 /* main - dDayList */
 /*-----------------*/
-#dDayList .dDay { padding: 10px 0; border-bottom: 1px solid #999; }
-#dDayList .dDay > a { display: flex; align-items: center; padding: 5px 10px; text-decoration: none; border-radius: 8px; transition: background-color 0.6s; }
-#dDayList .dDay > a:hover { background-color: var(--color-4);}
-#dDayList .dDay:last-of-type { border-bottom: none; }
-#dDayList .dDay .icon { width: 20%; }
+#dDayList .dDay { position: relative; display: flex; align-items: center; margin: 20px 0; padding: 10px; border-radius: 8px; transition: background-color 0.6s; cursor: pointer; }
+#dDayList .dDay::after { position: absolute; left: 0; bottom: -10px; content:""; width: 100%; height: 1px; background-color: #999;}
+#dDayList .dDay:hover { background-color: var(--color-4); }
+#dDayList .dDay:last-of-type::after { background-color: transparent; }
+#dDayList .dDay .icon { width: 12%; }
 #dDayList .dDay .icon img { width: 100%; }
 
-#dDayList .dDay .text { width: 45%; margin: 0 5%; }
+#dDayList .dDay .text { width: 53%; margin: 0 5%; }
 #dDayList .dDay .text .desc { margin-bottom: 8px; font-size: 14px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #dDayList .dDay .text .date { font-size: 18px; }
 
-#dDayList .dDay .goal { width: 25%; padding: 5px; background-color: var(--color-2); border-radius: 20px; color: #fff; text-align: center; font-size: 20px; font-weight: bold;}
+#dDayList .dDay .goal { width: 25%; padding: 5px; background-color: var(--color-2); border-radius: 20px; color: #fff; text-align: center; font-size: 20px; font-weight: bold; }
 #dDayList .dDay .goal.soon { background-color: var(--color-3); }
 #dDayList .dDay .goal.over { background-color: var(--color-1); }
+#dDayList .dDay .goal.today { background-color: #cc0033; }
 /*------------------------------------------------------*/
-/* addButton - writeNewDay */
-#writeNewDay { display: block; opacity: 1; position: absolute; top: var(--header-height); height: 100%; background-color: #fff; width: var(--doc-max-size); z-index: 999; transition: display 1s;}
-#writeNewDay.active { display: block; opacity: 1;}
 
-#writeNewDay .wrap { padding: 60px 0; }
-#writeNewDay h2 { position: relative; margin-bottom: 40px; padding-bottom: 10px; font-size: 20px; border-bottom: 2px solid var(--color-1);}
-#writeNewDay h2:after { content: ""; display: block; width: 40%; height: 10px; position: absolute; left: 0; border-bottom: 2px solid var(--color-2); }
+/* addButton -> CreateSchedule */
+#CreateSchedule { display: none; height: var(--withoutHeader-height); position: absolute; top: var(--header-height); background-color: #fff; width: var(--doc-max-width); z-index: 999; }
+
+#CreateSchedule .wrap { padding: 60px 0; }
+#CreateSchedule h2 { position: relative; margin-bottom: 40px; padding-bottom: 10px; font-size: 20px; border-bottom: 4px solid var(--color-1); }
+#CreateSchedule h2:after { content: ""; display: block; width: 40%; height: 10px; position: absolute; left: 0; border-bottom: 4px solid var(--color-2); }
 
 #newIconBlock { padding: 10px; }
 #newIconList { display: flex; flex-wrap: wrap; }
@@ -99,13 +112,59 @@ header h1 { font-size: 24px; font-weight: bold; color: #fff; text-align: center;
 #newIconList li label { display: block; padding: 4px; }
 #newIconList li input[type=radio] { display: none; }
 #newIconList li input[type=radio] + label { opacity: 0.6; }
-#newIconList li input[type=radio]:checked + label { border: 1px solid #999; border-radius: 10px; box-sizing: border-box; opacity: 1;}
+#newIconList li input[type=radio]:checked + label { border: 1px solid #999; border-radius: 10px; box-sizing: border-box; opacity: 1; }
 #newIconList li img { width: 100%; }
 
 #newTextBlock { padding: 20px; }
+#newTextBlock div { margin: 20px 0; }
+#newTextBlock label { display: block; margin: 15px 0 5px; padding-left: 10px; font-size: 18px; font-weight: bold; border-left: 3px solid var(--color-2); }
+#newTextBlock label[for="newDate"] { display: inline-block; vertical-align: bottom; }
+#newTextBlock #newDesc { width: 320px; padding: 5px 10px; font-size: 16px; border: none; border-bottom: 1px solid #666; }
+#newTextBlock #newDate { margin-left: 20px; }
 
-#submitBlock { padding: 20px; }
+#submitBlock { margin-top: 60px; padding: 20px; }
+#submitBlock #submit { position: relative; width: 100%; padding: 10px; background: var(--color-2); border-radius: 10px; cursor: pointer; }
+#submitBlock #submit span { position: relative; color: #fff; font-size: 24px; font-weight: bold; z-index: 10; }
+#submitBlock #submit::after { content: ""; display: block; position: absolute; top: 0; left: 0; width: 0; height: 100%; background: var(--color-3); border-radius: 10px; opacity: 0; transition: width 1s, opacity 2s; }
+#submitBlock #submit:hover::after { width: 100%; opacity: 1; }
+/*------------------------------------------------------*/
+
+/*-------------*/
+/* detailPopup */
+/*-------------*/
+#detailPopup { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.6); z-index: 10000;}
+#detailPopup.active { display: block; }
+#detailPopup .outerWrap { position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 100%; height: 50%; background: #fff; }
+
+#topButtonBlock { display: flex; justify-content: space-between; }
+#topButtonBlock button { padding:3px 5px; font-size: 12px; cursor: pointer; }
+#topButtonBlock button:hover { text-decoration: underline; }
+
+#detailInfoBlock { width: 100%; margin-top: 50px; }
+#detailInfoBlock .icon { width: 128px; margin: 0 auto; }
+#detailInfoBlock .icon img { width: 100%; }
+
+#detailInfoBlock .text { margin-top: 30px; text-align: center; }
+#detailInfoBlock .text .desc { font-size: 24px; font-weight: bold; }
+#detailInfoBlock .text .date { margin-top: 15px; font-size: 18px; }
+
+#detailInfoBlock .text.type1,
+#detailInfoBlock .text.type2,
+#detailInfoBlock .text.type3 { display: none; }
+
+#detailInfoBlock .text.type1.active,
+#detailInfoBlock .text.type2.active,
+#detailInfoBlock .text.type3.active { display: block; }
 
 /*------------------------------------------------------*/
-/*------------------------------------------------------*/
+/*----------------*/
+/* popupForDelete */
+/*----------------*/
+#popupForDelete { display: none; position: absolute; left: 50%; top: 50%; width: 70%; padding: 15px 20px; background: var(--color-2); border: 3px solid #313131; border-radius: 20px; transform: translate(-50%, -50%); z-index: 99999;}
+#popupForDelete.active { display: block; }
+#popupForDelete p { margin-bottom: 15px; color: #fff; line-height: 1.6;}
+#popupForDelete p span { display: block; font-weight: bold; color: #fff; font-size: 20px; }
+#popupForDelete button { width: 45%; margin: 2.5% 0; padding: 6px 10px 8px; font-size: 14px; font-weight: bold; color: var(--color-2); background: #fff; border: 3px solid #fff; box-sizing: border-box; border-radius: 3px; cursor: pointer; transition: background 0.3s, color 0.3s;}
+#popupForDelete button:hover,
+#popupForDelete button:active { background: var(--color-2); color: #fff;}
 /*------------------------------------------------------*/
