@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            [5.11] Date 객체와 날짜
+        */
+
+        // 날짜 객체 생성
+        let now = new Date();
+        console.log(now);
+        console.log(new Date(0));
+        console.log(new Date(24 * 3600 * 1000));
+        console.log(new Date("2017-01-26"));
+
+        /*
+            new Data(year, month, date, hours, minutes, seconds, ms)
+            
+            - year는 네자리
+            - month는 0(1월)~ 11(12월)
+            - date의 값이 없는 경우는 1일로 처리
+            - hours/minutes/seconds/ms에 값이 없는 경우는 0으로 처리
+        */
+
+        console.log(now.getFullYear()); // 연도 반환
+        console.log(now.getMonth()); // 월을 반환
+        console.log(now.getDate()); // 일을 반환
+        console.log(now.getHours());
+        console.log(now.getMinutes());
+        console.log(now.getSeconds());
+        console.log(now.getMilliseconds());
+        console.log(now.getDay()); // 일요일 = 0, 토요일 = 6
+
+        // 날짜 구성요소 설정하기
+        now.setHours(0, 0, 0, 0); // 날짜는 변경되지 않고 시, 분, 초, 모두 변경
+        console.log(now);
+
+        // 자동 고침
+        let date = new Date(2013, 0, 32); // 2013년 1월 32일은 없다.
+        alert(date); // 2013년 2월 1일 출력
+
+        let date2 = new Date(2016, 1, 28);
+        date2.setDate(date.getDate() + 2); // 2016년 3월 1일
+
+        let date3 = new Date();
+        date3.setSeconds(date.getSeconds() + 70);
+        console.log(date3) // 70초 후 시간이 출력
+
+        let date4 = new Date(2016, 0, 2);
+        date4.setDate(1); // 1일로 변경;
+        date4.setDate(0); // 일의 최소값은 1이라 0을 입력 시 전 달의 마지막날로 출력
+
+
+        // 시간 차 측정하기
+        let date5 = new Date();
+        alert(+date5); // 타임스태프(date.getTime()을 호출한 것과 동일)
+
+        let start = new Date();
+
+        for( let i = 0; i < 10000; i++ ) {
+            let doSomething = i * i * i;
+        }
+
+        let end = new Date();
+
+        console.log(`반복문을 모두 도는데 ${end - start} 밀리초가 걸렸습니다.`)
+
+    </script>
+</body>
+</html>

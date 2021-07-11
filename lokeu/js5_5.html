@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            [5.5] 배열과 메서드
+        */
+
+        // splice
+        let arr = ["g", "w", "a", "n", "g", "h", "o"];
+        arr.splice(1, 4); // 인덱스 1번째에서 4개를 삭제, g h o
+        console.log(arr);
+
+        let arr2 = ["g", "w", "a", "n", "g", "h", "o"];
+        arr2.splice(0, 1, "h"); // 선택한 갯수만큼 인덱스를 제거하고 추가가 가능하다.
+        console.log(arr2);
+
+        let arr3 = ["g", "w", "a", "n", "g", "h", "o"];
+        let remove = arr.splice(0, 2);
+        console.log(arr3);
+        console.log(remove);
+
+        let arr4 = ["g", "w", "a", "n", "g", "h", "o"];
+        arr4.splice(7, 0, "K", "o");
+        console.log(arr4);
+
+        // 음수 사용가능 -가 붙은 숫자는 배열의 끝에서부터 센 요소 위치를 표시.
+
+
+        // slice
+        // arr.slice(start, end) start 인덱스부터 end를 제외한 인덱스까지 요소를 복사해 새로운 배열을 반환
+
+        let arr5 = ["g", "w", "a", "n", "g", "h", "o"];
+        console.log(arr5.slice(0, 5));
+        console.log(arr5.slice(-2));
+
+
+        // concat 기존 배열의 요소를 사용해 새로운 배열을 만들거나 기존 배열에 요소를 추가하고자 사용
+
+        let arr6 = ["g", "w"];
+        console.log(arr6.concat(["a", "n"]));
+        console.log(arr6.concat(["a", "n"], ["g", "h", "o"]));
+        console.log(arr6.concat("a", ["n", "g", "h", "o"], ["K", "o"]));
+
+
+        // forEach로 반복 작업
+        arr.forEach(function(item, index, array) {
+
+        });
+        
+        ["Bilbo", "Gandalf", "Nazgul"].forEach(console.log);
+
+        ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+            console.log(`${item} is at index ${index} in ${array}`);
+        });
+
+
+        // 배열 탐색
+        /*
+            arr.indexOf // 해당요소를 발견하지 못하면 -1 값 노출
+            arr.lastIndexOf
+            arr.includes // 해당요소를 발견하면 true를 반환
+        */
+
+        let arr7 = [1, 0, false];
+
+        arr7.indexOf(0); // 1
+        arr7.indexOf(false); // 2
+        arr7.indexOf(null); // -1
+
+        arr7.includes(1); // true
+
+        /*
+            find findIndex
+
+            let result = arr.find(function(item, index, array) {
+                // true가 반환되면 반복이 멈추고 해당 요소를 반환합니다.
+                // 조건에 해당하는 요소가 없으면 undefined를 반환합니다.
+            });
+        */
+        
+        let users = [
+            {id: 1, name: "john"},
+            {id: 2, name: "Pete"},
+            {id: 3, name: "Mary"}
+        ];
+
+        let user = users.find(item => item.id == 1);
+        console.log(user.name); // john
+        // 마찬가지로 조건에 일치하는 요소가 없으면 -1로 나타난다.
+
+        /*
+            let results = arr.filter(function(item, index, array) {
+                // 조건을 충족하는 요소는 results에 순차적으로 더해집니다.
+                // 조건을 충족하는 요소가 하나도 없으면 빈 배열이 반환됩니다.
+            });
+        */
+
+        let users2 = [
+            {id: 1, name: "john"},
+            {id: 2, name: "Pete"},
+            {id: 3, name: "Mary"}
+        ];
+
+        let user2 = users2.filter(item => item.id < 3);
+        console.log(user2.length);
+
+
+        // 배열을 변형 시키는 메서드
+
+        // map 배열 요소 전체를 대상으로 함수를 호출하고, 함수 호출 결과를 배열로 반환해준다.
+        /*
+            let result = arr.map(function(item, index, array) {
+                // 요소 대신 새로운 값을 반환합니다.
+            });
+        */
+
+        let lengths = ["lokeu", "ber", "miitch", "muey"].map(item => item.length);
+        console.log(lengths);
+
+        // sort 배열의 요소를 변경해주며, 배열 자체가 바뀐다.
+        let arr8 = [1, 2, 15];
+        arr8.sort(); // 1, 15, 2
+        console.log(arr8);
+        // 요소는 문자열로 취급되어 재정렬된다.
+        let arr9 = [1, 2, 15];
+        function compare (a, b) {
+            if (a > b) return 1;
+            if (a = b) return 0;
+            if (a < b) return -1;
+        }
+        arr9.sort(compare);
+        console.log(arr9);
+
+        // reverse 배열의 요소를 역순으로 정렬시켜주는 메서드
+        let arr10 = [1, 2, 3, 4, 5];
+        arr10.reverse();
+        console.log(arr10);
+
+        // split 구분자 delim을 기준으로 문자열을 쪼갠다.
+        let names = "Bilbo, Gandalf, Nazgul";
+        let arr11 = names.split(", ");
+        for (let name2 of arr) {
+            console.log(`${name2}에게 보내는 메세지`);
+        }
+        
+        // join 배열 요소를 하나로 합치는 것
+        let names2 = ["Bilbo", "Gandalf", "Nazgul"];
+        let arr12 = names2.join(";");
+        console.log(arr12);
+        
+        // reduce
+        /*
+            let value = arr.reduce(function(accmulator, item, index, array) {
+
+            }, [initial]);
+        */
+
+        let arr13 = [1, 2, 3, 4, 5];
+        let result = arr13.reduce((sum, current) => sum + current, 0);
+        console.log(result);
+
+        // Array.isArray로 배열 여부 알아낼수 있다.
+
+    </script>
+</body>
+</html>
