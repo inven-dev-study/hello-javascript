@@ -1,0 +1,222 @@
+@charset "UTF-8";
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+    color: #222;
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+button {
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+/*======================================================*/
+/* 공통*/
+.wrap {
+    position: relative;
+    z-index: 0;
+    min-width: 280px;
+}
+.commonTop {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    min-width: 280px;
+    background: #4e8895;
+}
+.commonTop .tit  {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+.commonTop button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.commonTop button::before,
+.commonTop button::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #fff;
+}
+
+.commonTop button::before {
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    width: 100%;
+    height: 2px;
+}
+
+.commonTop button::after {
+    top: 0;
+    left: 50%;
+    margin-left: -1px;
+    width: 2px;
+    height: 100%;
+}
+.commonCon {
+    padding: 10px;
+}
+
+/* 리스트 */
+
+.dayList li {
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 20px 15px;
+    background: cadetblue;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.dayList li p {
+    margin: 5px 0;
+    color: #fff;
+}
+
+.dayList .left {
+    overflow: hidden;
+    float: left;
+    width: 80%;
+}
+.dayList .left .icon {
+    float: left;
+    margin: 0 10px 0 0;
+    width: 44px;
+    height: 44px;
+    background: #eee;
+}
+.dayList .left .text {
+    float: left;
+}
+.dayList .left .text .tit {
+    font-size: 16px;
+}
+.dayList .left .text .day {
+    font-size:13px;
+}
+
+.dayList .right {
+    position: relative;
+    float: right;
+    width: 20%;
+    height: 44px;
+}
+.dayList .right p {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin: -7px 0 0 0;
+}
+
+
+/* 팝업 */
+.addDay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transition: all 0.2s;
+}
+.addDay.on {
+    display: block;
+}
+.addWrap {
+    position: relative;
+    height: 100%;
+}
+.addWrap .commonTop .xBtn {
+    transform: rotate(45deg);
+}
+.addWrap .commonCon {
+    margin: 10px 0 0;
+}
+.addWrap .option {
+    position: absolute;
+    bottom: 0;
+    padding: 10px 10px 20px;
+    width: 100%;
+}
+.addWrap .option button {
+    display: none;
+    width: 100%;
+    height: 30px;
+    background: #4e8895;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+.addWrap .option button.change,
+.addWrap .option button.del {
+    margin: 5px 0 0;
+}
+.addWrap .option button.del {
+    background: #d26767;
+}
+.addWrap .option button.on {
+    display: block;
+}
+.inputWrite .icon {
+    float: left;
+    margin: 0 10px 0 0;
+    width: 44px;
+    height: 44px;
+    background: #eee;
+}
+.inputWrite input {
+    float: left;
+    padding: 10px;
+    width: calc(100% - 74px);
+    border: 0;
+    border-bottom: 1px solid #e1e1e1;
+    outline: none;
+}
+
+.inputDay input {
+    padding: 10px;
+    width: calc(100% - 20px);
+    border: 0;
+    border-bottom: 1px solid #e1e1e1;
+    outline: none;
+    color: #757575;
+    font-size: 13px;
+    font-family: inherit;
+}
