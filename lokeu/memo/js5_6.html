@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            [5.6] iterable 객체
+        */
+
+        // iterable 객체 = 배열을 일반화한 객체, 즉 어떤 객체든 for of 반복문 적용 가능
+
+        // 반복문 for of 간단 복습
+        let testArr  = ['고', '광', '호'];
+        for (let test of testArr) {
+            console.log(test);
+        }
+
+        // iterate = 반복하다
+        // 배열 = 대표적인 이터러블
+        // 배열 외에도 다수의 내장 객체 반복 가능(문자열도 마찬가지)
+
+        // Symbol.iterator
+
+        // 예시 객체 생성
+        let range = {
+            from: 1,
+            to: 5,
+        }
+
+        // range를 이터러블을 만들기 위해 객체에 Symbol.iterator(특수 내장 심볼)라는
+        // 메서드를 추가하기 위해선 아래와 같은 조건이 필요
+
+        // 1. for of가 시작되자마자 for of는 Symbol.iterator를 호출(Symbol.iterator가 없으면 에러 발생)
+        //    Symbol.iterator는 반드시 이터레이터를 반환해야 한다.
+
+        // 2. 이후 for..of는 반환된 객체 만을 대상으로 동작
+
+        // 3. for..of에 다음 값이 필요하면, for..of는 이터레이터의 next() 메서드를 호출
+
+        // 4. next() 반환 값은 {done: Boolean, value: any}와 같은 형태여야 한다.
+        //    done = true는 반복이 종료되었음을 의미.
+        //    done = fasle는 value에 다음 값이 저장.
+
+        // 1. for..of 최초 호출 시, Symbol.iterator가 호출.
+        range[Symbol.iterator] = function() {
+
+            // Symbol.iterator는 이터레이터 객체를 반환.
+            // 2. 이후 for...of는 반환된 이터레이터 객체만을 대상으로 동작하는데, 이때 다음 값도 정해진다
+            return {
+                current: this.from,
+                last: this.to,
+
+                // 3. for...of 반복문에 의해 반복마다 next()가 호출.
+                next() {
+                    // 4. next()는 값을  객체 {done: Boolean, value: any} 형태로 반환
+                    if (this.current <= this.last) {
+                        return {done: false, value: this.current++}
+                    } else {
+                        return {done: true};
+                    }
+                }
+            };
+        };
+
+        for(let num of range) {
+            console.log(num);
+        }
+
+        // range에는 next() 메서드가 존재하지 않는다
+
+        // 대신 range[Symbol.iterator]()를 호출해서 만든 이터레이터 객체와
+        // 이 객체의 메서드 next()에서 반복에 사용될 값을 만들어 낼 수 있다.
+
+        // 이터레이터 객체와 반복 대상 객체를 합쳐서 range 자체를 이터레이터로 만들면 더 간편화 된다.
+
+        let range2 = {
+            from2: 1,
+            to2: 5,
+
+            [Symbol.iterator]() {
+                this.current2 = this.from2;
+                return this;
+            },
+
+            next() {
+                if (this.current2 <= this.to2) {
+                    return { done: false, value: this.current2++ };
+                } else {
+                    return { done: true };
+                }
+            }
+        };
+
+        for (let num2 of range2) {
+            console.log(num2);
+        }
+
+
+        // 문자열 = 이터러블
+        // for of문으로 글자를 순회한다.
+
+        for(let char of "test") {
+            console.log(char);
+        }
+
+        // 서로게이트 쌍에도 잘 동작
+
+        // 이터레이터를 명시적 호출
+        // for..of문을 사용했을 때와 동일한 방법으로 문자열을 순회
+
+        let str = "Hello";
+
+        let iterator = str[Symbol.iterator]();
+
+        while (true) {
+            let result = iterator.next();
+            if( result.done ) break;
+            console.log(result.value);
+        }
+
+        // 이터레이터를 명시적으로 호출하는 경우는 거의 없는데, 이 방법의 장점은 반복과정을 잘 통제할 수 있는 장점이 있다.
+        // 반복을 시작했다가 잠시 멈춰 다른 작업을 하다가 다시 반복을 시작하는 것과 같이 여러 개로 쪼개는 것이 가능
+
+
+        // 이터러블과 유사 배열
+
+        // 이터러블 메서드 = Symbol.iterator가 구현된 객체
+        // 유사 배열 = 인덱스 length 프로퍼티가 있어서 배열처럼 보이는 객체
+
+        // 브라우저나 호스트 환경에서 자바스크립트를 사용해 문제를 해결할 때 이터러블 객체나 유사 배열 객체 혹은 둘 다인 객체를 볼 수 있다.
+
+        // 이터러블 객체(for..of를 사용할 수 있음)이면서 유사배열 객체(숫자 인덱스와 length 프로퍼티가 있음)인 문자열이 대표적.
+
+
+        // 이터러블 객체와 유사배열은 배열이 아니기 때문에 push, pop 등 메서드를 지원하지 않는다.
+        // 이럴 때 사용되는 것이 Array.from
+        // Array.from는 이터러블이나 유사 배열을 받아 진짜 Array를 만들어준다.
+        // 이 과정을 거치면 이터러블이나 유사 배열에 배열 메서드를 사용할 수 있다.
+
+        let arrayLike = {
+            0: "hello",
+            1: "world",
+            length: 2,
+        };
+
+        let arr = Array.from(arrayLike);
+        alert(arr.pop());
+
+        let arr2 = Array.from(range2);
+        alert(arr2);
+
+        let arr3 = Array.from(range2, num => num * num);
+        alert(arr3);
+    </script>
+</body>
+</html>
