@@ -1,0 +1,97 @@
+== map ==
+
+객체와 유사 : 맵은 키가 있는 데이터를 저장한다.
+객체와 차이 : 키에 다양한 자료형(문자형, 숫자형, 불린형...)을 허용한다. 객체의 경우 키를 문자형으로 변환하지만, 맵은 키의 타입을 변환하지 않는다.
+
+new Map() – 맵을 만듭니다.
+map.set(key, value) – key를 이용해 value를 저장합니다.
+map.get(key) – key에 해당하는 값을 반환합니다. key가 존재하지 않으면 undefined를 반환합니다.
+map.has(key) – key가 존재하면 true, 존재하지 않으면 false를 반환합니다.
+map.delete(key) – key에 해당하는 값을 삭제합니다.
+map.clear() – 맵 안의 모든 요소를 제거합니다.
+map.size – 요소의 개수를 반환합니다.
+
+☆ map[key] = 2 의 형태로 map을 사용하면, 맵을 일반 객체처럼 취급하게 된다. map을 사용할 때는 전용 메서드 set, get 등을 사용해야만 한다.
+
+
+☆ 맵의 키로 "객체"를 사용할 수 있다.
+```
+let john = { name: "John" };
+let visitsCountMap = new Map();  // 고객의 가게 방문 횟수를 세본다고 가정해 봅시다.
+visitsCountMap.set(john, 123);  // john을 맵의 키로 사용하겠습니다.
+alert( visitsCountMap.get(john) ); // 123
+```
+
+☆ 체이닝
+map.set 을 호출할 때마다 맵 자신이 반환되므로, map.set를 체이닝 할 수 있다.
+```map.set('1', 'str1').set(1, 'num1').set(true, 'bool1');```
+
+
+== 맵의 요소에 반복 작업하기 ==
+```
+let recipeMap = new Map([ ['cucumber', 500], ['tomatoes', 350], ['onion',    50] ]);
+
+・ map.keys() – 키 이터러블 객체
+for (let vegetable of recipeMap.keys()) {
+  alert(vegetable); // cucumber, tomatoes, onion
+}
+
+・ map.values() – 값 이터러블 객체
+for (let amount of recipeMap.values()) {
+  alert(amount); // 500, 350, 50
+}
+
+・ map.entries() – 키, 값을 한 쌍으로 하는 이터러블 객체
+for (let entry of recipeMap) { // recipeMap.entries()와 동일합니다.
+  alert(entry); // cucumber,500 ...
+}
+```
+☆ 맵은 삽입 순서를 기억한다. 객체와의 차이.
+
+☆ 맵은 배열과 유사하게 forEach 도 지원한다.
+```
+recipeMap.forEach( (value, key, map) => {
+  alert(`${key}: ${value}`); // cucumber: 500 ...
+});
+```
+
+== Object.entries: 객체를 맵으로 바꾸기 ==
+키-값 쌍인 배열이나 이터러블 객체를 통해 새로운 맵을 만들 수 있다.
+```
+let map = new Map([
+  ['1',  'str1'],
+  [1,    'num1'],
+  [true, 'bool1']
+]);
+
+alert( map.get('1') ); // str1
+```
+
+평범한 객체를 가지고 맵을 만들려면 내장메서드 Object.entries를 활용할 수 있다.
+```
+let obj = {
+  name: "John",
+  age: 30
+};
+
+let map = new Map(Object.entries(obj));
+
+alert( map.get('name') ); // John
+```
+
+== Object.fromEntries: 맵을 객체로 바꾸기 ==
+각 요소가 [키, 값]쌍인 배열을 객체로 바꾸어준다.
+```
+let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+
+let obj = Object.fromEntries(map.entries()); // 맵을 일반 객체로 변환
+//아래와 같이 줄일 수도 있다.
+let obj = Object.fromEntries(map); // .entries()를 생략함
+
+// obj = { banana: 1, orange: 2, meat: 4 }
+
+alert(obj.orange); // 2
+```

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+//배열에서 중복 요소 제거하기
+
+function unique(arr) {
+  return Array.from(new Set(arr)); 
+  // 배열을 이용해 Set을 생성한다 이 과정에서 중복된 값은 set에 추가되지 않아 유니크한 값만 남는다.
+  // 만들어진 Set을 다시 배열화한다.
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+console.log('=====배열에서 중복요소 제거하기 S=====');
+console.log( unique(values) );
+console.log('=====배열에서 중복요소 제거하기 E=====');
+
+
+//애너그램 거르기
+function aclean(arr) {
+  let map = new Map();
+
+  for (let word of arr) {
+    let sorted = word.toLowerCase().split('').sort().join('');
+    // 문자를 전부 소문자로 바꾼다. (nap => nap | PAN => pan)
+    // 한글자씩 쪼갠다. (n, a, p | p, a, n)
+    // 정렬한다. (a, n, p | a, n, p )
+    // 다시 합친다. (anp | anp)
+    map.set(sorted, word);
+    // 쪼개서 정렬한 값을 키로 하고, 본래 값을 값으로 하여 map 에 넣는다.
+    // 애너그램인 경우, 키가 동일하므로 덮어씌워지게 되어 중복값이 제거된다.
+  }
+
+  return Array.from(map.values());
+}
+
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+console.log('=====애너그램 거르기 S=====');
+console.log( aclean(arr) );
+console.log('=====애너그램 거르기 E=====');
+
+
+//위크맵과 위크셋
+//"읽음" 상태인 메시지 저장하기
+//이와 같은 상황에서 ‘읽음’ 상태의 메시지는 어떤 자료구조에 저장해야 좋을까요?
+//특정 메시지 객체를 대상으로 "메시지가 읽음 상태인가요?"라는 질문을 던지면 제대로 된 답이 반환되는 자료구조는 무엇일까요?
+
+let messages = [
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
+];
+
+let readMessages = new WeakSet();
+
+//읽음 상태로 변경
+readMessages.add(messages[0]);
+readMessages.add(messages[1]);
+
+// "'message[0]'은 읽음 상태인가요?"에 대한 답변
+console.log('====="읽음" 상태인 메시지 저장하기 S=====');
+console.log("message 0은 읽음 상태인가요?: " + readMessages.has(messages[0])); // true
+console.log("message 1은 읽음 상태인가요?: " + readMessages.has(messages[1])); // true
+console.log("첫번째 메시지 삭제 전 메시지 갯수: " + messages.length);
+messages.shift();
+console.log("첫번째 메시지 삭제 후 메시지 갯수: " + messages.length);
+console.log("다시 한 번, message 0은 읽음 상태인가요?: " + readMessages.has(messages[0])); // true
+console.log("다시 한 번, message 1은 읽음 상태인가요?: " + readMessages.has(messages[1])); // false
+console.log('====="읽음" 상태인 메시지 저장하기 E=====');
+</script>
+</body>
+</html>
