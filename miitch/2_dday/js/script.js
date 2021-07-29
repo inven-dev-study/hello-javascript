@@ -146,7 +146,7 @@ function setList(targetKey = "") {
     var list = $('.dDay');
     var listLen = list.length;
     for( var i = 0; i < listLen; i++ ) {
-      if (list[i].getAttribute('data-id') == targetKey) {
+      if (list[i].dataset.id == targetKey) {
         $(list[i]).html(createList(targetKey, dDayItems[targetKey]));
       }
     }
@@ -223,7 +223,7 @@ function updateData() {
   $('input[name="newDate"]').val(dDayItems[itemsId]["date"]);
   setPaper();
 
-  createObject(itemsId);
+  // createObject(itemsId);
 }
 
 /*-----------------------------------------------------*/
@@ -251,8 +251,7 @@ function setdetailPage() {
       } else if (durationDate == 0) {
         dateText = "D-DAY!!";
       } else if (durationDate < 0) {
-        durationDate = String(durationDate).slice(1);
-        dateText = target['date'] + "까지 " + durationDate + "일 남았습니다.";
+        dateText = target['date'] + "까지 " + Math.abs(durationDate) + "일 남았습니다.";
       }
 
       var detailHtml = '<div class="icon"><img src="images/' + target['icon'] + '.png" alt=""></div>'
