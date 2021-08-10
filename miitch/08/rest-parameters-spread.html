@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나머지 매개변수와 전개문법</title>
+</head>
+<body>
+<script>
+  "use strict";
+/*
+나머지 매개변수 ( ...args )
+매개변수 목록을 배열로 가져온다.
+⇒ ES6에 추가된 문법으로, 이전 버전에서는 "arguments" 변수를 이용해야 한다.
+*/
+
+/* ⇓ 나머지 매개변수를 이용한 방법 */
+function sumAll(...args) {
+  let sum = 0;
+
+  for(var arg of args) {
+    sum += arg;
+  }
+
+  return sum;
+}
+console.log("## 나머지 매개변수 ##");
+console.log("== 나머지 매개변수 S ==");
+console.log(sumAll(1,2,3));  // 6
+console.log("== 나머지 매개변수 E ==");
+
+/*===============================*/
+/* ⇓ arguments 변수를 이용한 방법 */
+
+function sumAll2() {
+  let len = arguments.length;
+  let sum = 0;
+
+  for(i = 0; i < len; i++) {
+    sum += arguments[i];
+  }
+
+  return sum;
+
+}
+
+console.log("== arguments 변수 S ==");
+console.log(sumAll(1,2,3));  // 6
+console.log("== arguments 변수 E ==");
+</script>
+
+<!--############################################################################-->
+
+<script>
+/*
+전개문법 spread syntax
+배열을 통째로 매개변수로 넘겨준다  == "나머지 매개변수"와 반대되는 동작을 한다
+
+⇒ 복수의 객체를 전달할 수도 있고, 평범한 값과 혼합해서 사용할 수도 있다.
+⇒ 배열을 합칠 때도 전개문법을 활용할 수 있다.
+*/
+
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+console.log("## 전개문법 ##");
+console.log("== 복수의 객체를 전달하고 평범한 값과 혼합할 수도 있다 S ==");
+console.log(`arr1 = ${arr1}`);
+console.log(`arr2 = ${arr2}`);
+console.log("↓ Math.max(...arr1, 10, ...arr2)");
+console.log(Math.max(...arr1, 10, ...arr2));
+console.log("== 복수의 객체를 전달하고 평범한 값과 혼합할 수도 있다 E ==");
+
+
+/*
+배열이 아닌 이터러블 객체도 전개 문법을 사용할 수 있다.
+Array.from 메서드를 사용해도 같은 작업을 할 수 있다.
+
+Array.from 메서드는 "유사배열객체"에도 사용할 수 있으므로,
+무언가를 배열로 바꿀 때는 Array.from 메서드가 보편적으로 사용된다.
+*/
+let hello = "Hello";
+console.log("## 전개문법 & Array.from ##");
+console.log("== 이터러블 객체라면 전개 문법을 사용할 수 있다 S ==");
+console.log([...hello]);  // H, e, l, l, o
+console.log("== 이터러블 객체라면 전개 문법을 사용할 수 있다 E ==");
+
+console.log("== Array.from 메서드를 사용해도 같은 작업을 할 수 있다 S ==");
+console.log(Array.from(hello));  // H, e, l, l, o
+console.log("== Array.from 메서드를 사용해도 같은 작업을 할 수 있다 E ==");
+
+
+/*
+전개문법으로 배열과 객체 복사를 수행할 수도 있다.
+let arrCopy = Object.assign([], arr); 보다 간단하게 수행할 수 있다.
+*/
+
+let arr = [1, 2, 3];
+let arrCopy = [...arr];
+
+
+console.log("## 전개문법으로 배열 복사를 수행 ##");
+console.log("== 같은 값이 들어있지만 동일한 대상이 아니라는 것을 알 수 있다 S ==");
+console.log("↓ JSON.stringify(arr) === JSON.stringify(arrCopy)");
+console.log( JSON.stringify(arr) === JSON.stringify(arrCopy) ); // true
+console.log("↓ arr == arrCopy");
+console.log( arr == arrCopy ); // false
+console.log("== 같은 값이 들어있지만 동일한 대상이 아니라는 것을 알 수 있다 S ==");
+
+</script>
+
+
+</body>
+</html>

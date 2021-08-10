@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+"use strict";
+/*
+inBetween(a, b): a와 b 사이의 값을 반환
+inArray([...]): 배열 안에 있는 값을 반환 
+*/
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+function inBetween(a, b) {
+  return function(x) {
+    return x >= a && x <= b;
+  }
+}
+
+function inArray(arr) {
+  return function(x) {
+    return arr.includes(x);
+  }
+}
+
+console.log("== inBetween S ==");
+console.log( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+console.log("== inBetween E ==");
+
+console.log("== inArray S ==");
+console.log( arr.filter(inArray([1, 2, 10])) ); // 1,2
+console.log("== inArray E ==");
+
+/*================================================
+==================================================
+================================================*/
+
+let users = [
+  { name: "John", age: 20, surname: "Johnson" },
+  { name: "Pete", age: 18, surname: "Peterson" },
+  { name: "Ann", age: 19, surname: "Hathaway" }
+];
+
+let users2 = [...users];
+
+function byField(fieldName) {
+  return (a, b) => a[fieldName] > b[fieldName] ? 1 : -1;
+}
+
+console.log("== byField S ==");
+console.log( users.sort( byField('name') ) );
+console.log( users2.sort( byField('age') ) );
+console.log("== byField E ==");
+</script>
+
+</body>
+</html>
