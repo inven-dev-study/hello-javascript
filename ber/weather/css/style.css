@@ -1,0 +1,163 @@
+* {
+  margin : 0;
+  padding : 0;
+}
+
+:root {
+  /* colors */
+  --white-color: #fff;
+  --black-color: #010101;
+  --blue-color: #1964c6;
+  --red-color: #ff0000;
+  --orange-color: orange;
+  --green-color: #0e0;
+  --grey-dark-color: #909090;
+  --grey-light-color: #e0e0e0;
+  --red-light-color: #e74c3c;
+  --success-color: #045fd4;
+  --error-color: #e74c3c;
+
+  /* padding */
+  --base-padding: 10px;
+
+  /* font */
+
+  --font-large: 88px;
+  --font-medium: 48px;
+  --font-small: 20px;
+  --font-micro: 17px;
+}
+
+html {
+  height: 100%;
+}
+
+
+
+.precipPercent {
+  color : var(--blue-color);
+  font-size: var(--font-small);
+}
+
+.currentWeatherInfo {
+  text-align: center;
+  padding: calc(var(--base-padding)*2);
+}
+
+.currentWeatherInfo .location {
+  color: var(--white-color);
+  font-size: var(--font-small);
+}
+
+.currentWeatherInfo .phraseValue {
+  color: var(--white-color);
+  font-size: var(--font-small);
+}
+
+.currentWeatherInfo .iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.currentWeatherInfo .tempValue {
+  color: var(--white-color);
+  font-size: var(--font-large);
+}
+
+.tempHiLoValueWrapper .tempHighValue {
+  color: var(--white-color);
+  font-size: var(--font-micro);
+  padding: calc(var(--base-padding)/2);
+}
+
+.tempHiLoValueWrapper .tempLowValue {
+  color: var(--white-color);
+  font-size: var(--font-micro);
+  padding: calc(var(--base-padding)/2);
+}
+
+
+.hourlyWeatherInfo {
+  margin-top: var(--base-padding);
+  white-space: nowrap;/* 가로스크롤시 중요한 속성 */
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-top: solid whitesmoke;
+  border-bottom: solid whitesmoke;
+}
+
+.hourlyWeatherInfo .container {
+  display:inline-block;
+  padding: var(--base-padding);
+  text-align: center;
+}
+
+.hourlyWeatherInfo .container .hourText {
+  color : var(--white-color);
+  font-size: var(--font-small);
+  padding: var(--base-padding);
+}
+
+.hourlyWeatherInfo .container .iconPrecipWrapper {
+  padding: var(--base-padding);
+  display: flex;
+  align-items: center;
+}
+
+.hourlyWeatherInfo .container .iconPrecipWrapper .hourlyPrecip {
+  color : var(--blue-color);
+  font-size: var(--font-small);
+}
+
+.hourlyWeatherInfo .container .tempValue {
+  color : var(--white-color);
+  font-size: var(--font-small);
+  padding: var(--base-padding);
+}
+
+.dailyWeatherInfo {
+  margin-top: var(--base-padding);
+}
+
+.dailyWeatherInfo .items .item .container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: var(--base-padding);
+}
+.dailyWeatherInfo .items .item .container .dailyText {
+  flex: 1 1 70px;
+  color : var(--white-color);
+  font-size: var(--font-small);
+  text-align: center;
+}
+
+.dailyWeatherInfo .items .item .container .iconPrecipWrapper {
+  flex: 4 1 200px;
+  text-align: left;
+  display: flex;
+  justify-content:left;
+  align-items: center;
+}
+
+.dailyWeatherInfo .items .item .container .iconPrecipWrapper .dailyPrecip {
+
+  color : var(--blue-color);
+  font-size: var(--font-small);
+}
+
+.dailyWeatherInfo .items .item .container .tempHighValue {
+  flex: 1 1 10px;
+  text-align: center;
+  color : var(--white-color);
+  font-size: var(--font-small);
+}
+
+.dailyWeatherInfo .items .item .container .tempLowValue {
+  flex: 1 1 10px;
+  text-align: center;
+  color : var(--white-color);
+  font-size: var(--font-small);
+}

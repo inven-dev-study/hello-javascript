@@ -38,6 +38,7 @@ let bgImageNames = [
   'genesisx.jpeg',
   'minion.jpeg',
 ];
+
 // 스티커 이미지 클래스명
 let stickerImageClassNames = [
   'fas fa-cloud-moon',
@@ -88,7 +89,7 @@ let dDayArr = [
   {
     [ID_NAME]: '33',
     [TITLE_NAME]: '이전날짜',
-    [D_DAY_DATE_NAME]: '2021-07-07',
+    [D_DAY_DATE_NAME]: '2021-07-28',
     [STICKER_CLASS_NAME]: stickerImageClassNames[2],
     [BG_IMAGE_NAME]: 'overwatch.jpeg',
     [IS_1DAY_SET_DATE]: true,
@@ -96,7 +97,7 @@ let dDayArr = [
   {
     [ID_NAME]: '333',
     [TITLE_NAME]: '오늘날짜',
-    [D_DAY_DATE_NAME]: '2021-07-08',
+    [D_DAY_DATE_NAME]: '2021-07-29',
     [STICKER_CLASS_NAME]: stickerImageClassNames[2],
     [BG_IMAGE_NAME]: 'airplane.png',
     [IS_1DAY_SET_DATE]: true,
@@ -105,7 +106,7 @@ let dDayArr = [
   {
     [ID_NAME]: '3333',
     [TITLE_NAME]: '내일날짜',
-    [D_DAY_DATE_NAME]: '2021-07-09',
+    [D_DAY_DATE_NAME]: '2021-07-30',
     [STICKER_CLASS_NAME]: stickerImageClassNames[2],
     [BG_IMAGE_NAME]: 'tour.jpeg',
     [IS_1DAY_SET_DATE]: true,
@@ -242,6 +243,7 @@ function chooseStickerClassName(e) {
   gridLayout.remove();
   modalDDayStickerElement.className = className;
 }
+
 /**
  * 스티커 Grid Layout 에 들어갈 item Dom 생성
  * @param {스티커 클래스명 문자열} stickerClassName
@@ -377,7 +379,7 @@ function setEventListner() {
   addDDayBtn.addEventListener('click', clickAddModalButon);
   deleteBtn.addEventListener('click', clickDeleteBtn);
   modalDDayStickerElement.addEventListener('click', showStickerGridLayout);
-  saveBtn.addEventListener('click', saveDDay);
+  saveBtn.addEventListener('click', ㄹsaveDDay);
   modalDDayBGImageElement.addEventListener('click', showBGImageGridLayout);
 }
 
@@ -615,3 +617,54 @@ setEventListner();
 
 // 문제점
 // 자식노드 클릭됨, 부모만 클릭 되게 가능?
+
+
+
+
+let arr = [
+  { number: 1,
+    colors: ['yellow', 'red'] 
+  }, 
+  { number: 2,
+    colors: ['yellow', 'red'] 
+  }, 
+  { number: 3,
+    colors: ['yellow', 'red'] 
+  }, 
+  { number: 4,
+    colors: ['yellow', 'blue'] 
+  }, 
+  { number: 5,
+    colors: ['yellow', 'blue'] 
+  }, 
+  { number: 6,
+    colors: ['yellow', 'red'] 
+  }, 
+  { number: 7,
+    colors: ['yellow', 'red'] 
+  }, 
+  { number: 8,
+    colors: ['yellow'] 
+  }, 
+  { number: 9,
+    colors: ['red'] 
+  }, 
+  { number: 10,
+    colors: ['red'] 
+  }, 
+  { number: 11,
+    colors: ['blue'] 
+  }];
+
+
+  function getFilterColorArray(arr, colorName) {
+    return arr.filter(item => (item.colors.includes(colorName)));
+  }
+
+
+let yellows = getFilterColorArray(arr, "yellow");
+
+for (let item of yellows) {
+  alert(item.number);  
+}
+

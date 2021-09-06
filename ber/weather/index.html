@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>날씨</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <div class="weatherRoot" id="weatherRoot">
+    <div class="currentWeatherInfo">
+      <div>
+        <span class="location" id="currentLocation">--</span>
+      </div>
+      <div class="iconWrapper">
+        <img id="currentIcon" src="">
+        <span class="phraseValue" id="currentPhraseValue"></span>
+      </div>
+      <div>
+        <span class="tempValue" id="currentTempValue">0°</span>
+      </div>
+      <div class="tempHiLoValueWrapper">
+        <span class="tempHighValue" id="currentTempMax">최고:0°</span>
+        <span class="tempLowValue" id="currentTempMin">최저:0°</span>
+      </div>
+
+    </div>
+    <!-- 지금, 오후2시, 오후3시 ... -->
+    <!-- 구름, 비(60%), 비(80%) -->
+    <!-- 현재온도 -->
+    <div class="hourlyWeatherInfo" id="hourlyWeatherItems">
+    </div>
+    <!-- 수 (9.3) 비(60%) 최고 최저  (7일간) 목록-->
+    <div class="dailyWeatherInfo">
+      <ul class="items" id="dailyWeatherItems">
+        
+
+      </ul>
+    </div>
+  </div>
+
+</body>
+<script src="./js/main.js"></script>
+</html>
