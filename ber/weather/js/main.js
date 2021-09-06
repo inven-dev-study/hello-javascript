@@ -59,6 +59,7 @@ function fetchCurrentWeatherJson(coords) {
   )
     .then((response) => response.json())
     .then((json) => {
+
       displayCurrentWeather(json);
     });
 }
@@ -112,11 +113,6 @@ function displayHourlyWeather(weatherJson) {
   const listItems = weatherJson.hourly;
   for (let index = 0; index < listItems.length; index++) {
     const item = listItems[index];
-    if(index == 0) {
-      let rain = item.rain;
-     
-
-    }
     hourlyItemsElement.appendChild(
       createHourlyListItem(item, index)
     );
@@ -182,7 +178,7 @@ function createHourlyListItem(item, index) {
   const itemDay = date.getDate();
   const temp = item.temp;
   const weatherIcon = item.weather[0].icon;
-  const rain = item.rain;
+  const precipPercent = item.pop;
 
   let containerElement = document.createElement('div');
   containerElement.className = 'container';
@@ -206,12 +202,10 @@ function createHourlyListItem(item, index) {
   iconImageElement.className = 'iconImage';
   iconImageElement.src = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
   iconPrecipWrapperElement.appendChild(iconImageElement);
-  if (!isEmpty(rain)) {
-    let precipPercent = rain['1h'];
-    let convertStr = (Math.ceil(precipPercent) * 100) / 100;
+  if (!isEmpty(precipPercent) && precipPercent > 0) {
     let hourlyPrecipElement = createSpanElement(
       'hourlyPrecip',
-      `${convertStr}%`
+      `${Math.floor(precipPercent * 100)}%`
     );
     iconPrecipWrapperElement.appendChild(hourlyPrecipElement);
   }
@@ -243,7 +237,7 @@ function createDailyListItem(item, index) {
   const tempMin = item.temp.min;
   const tempMax = item.temp.max;
   const weatherIcon = item.weather[0].icon;
-  const precipPercent = item.rain;
+  const precipPercent = item.pop;
 
   let parentElement = document.createElement('li');
   parentElement.className = 'item';
@@ -262,9 +256,8 @@ function createDailyListItem(item, index) {
   iconImageElement.src = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
 
   iconPrecipWrapperElement.appendChild(iconImageElement);
-  if (!isEmpty(precipPercent)) {
-    let convertStr = (Math.ceil(precipPercent) * 100) / 100;
-    let dailyPrecipElement = createSpanElement('dailyPrecip', `${convertStr}%`);
+  if (!isEmpty(precipPercent) && precipPercent > 0) {
+    let dailyPrecipElement = createSpanElement('dailyPrecip', `${Math.floor(precipPercent * 100)}%`);
     iconPrecipWrapperElement.appendChild(dailyPrecipElement);
   }
 

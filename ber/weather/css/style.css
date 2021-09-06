@@ -34,11 +34,6 @@ html {
 
 
 
-.precipPercent {
-  color : var(--blue-color);
-  font-size: var(--font-small);
-}
-
 .currentWeatherInfo {
   text-align: center;
   padding: calc(var(--base-padding)*2);
