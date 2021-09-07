@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            [5.8] 위크맵과 위크셋
+        */
+
+        let john = {name: 'john'};
+
+        // 위 객체는 john이라는 참조를 통해 접근이 가능
+
+        // 그런데 참조를 null로 덮어쓰면 위 객체에 더 이상 도달이 가능하지 못해
+        john = null;
+        
+        // 객체가 메모리에서 삭제
+
+        // 자료구조를 구성하는 요소도 자신이 속한 자료구조가 메모리에 남아있는 동안
+        // 대개 도달 가능한 값으로 취급되어 메모리에서 삭제되지 않는다.
+
+        // 맵도 마찬가지로 객체를 키로 사용한 경우 역시, 맵이 메모리에 있는 한 객체도 메모리에 남는다.
+
+        
+        // 위크맵
+
+        // 1. 맵과 위크맵의 차이점은 위크맵의 키가 객체여야 한다.
+        // 원시값은 위크맵의 키가 될 수 없다.
+
+        let weakMap = new WeakMap();
+
+        let obj = {};
+
+        weakMap.set(obj, "ok");
+        // weakMap.set("test", "whoops"); // error
+
+        // 위크맵의 키로 사용도니 객체를 참조하는 것이 아무것도 없다면 해당 객체는 메모리와 위크맵에서 자동으로 삭제!
+
+        let gwang = {name: "ho"};
+
+        let weakMap2 = new WeakMap();
+        weakMap2.set(gwang, "...");
+
+        gwang = null; // 참조 덮어씀
+
+        // gwang을 나타내는 객체는 이제 메모리에서 지워진다.
+
+        // 2. 맵과 위크맵의 차이점 반복 작업과, value(), key(), entries() 메서드를 지원하지 않는다
+        /*
+            위크맵에서 지원하는 메서드
+
+            weakMap.get(key)
+            weakMap.set(key, value)
+            weakMap.delete(key)
+            weakMap.has(key)
+        */
+
+        // 위크맵은 부차적인 데이터를 저장할 곳이 필요할 때 진가를 발휘
+
+
+
+        // 위크셋
+        // 셋과 유사하지만 객체만 저장할 수 있다는 점이 다르다. 원시값은 저장이 불가능하다.
+        // 셋 안의 객체는 도달 가능할 때만 메모리에서 유지된다.
+        // 셋과 마찬가지로 위크셋이 지원하는 메서드는 add has delete를 사용할 수 있으며 size, key() 반복 작업 관련 메서드는 사용 불가능
+
+        // 보통 예 or 아니오와 같은 간단한 답변을 얻을 수 있는 용도로 사용
+
+        let visitedSet = new WeakSet();
+
+        let l = { name: "lokeu" };
+        let g = { name: "gwang" };
+        let h = { name: "ho" };
+
+        visitedSet.add(l);
+        visitedSet.add(g);
+        visitedSet.add(l);
+
+        alert(visitedSet.has(l));
+        alert(visitedSet.has(h));
+
+        l = null;
+
+        console.log(visitedSet);
+
+        // 위크셋과 위크맵은 반복작업이 불가능 하지만 추가 데이터를 저장하는 용도로 사용한다
+    </script>
+</body>
+</html>

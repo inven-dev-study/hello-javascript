@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            [8.3] 네이티브 프로토타입
+        */
+
+        // 프로토타입은 전역으로 영향을 미치기 때문에 프로토타입을 조작하면 충돌이 날 가능성이 높다.
+
+        // 모던 프로그래밍에서 네이티브 프로토타입 변경을 허용하는 경우는 딱 하나뿐, 바로 폴리필을 만들 때 사용한다.
+
+        // 폴리필 = 자바스크립트 명세서에 있는 메서드와 동일한 기능을 하는 메서드 구현체를 의미.
+        // 명세서에서는 정의되어 있으나 특정 자바스크립트 엔진에서 해당 기능이 구현되어있지 않을 때 폴리필 사용
+
+
+        let obj = {
+            0: "hello",
+            1: "world!",
+            length: 2,
+        };
+
+        obj.join = Array.prototype.join;
+        
+    </script>
+</body>
+</html>

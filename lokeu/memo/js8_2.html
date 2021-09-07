@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            [8.2] 함수의 prototype 프로퍼티
+        */
+
+        // let animal = {
+        //     eats: true
+        // };
+
+        // function Rabbit(name) {
+        //     this.name = name;
+        // }
+
+        // Rabbit.prototype = animal;
+
+        // let rabbit = new Rabbit("White Rabbit"); // rabbit.__proto__ == animal
+
+        // alert(rabbit.eats);
+
+        function Rabbit() {}
+        // 기본 prototype:
+        // Rabbit.prototype = { constructor: Rabbit }
+
+        // alert( Rabbit.prototype.constructor == Rabbit ); // true
+
+        let rabbit = new Rabbit();
+        alert(rabbit.constructor == Rabbit)
+    </script>
+</body>
+</html>
