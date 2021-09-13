@@ -16,8 +16,19 @@ ol, ul {
 }
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 
+.menu-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+.close-btn {
+    width: 23px;
+    cursor: pointer;
+}
 
 .wrap {
+    position: relative;
     margin: 20px auto;
     padding: 20px;
     width: 380px;
@@ -36,6 +47,10 @@ ol, ul {
 .now-wrap {
     text-align: center;
 }
+.now-wrap.top {
+    margin-bottom: 30px;
+    height: 120px;
+}
 .now-wrap h2 {
     margin: 20px 0 5px;
     font-size: 20px;
@@ -47,7 +62,6 @@ ol, ul {
     font-weight: 400;
 }
 .now-wrap .te {
-    margin-bottom: 50px;
     font-size: 40px;
     font-weight: 300;
 }
@@ -63,6 +77,7 @@ ol, ul {
     float: left;
     padding: 20px 0;
     width: 50%;
+    height: 35px;
     border-bottom: 1px solid #efefef;
     text-align: left;
 }
@@ -71,7 +86,6 @@ ol, ul {
     font-size: 14px;
 }
 .hour-wrap {
-    overflow-x: scroll;
     border: 1px solid #efefef;
     border-left: 0;
     border-right: 0;
@@ -82,6 +96,19 @@ ol, ul {
     overflow-x: scroll;
     white-space: nowrap;
     padding: 20px 0;
+    height: 95px;
+}
+.hour-wrap ul::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    background-color: transparent;
+}
+.hour-wrap ul::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+.hour-wrap li {
+    text-align: center;
 }
 .hour-wrap li:not(:last-child) {
     margin-right: 30px;
@@ -95,5 +122,75 @@ ol, ul {
 
 .daliy-wrap {
     padding: 20px 0;
+    height: 406px;
     border-bottom: 1px solid #efefef;
 }
+.daliy-wrap ul {}
+
+.daliy-wrap li {
+    display: flex;
+    justify-content: space-between;
+}
+.daliy-wrap li:not(:last-child) {
+    margin: 0 0 8px 0;
+}
+.daliy-wrap li .ti {
+    width: 20%;
+    font-size: 14px;
+    line-height: 50px;
+}
+.daliy-wrap li .we {
+    width: 60%;
+    text-align: center;
+}
+.daliy-wrap li .te {
+    width: 20%;
+    font-size: 14px;
+    text-align: right;
+    line-height: 50px;
+}
+
+.modal-wrap {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    padding: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    background: rgba(0, 0, 0, .4);
+}
+.modal-wrap ul {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 80%;
+
+}
+.modal-wrap ul::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.modal-wrap li {
+    float: left;
+    padding: 10px 0;
+    width: 33%;
+    background: #fff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+.modal-wrap li:nth-child(2n) {
+    width: 34%;
+}
+
+.modal-wrap li span {
+    display: none;
+}
+/* .modal-wrap.on {display: block;} */
