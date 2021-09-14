@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>날씨 API</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<!-- 
+  TODO
+  * 도시이름, 온도, 습도, 날씨
+  1. 포천의 현재 날씨
+  2. 포천 지역 예보 (시간당, 일별)
+-->
+
+<div id="wrap">
+  <div id="currentWeather" class="card caution"></div>
+  <div id="myAreaCurrent" class="card"></div>
+  <div id="hourly">
+    <div id="hourlyWeather" class="table"></div>
+    <div id="hourlyTitle" class="titleBlock">
+      <h3 class="time">시간대별</h3>
+      <h3 class="humidity">습도</h3>
+    </div>
+  </div>
+  <div id="dailyWeather" class="table" data-area=""></div>
+
+
+</div>
+<script src="../jquery/jquery-3.6.0.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

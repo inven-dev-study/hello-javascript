@@ -1,0 +1,110 @@
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; color: #222; vertical-align: baseline; box-sizing: border-box; }
+
+body { line-height: 1; background: #999; }
+ol, ul { list-style: none; }
+button { padding: 0; background: none; border: none; }
+
+/*-------------------------------------------------------------------*/
+
+#wrap { display: flex; flex-wrap: wrap; width: 910px; overflow: hidden; background: #fff; }
+
+/* 상단 카드 */
+.card { flex: 1 1 auto; position: relative; max-width: 400px; margin: 20px; padding: 20px 20px 40px; border-radius: 20px; border: 2px solid skyblue; }
+
+.card.caution::after { display: block; padding: 0 10px 5px 0; position: absolute; bottom: 0px; right: 0px; font-size: 10px; }
+#currentWeather.card.caution::after { content: "※ 현재 위치의 정보입니다.";}
+#myAreaCurrent.card.caution::after { content: "※ 선택한 위치의 정보입니다."; }
+
+.card .titleBlock h3 { font-size: 18px; font-weight: bold; margin-bottom: 20px; }
+
+.card .dataBlock { display: flex; position: relative; }
+.card .dataBlock .text { width: 50%; line-height: 1.6; letter-spacing: 0.5px; }
+.card .dataBlock .text .s_ttl { color: #666; font-size: 14px; }
+.card .dataBlock .text .desc { font-size: 16px; font-weight: bold; }
+.card .dataBlock .icon { position: absolute; right: 20px; top: 55%; transform: translateY(-50%); }
+.card .dataBlock .icon img { display: block; width: 120px; }
+
+
+/* 시간대별 테이블 공통 */
+.table { width: 100%; margin: 40px 20px 0; padding-top: 15px; }
+.table .dataBlock { margin: 10px 0; }
+.table .dataBlock ul::after { display: block; content: ""; clear: both; }
+.table .dataBlock li { position: relative; float: left; min-width: 60px; margin-bottom: 4px; padding: 18px 10px 15px; border-right: 1px solid #666; text-align: center; }
+.table .dataBlock li:last-of-type { border-right: none; }
+.table .dataBlock li[data-date="tomorrow"] .hour::before { display: block; content: "내일"; position: absolute; top: 0; font-size: 12px; color: #0066ff; margin-bottom: 8px; }
+.table .dataBlock li[data-date="afterTomorrow"] .hour::before { display: block; content: "모레"; position: absolute; top: 0; font-size: 12px; color: #0066ff; margin-bottom: 8px; }
+.table .dataBlock li span { display: block; text-align: center;}
+.table .dataBlock li .temperature,
+.table .dataBlock li .per { font-size: 12px; }
+
+.table .dataBlock li i.ico { display: block; width: 25px; height: 25px; margin: 20px auto 10px; }
+.table .dataBlock li i.ico[data-condition="clear"] { background: url(../img/clear.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="cloud_1"] { background: url(../img/cloud_1.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="cloud_2"] { background: url(../img/cloud_2.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="cloud_3"] { background: url(../img/cloud_3.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="mist"] { background: url(../img/mist.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="snow"] { background: url(../img/snow.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="shower_rain"] { background: url(../img/shower_rain.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="rain"] { background: url(../img/rain.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="shower_rain"] { background: url(../img/shower_rain.png) center center/cover no-repeat; }
+.table .dataBlock li i.ico[data-condition="thunderstorm"] { background: url(../img/thunderstorm.png) center center/cover no-repeat; }
+
+/* 스크롤링 */
+#hourlyWeather .dataBlockOuter { max-width: 875px; margin-top: 0; overflow-x: scroll; overflow-y: hidden;}
+#hourlyWeather .dataBlockOuter:not(:first-child) { margin-top: 90px; }
+#hourlyWeather .dataBlockOuter::-webkit-scrollbar { height: 10px; }
+#hourlyWeather .dataBlockOuter::-webkit-scrollbar-thumb { border-radius: 5px; background-color: skyblue; }
+#hourlyWeather .dataBlockOuter::-webkit-scrollbar-track { border-radius: 5px; background-color: #eee;}
+#hourlyWeather .dataBlock { width: 2880px; }  /*  60 x length */
+
+/* 습도 */
+#hourlyWeather .bar { position: absolute; bottom: 25px; left: 0; right: 0; display: block; width: 30%; height: 100px; margin: 20px auto 10px; background: rgb(124, 160, 238); }
+#hourlyWeather .bar + .per { padding-top: 125px; }
+
+/* 시간대별 정보 타이틀 */
+#hourly { position: relative; }
+#hourly h2 { padding: 10px; font-size: 22px; font-weight: bold; color: #666; }
+#hourlyTitle h3 { position: absolute; width: 100%; padding: 15px 25px; border-top: 2px solid #999; font-size: 20px; font-weight: bold; color: #666; letter-spacing: 0.5px; }
+#hourlyTitle h3.time { top: 45px; }
+#hourlyTitle h3.humidity { top: 290px; }
+
+
+
+/*
+hourly: Array(48)
+0:
+clouds: 79
+dew_point: 289.67
+dt: 1631188800
+feels_like: 293.98
+humidity: 77
+pop: 0
+pressure: 1013
+temp: 293.84
+uvi: 0
+visibility: 10000
+weather: Array(1)
+0:
+description: "broken clouds"
+icon: "04n"
+id: 803
+main: "Clouds"
+[[Prototype]]: Object
+length: 1
+[[Prototype]]: Array(0)
+wind_deg: 211
+wind_gust: 0.74
+*/
