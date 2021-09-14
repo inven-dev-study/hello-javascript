@@ -45,6 +45,7 @@ button { padding: 0; background: none; border: none; }
 }
 
 #contentWrap {
+  position: relative;
   max-width: var(--doc-max-width);
   width: var(--doc-width);
   height: var(--doc-height);
@@ -58,6 +59,7 @@ button { padding: 0; background: none; border: none; }
 /*header*/
 /*------*/
 header { position: fixed; max-width: var(--doc-max-width); width: var(--doc-width); height: var(--header-height); line-height: var(--header-height); background: var(--color-2); z-index: 1000; }
+header.fixed { top: 0; }
 header h1 { font-size: 24px; font-weight: bold; color: #fff; text-align: center; }
 
 #addButton { position: absolute; top: 50%; right: 25px; width: 17px; height: 17px; transform: translateY(-50%); transform-origin: center; cursor: pointer; }

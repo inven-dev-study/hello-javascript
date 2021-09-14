@@ -8,8 +8,6 @@ var $detailPage = $('#detailPopup');  // 리스트에서 클릭 시 나오는 �
 var $detailCloseButton = $detailPage.find('.closeButton'); // $detailPage 닫기
 var $detailDeleteButton = $detailPage.find('.deleteButton');  // $detailPage 삭제
 var $popupForDelete = $('#popupForDelete');  // $detailPage에서 "삭제" 누르면 나오는 "삭제하시겠습니까?" 팝업
-var $doDelete = $popupForDelete.find('.do');  // $popupForDelete 확인(삭제하기)
-var $undoDelete = $popupForDelete.find('.undo');  // $popupForDelete 돌아가기
 var dDayItems = {}  // 데이터 들어갈 객체
 var itemsId = "";  // 리스트에서 아이템 선택 시 해당 아이템 정보 "dDay_$$$$$$$$"
 var mode = "load";  // "load" , "new" , "update"
@@ -49,7 +47,7 @@ function getTime() {
  */
 function getTodaysDate() {
   var today = new Date();
-  var month = (today.getMonth() + 1);               
+  var month = (today.getMonth() + 1);
   var day = today.getDate();
 
   if (month < 10) month = "0" + month;
@@ -94,19 +92,13 @@ function appendData() {
 
   if( mode == "new" ) {
     var uniqueKey = 'dDay_' + new Date().getTime();
-    // createObject(uniqueKey);
-    dDayItems[uniqueKey] = {
-      'icon': $('input[name="icon"]:checked').val(),
-      'description': $('input[name="newDesc"]').val(),
-      'date': $('input[name="newDate"]').val(),
-    }
-    writeToStorage();
+    createObject(uniqueKey);
     setList(uniqueKey);
   } else if ( mode == "update" ) {
     createObject(itemsId);
-    writeToStorage();
     setList(itemsId);
   }
+  writeToStorage();
 }
 
 /**
@@ -148,6 +140,7 @@ function setList(targetKey = "") {
     for( var i = 0; i < listLen; i++ ) {
       if (list[i].dataset.id == targetKey) {
         $(list[i]).html(createList(targetKey, dDayItems[targetKey]));
+        break;
       }
     }
   }
@@ -168,22 +161,21 @@ function createList(key, items) {
                (durationDate == 0) ? "today" : "normal";
 
   var dDayCount = (durationDate == 0) ? "D-DAY" :
-                  (durationDate > 0) ? "D+" + durationDate :
-                  (durationDate < 0) ? "D" + durationDate : "";
+                  (durationDate > 0) ? "D+" + durationDate : "D" + durationDate;
 
   var html = "";
 
+  // "update" 일 때는 li.dDay 태그를 그릴 필요가 없어서 분리
+  html = '<div class="icon"><img src="images/'+ items['icon'] +'.png"></div>'
+  + '<div class="text"><p class="desc">'+ items['description'] +'</p><p class="date">'+ items['date'] +'</p></div>'
+  + '<div class="goal '+ moment +'">'+ dDayCount +'</div>';
+
   if(mode == "load" || mode == "new") {
     html = '<li class="dDay" data-id="' + key +'">'
-         + '<div class="icon"><img src="images/'+ items['icon'] +'.png"></div>'
-         + '<div class="text"><p class="desc">'+ items['description'] +'</p><p class="date">'+ items['date'] +'</p></div>'
-         + '<div class="goal '+ moment +'">'+ dDayCount +'</div>'
-         + '</li>';
-  } else if( mode == "update" ) {
-    html = '<div class="icon"><img src="images/'+ items['icon'] +'.png"></div>'
-         + '<div class="text"><p class="desc">'+ items['description'] +'</p><p class="date">'+ items['date'] +'</p></div>'
-         + '<div class="goal '+ moment +'">'+ dDayCount +'</div>';
+           + html
+           + '</li>';
   }
+
   return html;
 }
 
@@ -198,9 +190,11 @@ function getDuration(time) {
   var goal = new Date(time).getTime();
 
   var nowDate = new Date();
-  var nowDateYMD = new Date(nowDate.getFullYear() + "-" + ("0" + (nowDate.getMonth() + 1)).slice(-2) + "-" + ("0" + nowDate.getDate()).slice(-2)).getTime();
+  var nowDateYMD = new Date(nowDate.getFullYear()
+                  + "-" + ("0" + (nowDate.getMonth() + 1)).slice(-2) 
+                  + "-" + ("0" + nowDate.getDate()).slice(-2)).getTime();
 
-  result = (nowDateYMD - goal) / (1000*3600*24);
+  result = Math.floor((nowDateYMD - goal) / (1000*3600*24));
 
   return result;
 }
@@ -223,7 +217,6 @@ function updateData() {
   $('input[name="newDate"]').val(dDayItems[itemsId]["date"]);
   setPaper();
 
-  // createObject(itemsId);
 }
 
 /*-----------------------------------------------------*/
@@ -274,7 +267,7 @@ $('#addButton').on('click', function() {
     $('input[name="icon"]')[0].checked = true;
     $('input[name="newDesc"]').val('');
     $('input[name="newDate"]').val(getTodaysDate());
-
+    setPaper();
     $writePage.addClass('active').slideDown();
   }
 });
@@ -283,7 +276,6 @@ $('#submit').on('click', appendData);
 
 
 $(document).on('click', '.dDay', function() {
-  itemsId = $(this).data('id');
     if ( !$detailPage.hasClass('active') ) { 
       $detailPage.fadeIn().addClass('active');
       setdetailPage();
@@ -292,12 +284,13 @@ $(document).on('click', '.dDay', function() {
 
 
 $('#topButtonBlock button').on('click', function() {
-  if ( $(this).hasClass('deleteButton') ) {
+  var target = $(this);
+  if ( target.hasClass('deleteButton') ) {
     $popupForDelete.addClass('active');
-  } else if ( $(this).hasClass('closeButton') ) {
+  } else if ( target.hasClass('closeButton') ) {
     $popupForDelete.removeClass('active');
     $detailPage.fadeOut().removeClass('active');
-  } else if ( $(this).hasClass('updateButton') ) {
+  } else if ( target.hasClass('updateButton') ) {
     $writePage.fadeIn().addClass('active');
     $detailPage.fadeOut().removeClass('active');
     updateData();
@@ -305,12 +298,27 @@ $('#topButtonBlock button').on('click', function() {
 });
 
 $('#popupForDelete button').on('click', function() {
-  if ( $(this).hasClass('do') ) {
+  var target = $(this);
+  if ( target.hasClass('do') ) {
     deleteList();
     $popupForDelete.removeClass('active');
     $detailPage.removeClass('active').fadeOut();
-  } else if ( $(this).hasClass('undo') ) {
+  } else if ( target.hasClass('undo') ) {
     $popupForDelete.removeClass('active');
+  }
+});
+
+/*-----------------------------------------------------*/
+$(window).scroll(function() {
+  var target = $(this);
+  var sc = target.scrollTop();
+  
+  var $header = $('header');
+  
+  if(sc > $('#mainContent').offset().top) {
+    $header.addClass('fixed');
+  } else {
+    $header.removeClass('fixed');
   }
 });
 
@@ -322,4 +330,3 @@ setIconList();
 loadStorageToObject();
 setList();
 
-/** 정렬기능? */
