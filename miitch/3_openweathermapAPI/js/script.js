@@ -16,7 +16,7 @@ function geoWeather(position) {
   var posCrd = position.coords;
 
   var geo = "//api.openweathermap.org/data/2.5/weather?lat=" + posCrd.latitude + "&lon=" + posCrd.longitude + "&appid=17f3cd69b66748594cd1742315476b05";
-  var geo = "//api.openweathermap.org/data/2.5/weather?lat=37.47722&lon=126.86639&appid=17f3cd69b66748594cd1742315476b05";
+  // var geo = "//api.openweathermap.org/data/2.5/weather?lat=37.47722&lon=126.86639&appid=17f3cd69b66748594cd1742315476b05";
   $.ajax({
     url: geo,
     dataType: "json",
@@ -25,7 +25,6 @@ function geoWeather(position) {
     success: function(resp) {
       $currentWeather.html(showCurrentWeather(resp));
       console.log(resp);
-      console.log(posCrd);
     }
   });
 };
@@ -65,16 +64,14 @@ function myAreaFutureWeather(myArea) {
       console.log(resp);
       $hourlyWeather.append(showHourlyWeather(resp));
       setDataBar($hourlyWeather);
-      // showHourlyWeather(resp);
     }
   });
 }
 
 /*======== 날씨 정보 =============================*/
-function showDailyWeather(resp) {}
 
 /** 시간별(테이블) */
-function showHourlyWeather(resp) { /** 24시간 동안의 시간별 날씨 */
+function showHourlyWeather(resp) { /** 48시간 동안의 시간별 날씨 */
   var hourly = resp.hourly;
   var length = 48;
   var dataObj = [];
